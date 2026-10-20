@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-labelledby="title">
+<title id="title">Morfiai — dračí křídla a monogram M</title>
+<defs><linearGradient id="neon" x1="12" y1="20" x2="108" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#00f5ff"/><stop offset=".42" stop-color="#77ffff"/><stop offset=".7" stop-color="#e32bff"/><stop offset="1" stop-color="#ffc629"/></linearGradient><linearGradient id="glass" x1="35" y1="35" x2="85" y2="90" gradientUnits="userSpaceOnUse"><stop stop-color="#071a21"/><stop offset="1" stop-color="#190b25"/></linearGradient></defs>
+<style>
+.mark{animation:spectrum 16s linear infinite;transform-origin:60px 60px}.wing-left{transform-origin:40px 63px;animation:left 4s ease-in-out infinite}.wing-right{transform-origin:80px 63px;animation:right 4s ease-in-out infinite}.orbit{stroke-dasharray:14 9 2 9;animation:orbit 20s linear infinite;transform-origin:60px 60px}.core{animation:breath 4s ease-in-out infinite}
+@keyframes spectrum{to{filter:hue-rotate(360deg)}}@keyframes left{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-7deg)}}@keyframes right{0%,100%{transform:rotate(0deg)}50%{transform:rotate(7deg)}}@keyframes orbit{to{transform:rotate(360deg)}}@keyframes breath{0%,100%{opacity:.8}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.mark,.wing-left,.wing-right,.orbit,.core{animation:none}}
+</style>
+<g class="mark" stroke="url(#neon)" stroke-linecap="round" stroke-linejoin="round">
+<circle class="orbit" cx="60" cy="60" r="54" stroke-width="1" opacity=".5"/>
+<g class="wing-left" stroke-width="2"><path d="M42 66 12 29 16 63 27 56 29 78 42 66Z" fill="url(#glass)"/><path d="m12 29 15 27 15 10M12 29l17 49" stroke-width="1" opacity=".65"/></g>
+<g class="wing-right" stroke-width="2"><path d="m78 66 30-37-4 34-11-7-2 22-13-12Z" fill="url(#glass)"/><path d="M108 29 93 56 78 66m30-37L91 78" stroke-width="1" opacity=".65"/></g>
+<path d="m60 21 27 16v33L60 96 33 70V37Z" fill="url(#glass)" stroke-width="2"/>
+<path class="core" d="M44 74V44l16 18 16-18v30" stroke-width="5"/>
+<path d="m49 30-3-10 10 6m15 4 3-10-10 6" stroke-width="2"/>
+<path d="m55 82 5 5 5-5" stroke-width="2"/>
+</g></svg>

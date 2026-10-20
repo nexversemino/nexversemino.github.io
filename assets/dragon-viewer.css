@@ -1,0 +1,12 @@
+/* 3D náhled draka v sekci Funkce — pruh hned pod neonovou gradientovou linkou,
+   bez pozadí a rámu: model plaví samostatně, jen s jemným stínem a malou
+   nápovědou tažení (umístěné_jsou přes insertBefore před mřížku karet). */
+#nex-glb-viewer{position:relative;width:100%;height:min(56vh,460px);min-height:320px;touch-action:pan-y}
+.nex-glb-model{width:100%;height:100%;opacity:0;transition:opacity .6s ease}
+#nex-glb-viewer.nex-glb-live .nex-glb-model{opacity:1}
+.nex-glb-static{display:none;position:absolute;inset:0}
+#nex-glb-viewer.nex-glb-fallback .nex-glb-model,
+#nex-glb-viewer.nex-glb-fallback .nex-glb-hint{display:none}
+#nex-glb-viewer.nex-glb-fallback .nex-glb-static{display:block;width:100%;height:100%;object-fit:contain;opacity:.75;filter:brightness(.85)}
+.nex-glb-hint{position:absolute;top:10px;right:24px;font-family:JetBrains Mono,ui-monospace,monospace;font-size:11px;letter-spacing:.14em;color:var(--neon-cyan);opacity:.65;pointer-events:none}
+@media(prefers-reduced-motion:reduce){#nex-glb-viewer .nex-glb-model{opacity:1;transition:none}}

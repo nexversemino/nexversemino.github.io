@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="cs"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="assets/hero-CWIhvXXv.png"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Karla:wght@400;500&amp;display=swap" data-precedence="default"/><link rel="stylesheet" href="assets/styles-Dsiogmp1.css" data-precedence="default"/><title>Morfiai — NexVerse AI engine pro hry</title><meta name="description" content="NexVerse AI engine od Morfiai. Generujte herní assety a animace pomocí AI. Postavy, prostředí, rigy a pohyb během minut."/><meta property="og:title" content="Morfiai — NexVerse AI engine pro hry"/><meta property="og:description" content="NexVerse AI engine: herní assety a animace generované umělou inteligencí."/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><link rel="modulepreload" href="assets/index-BP0LeD_B.js"/><link rel="modulepreload" href="assets/routes-PYhwaQBC.js"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="assets/morfiai-logo.svg" type="image/svg+xml"/>
+
+<meta name="twitter:title" content="Morfiai — NexVerse AI engine pro hry"><meta name="twitter:description" content="NexVerse AI engine: herní assety a animace generované umělou inteligencí."><meta property="og:image" content="https://morfiai.eu/assets/hero-CWIhvXXv.png"><meta name="twitter:image" content="https://morfiai.eu/assets/hero-CWIhvXXv.png"><link rel="stylesheet" href="assets/hero-video.css?v=12"/><script type="module" src="assets/hero-video.js?v=5"></script><script type="module" src="assets/hero-copy.js?v=6"></script><link rel="stylesheet" href="assets/dragon-viewer.css?v=6"/><script type="module" src="assets/dragon-viewer.js?v=9"></script><script type="module" src="assets/living-word.js"></script><style>
+#hopik-mascot{position:fixed;left:0;top:0;width:40px;height:66px;z-index:9999;pointer-events:none;opacity:0;transform-origin:20px 14px;will-change:transform;transition:opacity .35s ease}
+#hopik-mascot.is-visible{opacity:1}
+.hopik-inner{position:relative;width:40px;height:66px;transform-origin:20px 14px}
+.hopik-head{position:absolute;left:12px;top:6px;width:16px;height:16px;border-radius:50%;background:#00f7f8;box-shadow:0 0 20px 4px rgba(0,247,248,.85)}
+.hopik-svg{position:absolute;left:0;top:0;width:40px;height:66px;display:block;overflow:visible}
+.hopik-svg .figure{color:var(--c,#49e2ff);filter:drop-shadow(0 0 2.5px currentColor) drop-shadow(0 0 7px currentColor)}
+.hopik-svg .limb{stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.hopik-svg .body-stick{transform-box:view-box;transform-origin:20px 22px;transform:scale(0);opacity:0}
+#hopik-mascot.is-growing .body-stick{animation:hopik-grow .85s cubic-bezier(.175,.885,.32,1.275) both}
+#hopik-mascot.is-grown .body-stick{transform:scale(1);opacity:1}
+.hopik-svg .arm-r{transform-box:fill-box;transform-origin:0% 0%;transform:rotate(0deg);transition:transform .26s cubic-bezier(.22,.68,0,.99)}
+.hopik-svg .arm-l{transform-box:fill-box;transform-origin:100% 0%}
+.hopik-svg .leg-l{transform-box:fill-box;transform-origin:100% 0%}
+.hopik-svg .leg-r{transform-box:fill-box;transform-origin:0% 0%}
+#hopik-mascot.is-walking .leg-l{animation:hopik-leg-l .5s ease-in-out infinite alternate}
+#hopik-mascot.is-walking .leg-r{animation:hopik-leg-r .5s ease-in-out infinite alternate}
+#hopik-mascot.is-walking .arm-l{animation:hopik-arm-l .5s ease-in-out infinite alternate}
+#hopik-mascot.is-walking .hopik-inner{animation:hopik-bob .25s ease-in-out infinite alternate}
+#hopik-mascot.is-pointing .arm-r{transform:scaleX(1.2)}
+#hopik-mascot.is-pointing.is-urgent .arm-r{animation:hopik-point .48s ease-in-out infinite alternate}
+#hopik-mascot.is-idle .hopik-inner{animation:hopik-breathe 1.9s ease-in-out infinite}
+@keyframes hopik-grow{0%{transform:scale(0);opacity:0}55%{opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes hopik-leg-l{from{transform:rotate(-13deg)}to{transform:rotate(17deg)}}
+@keyframes hopik-leg-r{from{transform:rotate(13deg)}to{transform:rotate(-17deg)}}
+@keyframes hopik-arm-l{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+@keyframes hopik-point{from{transform:scaleX(1.2) rotate(-7deg)}to{transform:scaleX(1.2) rotate(5deg)}}
+@keyframes hopik-bob{from{transform:translateY(0)}to{transform:translateY(-1.2px)}}
+@keyframes hopik-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
+@media(prefers-reduced-motion:reduce){#hopik-mascot,#hopik-mascot *{animation:none!important;transition:none!important}}
+</style>
+</head><body><!--$--><div class="min-h-screen bg-background"><div aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-[100] h-2 w-2 rounded-full bg-neon-cyan"></div><div aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-[100] h-10 w-10 rounded-full border transition-[border-color] duration-300"></div><div aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-0 h-[320px] w-[320px] rounded-full opacity-15 blur-3xl" style="background:radial-gradient(circle, var(--neon-cyan) 0%, var(--neon-violet) 35%, transparent 70%)"></div><div aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-40 hidden h-4 w-4 rounded-full md:block"></div><header class="fixed inset-x-0 top-0 z-50 border-b bg-background/70 backdrop-blur-md"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><span class="font-mono text-sm font-bold tracking-[0.3em] text-neon-gradient">MORFIAI</span><nav class="hidden gap-8 font-mono text-xs uppercase tracking-widest text-muted-foreground md:flex"><a href="#funkce" class="hover:text-neon-cyan">Funkce</a><a href="#engine" class="hover:text-neon-pink">Engine</a><a href="#kontakt" class="hover:text-neon-lime">Kontakt</a></nav><div class="inline-block transition-transform duration-300 ease-out will-change-transform "><a href="#kontakt" class="block border border-neon-cyan px-4 py-2 font-mono text-xs uppercase tracking-widest text-neon-cyan transition hover:bg-neon-cyan hover:text-primary-foreground">Přístup</a></div></div></header><section class="relative z-10 grid min-h-screen lg:grid-cols-2"><div class="grid-bg relative flex flex-col justify-center px-6 pb-16 pt-32 lg:px-16"><p class="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-neon-lime">&gt; system.init(nexverse)<span class="blink">_</span></p><h1 class="font-display text-6xl font-light leading-[1.15] md:text-8xl"><span class="inline-block " aria-label="Kujeme světy"><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:0ms">K</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:25ms">u</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:50ms">j</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:75ms">e</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:100ms">m</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:125ms">e</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:150ms"> </span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:175ms">s</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:200ms">v</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:225ms">ě</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:250ms">t</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:275ms">y</span></span><br/><em class="font-semibold text-neon-gradient"><span class="inline-block " aria-label="pomocí AI"><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:0ms">p</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:25ms">o</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:50ms">m</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:75ms">o</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:100ms">c</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:125ms">í</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:150ms"> </span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:175ms">A</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:200ms">I</span></span></em></h1><p class="mt-8 max-w-md text-lg text-muted-foreground">Herní assety a animace generované umělou inteligencí. Od nápadu k hratelné postavě za pár minut.</p><div class="mt-10 flex flex-wrap gap-4"><div class="inline-block transition-transform duration-300 ease-out will-change-transform "><a href="#kontakt" class="block bg-neon-gradient px-8 py-4 font-mono text-sm font-bold uppercase tracking-widest text-primary-foreground">Začít tvořit</a></div><div class="inline-block transition-transform duration-300 ease-out will-change-transform "><a href="#engine" class="block border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition hover:border-neon-pink hover:text-neon-pink">Ukázka enginu</a></div></div><div class="mt-16 grid max-w-md grid-cols-3 gap-6 border-t pt-8"><div><div class="font-mono text-2xl font-bold text-neon-cyan">12×</div><div class="mt-1 text-xs text-muted-foreground">rychlejší produkce</div></div><div><div class="font-mono text-2xl font-bold text-neon-pink">40k+</div><div class="mt-1 text-xs text-muted-foreground">vygenerovaných assetů</div></div><div><div class="font-mono text-2xl font-bold text-neon-lime">60 fps</div><div class="mt-1 text-xs text-muted-foreground">realtime náhled</div></div></div></div><div class="relative min-h-[60vh] overflow-hidden"><div class="transition-transform duration-200 ease-out will-change-transform absolute inset-0"><img src="assets/hero-CWIhvXXv.png" alt="Drak generovaný AI s neonovou drátěnou sítí" width="1024" height="1280" class="h-full w-full object-contain object-bottom"/></div><div data-bounce="true" class="absolute bottom-8 left-8 border border-neon-cyan bg-background/80 p-4 font-mono text-xs text-neon-cyan backdrop-blur"><div>MESH: dragon_v3.fbx</div><div class="text-muted-foreground">polys 48 210 · rig ✓ · anim 24</div></div></div></section><div class="h-px bg-neon-gradient"></div><section id="funkce" class="relative z-10 mx-auto max-w-7xl px-6 py-28"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-pink">// Funkce</p><h2 class="mt-4 max-w-2xl font-display text-5xl font-light leading-[1.2] md:text-6xl"><span data-orb="bounce" data-orb-color="var(--neon-pink)">Celá produkční linka v <em class="text-neon-gradient">jednom nástroji</em></span></h2></div><div data-orb="cards" class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-cyan hover:glow-cyan"><span class="font-mono text-sm text-neon-cyan">[<!-- -->01<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-cyan"><span aria-label="Generátor assetů"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Generátor assetů</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Postavy, zbraně, prostředí. Z textu nebo skici rovnou do 3D s PBR texturami.</p></div></div></div><div style="transition-delay:120ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-pink hover:glow-pink"><span class="font-mono text-sm text-neon-pink">[<!-- -->02<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-pink"><span aria-label="Animační engine"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Animační engine</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">AI rigging a motion synthesis. Chůze, boj, emoce — bez motion capture.</p></div></div></div><div style="transition-delay:240ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-lime hover:glow-lime"><span class="font-mono text-sm text-neon-lime">[<!-- -->03<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-lime"><span aria-label="AI myšlení do hry"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">AI myšlení do hry</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Chytré NPC, které přemýšlí, plánují a reagují na hráče.</p></div></div></div><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-orange hover:glow-orange"><span class="font-mono text-sm text-neon-orange">[<!-- -->04<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-orange"><span aria-label="Generování 2D/3D"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Generování 2D/3D</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Sprity, ilustrace i 3D modely z jednoho popisu.</p></div></div></div><div style="transition-delay:120ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-cyan hover:glow-cyan"><span class="font-mono text-sm text-neon-cyan">[<!-- -->05<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-cyan"><span aria-label="Hudba"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Hudba</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Soundtrack a zvukové efekty, které se přizpůsobí dění ve hře.</p></div></div></div><div style="transition-delay:240ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-pink hover:glow-pink"><span class="font-mono text-sm text-neon-pink">[<!-- -->06<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-pink"><span aria-label="Dialogy"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Dialogy</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Rozhovory postav s hlasem, emocemi a větvením příběhu.</p></div></div></div><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-lime hover:glow-lime"><span class="font-mono text-sm text-neon-lime">[<!-- -->07<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-lime"><span aria-label="2D kostra"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">2D kostra</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Automatický rig pro 2D postavy, připravený k animaci.</p></div></div></div><div style="transition-delay:120ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-orange hover:glow-orange"><span class="font-mono text-sm text-neon-orange">[<!-- -->08<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-orange"><span aria-label="3D kostra"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">3D kostra</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Kostra a skinning 3D modelů během pár sekund.</p></div></div></div><div style="transition-delay:240ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-cyan hover:glow-cyan"><span class="font-mono text-sm text-neon-cyan">[<!-- -->09<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-cyan"><span aria-label="Animace mimiky"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Animace mimiky</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Výrazy tváře a pohyb rtů synchronizovaný s hlasem.</p></div></div></div><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-pink hover:glow-pink"><span class="font-mono text-sm text-neon-pink">[<!-- -->10<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-pink"><span aria-label="Character creator"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Character creator</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Navrhněte hrdinu od siluety po poslední detail.</p></div></div></div><div style="transition-delay:120ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-lime hover:glow-lime"><span class="font-mono text-sm text-neon-lime">[<!-- -->11<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-lime"><span aria-label="World lab"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">World lab</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Krajiny, města a celé světy generované na míru.</p></div></div></div><div style="transition-delay:240ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-orange hover:glow-orange"><span class="font-mono text-sm text-neon-orange">[<!-- -->12<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-orange"><span aria-label="Creature lab"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Creature lab</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Bytosti a monstra, jaká svět ještě neviděl.</p></div></div></div><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-cyan hover:glow-cyan"><span class="font-mono text-sm text-neon-cyan">[<!-- -->13<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-cyan"><span aria-label="AI generátor"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">AI generátor</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Univerzální generátor pro cokoli, co vaše hra potřebuje.</p></div></div></div><div style="transition-delay:120ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-pink hover:glow-pink"><span class="font-mono text-sm text-neon-pink">[<!-- -->14<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-pink"><span aria-label="Export do herních enginů"><span aria-hidden="true"></span><span aria-hidden="true" class="blink">|</span><span aria-hidden="true" class="invisible">Export do herních enginů</span></span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Unity, Unreal, Godot. FBX, glTF a USD připravené k nasazení.</p></div></div></div></div></section><section id="engine" class="relative z-10 grid border-y lg:grid-cols-2"><div class="bg-card p-6 font-mono text-sm lg:p-16"><div class="mb-4 flex gap-2"><span class="h-3 w-3 rounded-full bg-neon-pink"></span><span class="h-3 w-3 rounded-full bg-neon-orange"></span><span class="h-3 w-3 rounded-full bg-neon-lime"></span></div><pre class="whitespace-pre-wrap leading-7 text-muted-foreground"><span class="blink text-neon-cyan">▌</span></pre></div><div class="flex flex-col justify-center p-6 lg:p-16"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan">// Animační engine</p><h2 class="mt-4 font-display text-5xl font-light leading-[1.2]">Pohyb, který <em data-orb="drop" data-orb-color="var(--neon-lime)" class="text-neon-gradient">žije</em></h2><p class="mt-6 max-w-md text-muted-foreground">Náš engine rozumí fyzice i emocím. Popište akci slovy a AI vytvoří plynulou animaci připravenou pro váš herní engine.</p></div></div></section><section id="kontakt" class="grid-bg relative z-10 px-6 py-32 text-center"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><h2 class="mx-auto max-w-3xl font-display text-5xl font-light leading-[1.2] md:text-7xl"><span data-orb="orbit" data-orb-color="var(--neon-orange)">Připraveni <em class="text-neon-gradient">vytvořit</em> další hit?</span></h2><p class="mt-6 font-mono text-sm text-muted-foreground">Early access je otevřen pro herní studia i nezávislé vývojáře.</p><div class="inline-block transition-transform duration-300 ease-out will-change-transform mt-10"><a href="mailto:ahoj@morfiai.eu" class="block bg-neon-gradient px-10 py-5 font-mono text-sm font-bold uppercase tracking-widest text-primary-foreground">Získat přístup</a></div></div></section><footer class="relative z-10 border-t px-6 py-8 text-center font-mono text-xs text-muted-foreground">© 2026 Morfiai · morfiai.eu</footer></div><script>(function(a,f){let l;try{l=JSON.parse(sessionStorage.getItem(a)||"{}")}catch{return}const n=l?.[f||history.state?.__TSR_key];let c=!1;for(const t in n){const e=n[t],o=e?.scrollX,s=e?.scrollY;if(Number.isFinite(o)&&Number.isFinite(s)){if(t==="window")scrollTo(o,s),c=!0;else if(t)try{const r=document.querySelector(t);r&&(r.scrollLeft=o,r.scrollTop=s)}catch{}}}if(c)return;const i=location.hash.slice(1);if(i){const t=history.state?.__hashScrollIntoViewOptions??!0;if(t){const e=document.getElementById(i);e&&e.scrollIntoView(t)}return}scrollTo(0,0)})("tsr-scroll-restoration-v1_3");document.currentScript.remove()</script><!--/$--><script data-tsr-stream-part="">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["assets/index-BP0LeD_B.js"],scripts:$R[5]=[$R[6]={attrs:$R[7]={type:"module",async:!0,src:"assets/index-BP0LeD_B.js"}}]},"/":$R[8]={preloads:$R[9]=["assets/routes-PYhwaQBC.js"]}}},matches:$R[10]=[$R[11]={i:"__root__ ",u:1792404106140,s:"success",ssr:!0},$R[12]={i:"  ",u:1792404106140,s:"success",ssr:!0}]})($R["tsr"]);$_TSR.e();{let s=document.currentScript,p;while((p=s.previousElementSibling)&&p.hasAttribute('data-tsr-stream-part'))p.remove();s.remove()}</script><script type="module" async="" src="assets/index-BP0LeD_B.js"></script><script>document.currentScript.remove();/*$tsr-stream-boundary*/</script>
+<script>
+(function(){
+  if(window.__hopikMascot)return;window.__hopikMascot=1;
+  var HX=20,HY=14,BH=16;
+  var el=null,inner=null,head=null,ball=null,ballHidden=false;
+  var state='track',pos={x:0,y:0},facing=1;
+  var headRect=null,lastHead=0;
+  var trackStart=0,prevAng=null,accum=0;
+  var walkFrom=null,walkTo=null,walkT0=0,walkDur=0;
+  var pointStart=0,pointUntil=0;
+  var wanderFrom=null,wanderNext=null,wanderT0=0,wanderDur=0,planAt=0;
+  var btn=null,btnRect=null,lastBtn=0;
+
+  function qs(s,r){return (r||document).querySelector(s);}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function rand(a,b){return Math.random()*(b-a)+a;}
+  function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
+
+  function build(){
+    if(el)return;
+    el=document.createElement('div');el.id='hopik-mascot';el.setAttribute('aria-hidden','true');
+    inner=document.createElement('div');inner.className='hopik-inner';
+    head=document.createElement('div');head.className='hopik-head';
+    var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('class','hopik-svg');svg.setAttribute('viewBox','0 0 40 66');
+    svg.innerHTML=
+      '<g class="figure"><g class="body-stick">'
+      +'<line class="limb" x1="20" y1="22" x2="20" y2="44.4"/>'
+      +'<g class="arm arm-l"><line class="limb" x1="20" y1="28.4" x2="5.6" y2="38"/></g>'
+      +'<g class="arm arm-r"><line class="limb" x1="20" y1="28.4" x2="37.6" y2="28.4"/></g>'
+      +'<g class="leg leg-l"><line class="limb" x1="20" y1="44.4" x2="8.8" y2="62"/></g>'
+      +'<g class="leg leg-r"><line class="limb" x1="20" y1="44.4" x2="31.2" y2="62"/></g>'
+      +'</g></g>';
+    inner.appendChild(head);inner.appendChild(svg);el.appendChild(inner);
+    document.body.appendChild(el);
+  }
+
+  function findBall(){
+    if(ball&&ball.isConnected)return ball;
+    ball=qs('div[class*="z-40"][class*="rounded-full"][class*="h-4"]');
+    return ball;
+  }
+  function ballTopLeft(b){
+    var m=(b.style.transform||'').match(/-?[\d.]+/g);
+    if(m&&m.length>=2)return{x:+m[0],y:+m[1]};
+    var r=b.getBoundingClientRect();return{x:r.left,y:r.top};
+  }
+  function setBall(hide){
+    var b=findBall();if(!b)return;
+    if(ballHidden!==hide){ballHidden=hide;b.style.opacity=hide?'0':'';}
+  }
+  function setPos(x,y,f){
+    pos.x=x;pos.y=y;
+    if(f!==undefined&&f!==facing)facing=f;
+    el.style.transform='translate('+(x-HX).toFixed(1)+'px,'+(y-HY).toFixed(1)+'px) scaleX('+facing+')';
+  }
+  function faceTo(x){if(Math.abs(x-pos.x)>2)facing=(x>pos.x?1:-1);setPos(pos.x,pos.y);}
+  function headingRect(now){
+    if(!headRect||now-lastHead>120){
+      lastHead=now;
+      var h=qs('#kontakt h2 [data-orb]')||qs('#kontakt h2 span');
+      headRect=h?h.getBoundingClientRect():null;
+    }
+    return headRect;
+  }
+  function buttonRect(now){
+    if(!btn||!btn.isConnected)btn=qs('#kontakt a[href*="mailto"]')||qs('#kontakt a');
+    if(!btn)return null;
+    if(!btnRect||now-lastBtn>150){lastBtn=now;btnRect=btn.getBoundingClientRect();}
+    return btnRect;
+  }
+  function standPoint(br){
+    var x=br.left-34,y=br.bottom-48;
+    if(x<52){x=br.left+br.width/2;y=br.top-70;}
+    return{x:clamp(x,46,innerWidth-46),y:clamp(y,92,innerHeight-70)};
+  }
+
+  function startGrow(now,x,y){
+    if(state!=='track')return;
+    state='grow';
+    setPos(x,y);
+    el.classList.add('is-visible','is-growing');
+    setBall(true);
+    setTimeout(function(){
+      if(state!=='grow')return;
+      el.classList.remove('is-growing');el.classList.add('is-grown');
+      startWalk(performance.now());
+    },880);
+  }
+  function startWalk(now){
+    var br=buttonRect(now);
+    if(!br||!(br.top<innerHeight&&br.bottom>0)){state='wait';return;}
+    walkFrom={x:pos.x,y:pos.y};
+    walkTo=standPoint(br);
+    walkT0=now;
+    walkDur=clamp(dist(walkFrom,walkTo)/36,1800,9000);
+    faceTo(walkTo.x);
+    state='walk';
+  }
+  function startPoint(now){
+    state='point';pointStart=now;pointUntil=now+2600;
+    var br=buttonRect(now);if(br)faceTo(br.left+br.width/2);
+  }
+  function startWander(now){
+    state='wander';wanderNext=null;planAt=now+rand(500,1100);
+  }
+  function planWander(now,br){
+    var cx=br.left+br.width/2,cy=br.top+br.height/2,ang=rand(0,Math.PI*2);
+    wanderNext={
+      x:clamp(cx+Math.cos(ang)*rand(70,112),46,innerWidth-46),
+      y:clamp(cy+Math.sin(ang)*rand(34,66),92,innerHeight-64)
+    };
+    wanderFrom={x:pos.x,y:pos.y};
+    wanderT0=now+rand(450,1000);
+    wanderDur=clamp(dist(wanderFrom,wanderNext)/40,700,1600);
+    planAt=wanderT0;
+    faceTo(wanderNext.x);
+  }
+
+  function trackTick(now,b,hr){
+    el.classList.remove('is-visible');
+    setBall(false);
+    if(!hr||hr.top>innerHeight*.85||hr.bottom<innerHeight*.15){trackStart=0;prevAng=null;accum=0;return;}
+    var cx=hr.left+hr.width/2,cy=hr.top+hr.height/2;
+    if(!b){
+      if(!trackStart)trackStart=now;
+      if(now-trackStart>4000)startGrow(now,cx,cy);
+      return;
+    }
+    var p=ballTopLeft(b),ax=p.x+BH/2,ay=p.y+BH/2;
+    setPos(ax,ay);
+    if(!trackStart){trackStart=now;prevAng=null;accum=0;}
+    var R=(hr.width/2+30+hr.height/2+30)/2;
+    if(Math.hypot(ax-cx,ay-cy)>R*2.7){trackStart=now;prevAng=null;accum=0;return;}
+    var ang=Math.atan2(ay-cy,ax-cx);
+    if(prevAng===null){prevAng=ang;return;}
+    var delta=ang-prevAng;
+    while(delta>Math.PI)delta-=Math.PI*2;
+    while(delta<-Math.PI)delta+=Math.PI*2;
+    prevAng=ang;
+    if(Math.abs(delta)<1.5)accum+=delta;
+    var passed=now-trackStart;
+    if((Math.abs(accum)>=Math.PI&&passed>1500)||passed>7000)startGrow(now,ax,ay);
+  }
+
+  function applyCls(now){
+    el.classList.toggle('is-walking',state==='walk'||(state==='wander'&&!!wanderNext&&now>=wanderT0));
+    el.classList.toggle('is-pointing',state==='point');
+    el.classList.toggle('is-urgent',state==='point'&&(now-pointStart)<1700);
+    el.classList.toggle('is-idle',state==='wait');
+  }
+
+  function tick(now){
+    if(!el)build();
+    var b=findBall();
+    if(b&&b.style.background){
+      head.style.background=b.style.background;
+      if(b.style.boxShadow)head.style.boxShadow=b.style.boxShadow;
+      inner.style.setProperty('--c',b.style.background);
+    }
+    var hr=headingRect(now);
+    if(state==='track'){
+      trackTick(now,b,hr);
+    }else{
+      var br=buttonRect(now);
+      var on=!!br&&br.top<innerHeight+30&&br.bottom>-30&&br.left<innerWidth+30&&br.right>-30;
+      el.classList.toggle('is-visible',on);
+      setBall(on);
+      if(on){
+        if(state==='wait'){startWalk(now);}
+        else if(state==='walk'){
+          var p=clamp((now-walkT0)/walkDur,0,1),e=ease(p);
+          setPos(lerp(walkFrom.x,walkTo.x,e),lerp(walkFrom.y,walkTo.y,e));
+          faceTo(walkTo.x);
+          if(p>=1)startPoint(now);
+        }
+        else if(state==='point'){
+          faceTo(br.left+br.width/2);
+          if(dist(pos,standPoint(br))>95)startWalk(now);
+          else if(now>=pointUntil)startWander(now);
+        }
+        else if(state==='wander'){
+          if(!wanderNext){
+            if(now>=planAt)planWander(now,br);
+          }else if(now>=wanderT0){
+            var wp=clamp((now-wanderT0)/wanderDur,0,1),we=ease(wp);
+            setPos(lerp(wanderFrom.x,wanderNext.x,we),lerp(wanderFrom.y,wanderNext.y,we));
+            faceTo(wanderNext.x);
+            if(wp>=1){
+              setPos(wanderNext.x,wanderNext.y);
+              wanderNext=null;
+              if(Math.random()<.45){startPoint(now);pointUntil=now+rand(900,1500);}
+              else planWander(now,br);
+            }
+          }
+        }
+      }
+    }
+    applyCls(now);
+    requestAnimationFrame(tick);
+  }
+
+  build();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body></html>

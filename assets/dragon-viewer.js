@@ -34,22 +34,28 @@ function buildDragonViewer(){
  for(const url of GLB_SOURCES){
   import(url).then(()=>{loaded=true;wrap.classList.add('nex-glb-live')}).catch(()=>{});
  }
- // Pojistka: model-viewer nespustí načítání, dokud element není ve viewportu.
- // Časový cyklus čeká, dokud není viditelný a teprve pak (max. 4×) resetuje src,
- // aby se primeras načtení při zaseknutí prvního fetch/decode vždy zopakovalo.
+ // Pojistka: model-viewer nespustí načítání, dokud element není viditelný
+ // (a v neaktivním tabu se IntersectionObserver vůbec nespouští). Smyčka proto
+ // resetuje src jen když je stránka viditelná a náhled ve viewportu; po návratu
+ // do tabu se pokusy obnoví, takže se model vždy dočte a fallback zmizí.
  let kicks=0,failed=false;
  const mEl=()=>wrap.querySelector('model-viewer');
  mEl().addEventListener('load',()=>{failed=false;wrap.classList.remove('nex-glb-fallback')});
+ document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible'&&failed&&!mEl().loaded){failed=false;kicks=0;wrap.classList.remove('nex-glb-fallback')}
+ });
  const ensureLoaded=()=>{
   const m=mEl();
-  if(!m||failed)return;
-  if(m.loaded)return;
-  const r=m.getBoundingClientRect();
-  const visible=r.top<innerHeight+260&&r.bottom>-260&&r.width>60;
-  if(visible){
-   kicks++;
-   if(kicks<=4){m.setAttribute('src','assets/dragon-preview.glb?kick='+kicks)}
-   else{failed=true;wrap.classList.add('nex-glb-fallback')}
+  if(!m)return;
+  if(m.loaded){wrap.classList.remove('nex-glb-fallback');return}
+  if(document.visibilityState==='visible'&&!failed){
+   const r=m.getBoundingClientRect();
+   const visible=r.top<innerHeight+260&&r.bottom>-260&&r.width>60;
+   if(visible){
+    kicks++;
+    if(kicks<=6){m.setAttribute('src','assets/dragon-preview.glb?kick='+kicks)}
+    else{failed=true;wrap.classList.add('nex-glb-fallback')}
+   }
   }
   setTimeout(ensureLoaded,2600);
  };

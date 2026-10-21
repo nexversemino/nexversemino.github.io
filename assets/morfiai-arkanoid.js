@@ -1,8 +1,10 @@
 // Morfiai — Arkanoid mini-game on the hero section.
+// - The ball IS the page's own cursor dot (the neon-cyan kulička that follows
+//   the mouse). While the game runs we drive that real element; when the game
+//   pauses (scroll) we hand it back to the site's own mouse-follower.
 // - Bricks are small, semi-transparent and laid out to spell MORFIAI.
-// - The ball is the page's neon-violet dot (rgb(166,114,255)).
-// - Scrolling pauses the game; scrolling back to the top resumes it.
-// - Overlay is appended to document.body so React's hydration failure
+// - Scrolling pauses; scrolling back to the top resumes.
+// - The canvas overlay lives on document.body so React's hydration failure
 //   (#418) cannot remove it.
 
 (() => {
@@ -12,15 +14,13 @@
   let W = 0, H = 0, dpr = 1;
   let wrap, canvas, ctx;
 
-  // Neon palette (matches the page)
   const NEON = ['#a672ff', '#00e5ff', '#ff1fd0', '#7dff00', '#ff8a00', '#ffd400'];
-  const BALL_COLOR = '#a672ff';           // the violet kulička on the page
   const POWERUPS = ['big','small','hopik','life','speed','slow'];
   const PU_COLOR = { big:'#7dff00', small:'#ff1fd0', hopik:'#ffd400', life:'#ff8a00', speed:'#00e5ff', slow:'#8b2dff' };
   const PU_LABEL = { big:'BIG', small:'SMALL', hopik:'+10', life:'+1UP', speed:'FAST', slow:'SLOW' };
 
   let paddle = { x: 0, y: 0, w: 90, h: 9, targetW: 90 };
-  let ball = { x: 0, y: 0, r: 7, vx: 200, vy: -260 };
+  let ball = { x: 0, y: 0, r: 4, vx: 200, vy: -260 };
   let bricks = [], powerups = [], particles = [];
   let score = 0, lives = 3, running = true, paused = false, last = 0, targetX = 0;
 
@@ -41,29 +41,60 @@
 
   function buildBricks() {
     bricks = [];
-    // total width of the word
-    const cols = WORD.length * 5 + (WORD.length - 1); // 7*5 + 6 = 41
+    const cols = WORD.length * 5 + (WORD.length - 1);
     const totalW = cols * STEP - GAP;
     const x0 = clamp((W - totalW) / 2, 8, Math.max(8, W - totalW - 8));
     const y0 = Math.max(24, H * 0.11);
-
     for (let li = 0; li < WORD.length; li++) {
       const g = GLYPH[WORD[li]];
       const color = NEON[li % NEON.length];
       for (let row = 0; row < 5; row++) {
         for (let col = 0; col < 5; col++) {
           if (g[row][col] !== 'X') continue;
-          bricks.push({
-            x: x0 + (li * 6 + col) * STEP,
-            y: y0 + row * (CELL_H + GAP),
-            w: CELL_W, h: CELL_H,
-            color,
-            alive: true,
-            vy: 14,
-          });
+          bricks.push({ x: x0 + (li * 6 + col) * STEP, y: y0 + row * (CELL_H + GAP),
+                        w: CELL_W, h: CELL_H, color, alive: true, vy: 14 });
         }
       }
     }
+  }
+
+  // ---- the real cursor kulička ----
+  let ballEl = null;
+
+  function findBallEl() {
+    const root = document.querySelector('.min-h-screen');
+    if (!root) return null;
+    return Array.from(root.children).find(e => {
+      const c = String(e.className || '');
+      return /h-2\b/.test(c) && /w-2\b/.test(c) && /rounded-full/.test(c) && /bg-neon-cyan/.test(c);
+    }) || null;
+  }
+
+  function ensureBallEl() {
+    ballEl = findBallEl();
+    if (!ballEl) {
+      const root = document.querySelector('.min-h-screen') || document.body;
+      ballEl = document.createElement('div');
+      ballEl.className = 'pointer-events-none fixed left-0 top-0 z-[100] h-2 w-2 rounded-full bg-neon-cyan';
+      root.appendChild(ballEl);
+    }
+    return ballEl;
+  }
+
+  function hijackBall() {
+    const el = ensureBallEl();
+    const h = hero();
+    const r = h ? h.getBoundingClientRect() : { left: 0, top: 0 };
+    el.style.opacity = '1';
+    el.style.boxShadow = '0 0 14px 4px rgba(0,229,255,.95)';
+    el.style.transform = 'translate(' + Math.round(r.left + ball.x - 4) + 'px, ' + Math.round(r.top + ball.y - 4) + 'px)';
+  }
+
+  function releaseBall() {
+    if (!ballEl) return;
+    ballEl.style.boxShadow = '';
+    ballEl.style.opacity = '1';
+    // the site's own mousemove handler resumes driving it
   }
 
   function mount() {
@@ -140,7 +171,6 @@
 
   // Scrolling pauses; scrolling back to the top resumes. The game never dies.
   window.addEventListener('scroll', () => { paused = window.scrollY > 60; }, { passive: true });
-  window.addEventListener('mousedown', e => { const t = e.target; if (t && t.closest && t.closest('a,button')) paused = false; }, { passive: true });
 
   function update(dt) {
     if (!running || !ctx || paused) return;
@@ -217,13 +247,12 @@
     if (!running || !ctx) return;
     ctx.clearRect(0, 0, W, H);
 
-    // Bricks — small and semi-transparent, spelling MORFIAI
     for (const b of bricks) {
       if (!b.alive) continue;
       ctx.shadowColor = b.color; ctx.shadowBlur = 8; ctx.fillStyle = b.color;
-      ctx.globalAlpha = 0.42;                 // průsvitné
+      ctx.globalAlpha = 0.42;
       rr(b.x, b.y, b.w, b.h, 2); ctx.fill();
-      ctx.globalAlpha = 0.85;                 // jen lehký obrys
+      ctx.globalAlpha = 0.85;
       ctx.strokeStyle = b.color; ctx.lineWidth = 1; ctx.stroke();
       ctx.globalAlpha = 1; ctx.shadowBlur = 0;
     }
@@ -242,19 +271,11 @@
     const pg = ctx.createLinearGradient(paddle.x, 0, paddle.x + paddle.w, 0);
     pg.addColorStop(0, '#00e5ff'); pg.addColorStop(1, '#ff1fd0');
     ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 12; ctx.fillStyle = pg;
-    ctx.globalAlpha = 0.55;                 // plošinka je průsvitná
+    ctx.globalAlpha = 0.55;
     rr(paddle.x, paddle.y, paddle.w, paddle.h, 4); ctx.fill();
     ctx.globalAlpha = 0.9;
     ctx.strokeStyle = '#00e5ff'; ctx.lineWidth = 1; ctx.stroke();
     ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-
-    // Ball — the page's neon-violet kulička
-    ctx.shadowColor = BALL_COLOR; ctx.shadowBlur = 18; ctx.fillStyle = BALL_COLOR;
-    ctx.globalAlpha = 0.95;
-    ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 0.35; ctx.shadowBlur = 0;   // vnější halo
-    ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r * 2.1, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 1;
 
     for (const pt of particles) {
       ctx.globalAlpha = Math.max(0, pt.life * 2); ctx.fillStyle = pt.color;
@@ -276,6 +297,7 @@
       if (!ctx) { requestAnimationFrame(loop); return; }
     }
     sync();
+    if (paused) releaseBall(); else hijackBall();
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
     update(dt);
@@ -294,6 +316,8 @@
   else start();
 
   window.__arkanoid = {
-    state: () => ({ paused, running, hasCtx: !!ctx, W, H, score, lives, brickCount: bricks.filter(b => b.alive).length }),
+    state: () => ({ paused, running, hasCtx: !!ctx, W, H, score, lives,
+                    brickCount: bricks.filter(b => b.alive).length,
+                    ballIsRealElement: !!(ballEl && ballEl.isConnected) }),
   };
 })();

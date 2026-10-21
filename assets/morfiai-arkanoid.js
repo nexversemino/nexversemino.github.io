@@ -1,7 +1,9 @@
 // Morfiai — Arkanoid mini-game on the hero section.
-// The overlay is appended to document.body as a position:fixed layer, so
-// React's hydration failure (#418) can never remove it. Geometry is synced
-// to the hero section every frame. Auto-starts at page top; stops on scroll.
+// - Bricks are small, semi-transparent and laid out to spell MORFIAI.
+// - The ball is the page's neon-violet dot (rgb(166,114,255)).
+// - Scrolling pauses the game; scrolling back to the top resumes it.
+// - Overlay is appended to document.body so React's hydration failure
+//   (#418) cannot remove it.
 
 (() => {
   'use strict';
@@ -10,28 +12,57 @@
   let W = 0, H = 0, dpr = 1;
   let wrap, canvas, ctx;
 
-  const COLORS = ['#00e5ff','#ff1fd0','#8b2dff','#ff8a00','#7dff00','#ffd400'];
+  // Neon palette (matches the page)
+  const NEON = ['#a672ff', '#00e5ff', '#ff1fd0', '#7dff00', '#ff8a00', '#ffd400'];
+  const BALL_COLOR = '#a672ff';           // the violet kulička on the page
   const POWERUPS = ['big','small','hopik','life','speed','slow'];
   const PU_COLOR = { big:'#7dff00', small:'#ff1fd0', hopik:'#ffd400', life:'#ff8a00', speed:'#00e5ff', slow:'#8b2dff' };
   const PU_LABEL = { big:'BIG', small:'SMALL', hopik:'+10', life:'+1UP', speed:'FAST', slow:'SLOW' };
 
-  let paddle = { x: 0, y: 0, w: 90, h: 10, targetW: 90 };
-  let ball = { x: 0, y: 0, r: 6, vx: 200, vy: -260 };
+  let paddle = { x: 0, y: 0, w: 90, h: 9, targetW: 90 };
+  let ball = { x: 0, y: 0, r: 7, vx: 200, vy: -260 };
   let bricks = [], powerups = [], particles = [];
-  let score = 0, lives = 3, running = true, stopped = false, last = 0, targetX = 0;
+  let score = 0, lives = 3, running = true, paused = false, last = 0, targetX = 0;
 
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const hero = () => document.querySelector('.nex-dragon-video-section');
 
+  // ---- 5x5 pixel font for MORFIAI ----
+  const GLYPH = {
+    M: ['X...X','XX.XX','X.X.X','X...X','X...X'],
+    O: ['.XXX.','X...X','X...X','X...X','.XXX.'],
+    R: ['XXXX.','X...X','XXXX.','X..X.','X...X'],
+    F: ['XXXXX','X....','XXX..','X....','X....'],
+    I: ['XXXXX','..X..','..X..','..X..','XXXXX'],
+    A: ['.XXX.','X...X','XXXXX','X...X','X...X'],
+  };
+  const WORD = 'MORFIAI';
+  const CELL_W = 14, CELL_H = 10, GAP = 3, STEP = CELL_W + GAP;
+
   function buildBricks() {
     bricks = [];
-    const cols = 8, gap = 12;
-    const bw = (W - gap * (cols + 1)) / cols;
-    const bh = Math.max(14, H * 0.022);
-    const top = H * 0.16;
-    for (let c = 0; c < cols; c++) {
-      bricks.push({ x: gap + c * (bw + gap), y: top, w: bw, h: bh,
-                    color: COLORS[c % COLORS.length], alive: true, vy: 16 });
+    // total width of the word
+    const cols = WORD.length * 5 + (WORD.length - 1); // 7*5 + 6 = 41
+    const totalW = cols * STEP - GAP;
+    const x0 = clamp((W - totalW) / 2, 8, Math.max(8, W - totalW - 8));
+    const y0 = Math.max(24, H * 0.11);
+
+    for (let li = 0; li < WORD.length; li++) {
+      const g = GLYPH[WORD[li]];
+      const color = NEON[li % NEON.length];
+      for (let row = 0; row < 5; row++) {
+        for (let col = 0; col < 5; col++) {
+          if (g[row][col] !== 'X') continue;
+          bricks.push({
+            x: x0 + (li * 6 + col) * STEP,
+            y: y0 + row * (CELL_H + GAP),
+            w: CELL_W, h: CELL_H,
+            color,
+            alive: true,
+            vy: 14,
+          });
+        }
+      }
     }
   }
 
@@ -44,7 +75,6 @@
     W = Math.round(r.width); H = Math.round(r.height);
     dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    // Reuse the existing overlay if it is still in the document.
     wrap = document.getElementById('morfiai-arkanoid-wrap');
     if (!wrap) {
       wrap = document.createElement('div');
@@ -71,7 +101,6 @@
     last = performance.now();
   }
 
-  // Keep the fixed overlay aligned with the hero section (it moves on scroll).
   function sync() {
     if (!wrap) return;
     const h = hero();
@@ -96,12 +125,12 @@
   window.addEventListener('touchmove', e => { if (e.touches[0]) setTarget(e.touches[0].clientX); }, { passive: true });
 
   function spawnPowerup(x, y) {
-    powerups.push({ x, y, w: 26, h: 16, vy: 120, type: POWERUPS[(Math.random() * POWERUPS.length) | 0], alive: true });
+    powerups.push({ x, y, w: 24, h: 14, vy: 120, type: POWERUPS[(Math.random() * POWERUPS.length) | 0], alive: true });
   }
 
   function applyPowerup(t) {
-    if (t === 'big') paddle.targetW = Math.min(160, paddle.targetW + 30);
-    else if (t === 'small') paddle.targetW = Math.max(50, paddle.targetW - 25);
+    if (t === 'big') paddle.targetW = Math.min(150, paddle.targetW + 28);
+    else if (t === 'small') paddle.targetW = Math.max(46, paddle.targetW - 24);
     else if (t === 'hopik') score += 10;
     else if (t === 'life') lives = Math.min(5, lives + 1);
     else if (t === 'speed') { ball.vx *= 1.2; ball.vy *= 1.2; const s = Math.hypot(ball.vx, ball.vy); if (s > 600) { const f = 600 / s; ball.vx *= f; ball.vy *= f; } }
@@ -109,17 +138,12 @@
     for (let i = 0; i < 12; i++) particles.push({ x: ball.x, y: ball.y, vx: (Math.random()-0.5)*200, vy: (Math.random()-0.5)*200, life: 0.5, color: PU_COLOR[t] });
   }
 
-  function stop() {
-    if (stopped) return;
-    stopped = true; running = false;
-    if (wrap) { wrap.style.opacity = '0'; wrap.style.transition = 'opacity .4s ease'; setTimeout(() => wrap.remove(), 450); }
-  }
-
-  window.addEventListener('scroll', () => { if (window.scrollY > 60 && !stopped) stop(); }, { passive: true });
-  window.addEventListener('mousedown', e => { const t = e.target; if (t && t.closest && t.closest('a,button')) stop(); }, { passive: true });
+  // Scrolling pauses; scrolling back to the top resumes. The game never dies.
+  window.addEventListener('scroll', () => { paused = window.scrollY > 60; }, { passive: true });
+  window.addEventListener('mousedown', e => { const t = e.target; if (t && t.closest && t.closest('a,button')) paused = false; }, { passive: true });
 
   function update(dt) {
-    if (!running || !ctx) return;
+    if (!running || !ctx || paused) return;
 
     paddle.x += (targetX - paddle.w / 2 - paddle.x) * Math.min(1, dt * 14);
     paddle.w += (paddle.targetW - paddle.w) * Math.min(1, dt * 6);
@@ -193,13 +217,15 @@
     if (!running || !ctx) return;
     ctx.clearRect(0, 0, W, H);
 
+    // Bricks — small and semi-transparent, spelling MORFIAI
     for (const b of bricks) {
       if (!b.alive) continue;
-      ctx.shadowColor = b.color; ctx.shadowBlur = 10; ctx.fillStyle = b.color; ctx.globalAlpha = 0.7;
-      rr(b.x, b.y, b.w, b.h, 3); ctx.fill();
+      ctx.shadowColor = b.color; ctx.shadowBlur = 8; ctx.fillStyle = b.color;
+      ctx.globalAlpha = 0.42;                 // průsvitné
+      rr(b.x, b.y, b.w, b.h, 2); ctx.fill();
+      ctx.globalAlpha = 0.85;                 // jen lehký obrys
+      ctx.strokeStyle = b.color; ctx.lineWidth = 1; ctx.stroke();
       ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-      ctx.fillStyle = 'rgba(255,255,255,0.2)';
-      ctx.fillRect(b.x + 2, b.y + 2, b.w - 4, 2);
     }
 
     for (const pu of powerups) {
@@ -208,20 +234,27 @@
       ctx.shadowColor = c; ctx.shadowBlur = 12; ctx.fillStyle = c; ctx.globalAlpha = 0.9;
       rr(pu.x - pu.w / 2, pu.y, pu.w, pu.h, 4); ctx.fill();
       ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-      ctx.fillStyle = '#0a0a14'; ctx.font = 'bold 9px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#0a0a14'; ctx.font = 'bold 8px "JetBrains Mono", monospace';
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText(PU_LABEL[pu.type], pu.x, pu.y + pu.h / 2);
     }
 
     const pg = ctx.createLinearGradient(paddle.x, 0, paddle.x + paddle.w, 0);
     pg.addColorStop(0, '#00e5ff'); pg.addColorStop(1, '#ff1fd0');
-    ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 14; ctx.fillStyle = pg;
-    rr(paddle.x, paddle.y, paddle.w, paddle.h, 5); ctx.fill();
-    ctx.shadowBlur = 0;
+    ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 12; ctx.fillStyle = pg;
+    ctx.globalAlpha = 0.55;                 // plošinka je průsvitná
+    rr(paddle.x, paddle.y, paddle.w, paddle.h, 4); ctx.fill();
+    ctx.globalAlpha = 0.9;
+    ctx.strokeStyle = '#00e5ff'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
 
-    ctx.shadowColor = '#fff'; ctx.shadowBlur = 16; ctx.fillStyle = '#fff';
+    // Ball — the page's neon-violet kulička
+    ctx.shadowColor = BALL_COLOR; ctx.shadowBlur = 18; ctx.fillStyle = BALL_COLOR;
+    ctx.globalAlpha = 0.95;
     ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); ctx.fill();
-    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 0.35; ctx.shadowBlur = 0;   // vnější halo
+    ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r * 2.1, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 1;
 
     for (const pt of particles) {
       ctx.globalAlpha = Math.max(0, pt.life * 2); ctx.fillStyle = pt.color;
@@ -229,15 +262,14 @@
     }
     ctx.globalAlpha = 1;
 
-    ctx.font = 'bold 14px "JetBrains Mono", monospace';
+    ctx.font = 'bold 13px "JetBrains Mono", monospace';
     ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     ctx.fillText('ARKANOID \u00b7 ' + score, 14, 26);
-    ctx.font = '11px "JetBrains Mono", monospace'; ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.fillText('\u2665 ' + lives + '   scrollem dol\u016f hru ukon\u010d\u00ed\u0161', 14, 42);
+    ctx.font = '10px "JetBrains Mono", monospace'; ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillText('\u2665 ' + lives + '   scrollem hra pauzuje, n\u00e1vrat pokra\u010duje', 14, 42);
   }
 
   function loop(now) {
-    if (stopped) return;
     if (!ctx || !wrap || !wrap.isConnected) {
       ctx = null;
       mount();
@@ -251,7 +283,6 @@
     requestAnimationFrame(loop);
   }
 
-  // Hero section is created by hero-video.js; poll until it exists.
   let tries = 0;
   const start = () => {
     if (ctx) return;
@@ -262,9 +293,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
 
-  // Debug handle (harmless in production).
   window.__arkanoid = {
-    state: () => ({ stopped, running, hasCtx: !!ctx, wrapConnected: !!(wrap && wrap.isConnected), W, H, score, lives }),
-    stop,
+    state: () => ({ paused, running, hasCtx: !!ctx, W, H, score, lives, brickCount: bricks.filter(b => b.alive).length }),
   };
 })();

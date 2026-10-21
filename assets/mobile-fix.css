@@ -122,19 +122,60 @@
 
 /* --- 4. Statistiky: tři sloupce ať se vejdou bez odřezání ------- */
 @media (max-width: 640px) {
-  .nex-stats,
-  section .grid.grid-cols-3,
-  .grid-cols-3 {
+  .mt-16.grid.max-w-md.grid-cols-3,
+  .grid.grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: .4rem !important;
-    padding-left: .5rem !important;
-    padding-right: .5rem !important;
+    gap: .55rem !important;
+    margin-top: 2rem !important;
+    padding-top: 1.5rem !important;
+    max-width: 100% !important;
   }
   .grid-cols-3 > * { min-width: 0 !important; }
-  .grid-cols-3 .text-5xl,
-  .grid-cols-3 .text-4xl { font-size: 1.6rem !important; line-height: 1.1 !important; }
-  .grid-cols-3 p,
-  .grid-cols-3 span { font-size: 11px !important; line-height: 1.35 !important; }
+  /* Čísla statistik (text-2xl) */
+  .grid-cols-3 .font-mono.font-bold,
+  .grid-cols-3 .text-2xl {
+    font-size: 1.35rem !important;
+    line-height: 1.15 !important;
+  }
+  /* Popisky pod čísly (text-xs text-muted-foreground) — byly 12px a málo kontrastní */
+  .grid-cols-3 .text-xs,
+  .grid-cols-3 .text-muted-foreground {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    color: #a9a2b4 !important;
+    margin-top: .3rem !important;
+  }
+}
+
+/* --- 4b. Řádek „> system.init(nexverse)“ nad drakem -------------- */
+@media (max-width: 640px) {
+  .nex-dragon-video-section > .grid-bg > p.font-mono,
+  .nex-dragon-video-section > .grid-bg > p.text-neon-lime {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px !important;
+    letter-spacing: .18em !important;
+    padding: .35rem .6rem !important;
+    margin-bottom: 1rem !important;
+    background: rgba(0, 0, 0, .72) !important;
+    border-left: 2px solid var(--neon-lime, #7dff00);
+    text-shadow: 0 0 8px rgba(125, 255, 0, .5);
+    backdrop-filter: blur(2px);
+  }
+}
+
+/* --- 4c. Tlačítko „Přístup“ v hlavičce: větší dotyková plocha --- */
+@media (max-width: 640px) {
+  header a[class*="border-neon"],
+  header a.block {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 40px !important;
+    padding: .5rem .9rem !important;
+    font-size: 12px !important;
+    letter-spacing: .1em !important;
+  }
 }
 
 /* --- 5. Hlavička: ať se logo a tlačítko netlačí ----------------- */

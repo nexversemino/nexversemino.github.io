@@ -15,8 +15,9 @@ function attachDragonVideo(){
   video.playbackRate=0.82; // o trochu pomalejší plynulý pohyb
 
   video.setAttribute('autoplay','');video.setAttribute('loop','');video.controls=false;video.setAttribute('muted','');video.setAttribute('playsinline','');video.setAttribute('aria-label','Neonový drak — animované video ve smyčce');
-  image.parentElement.classList.add('nex-dragon-video-layer');image.parentElement.parentElement.classList.add('nex-dragon-video-stage');image.closest('section')?.classList.add('nex-dragon-video-section');image.replaceWith(video);
-  const play=()=>{if(!document.hidden)video.play().catch(()=>{});};
+  image.parentElement.classList.add('nex-dragon-video-layer');image.parentElement.parentElement.classList.add('nex-dragon-video-stage');image.closest('section')?.classList.add('nex-dragon-video-section');image.replaceWith(video);video.classList.add('is-ready');
+  const play=()=>{video.classList.add('is-ready');if(!document.hidden)video.play().catch(()=>{});};
+  video.addEventListener('loadeddata',()=>video.classList.add('is-ready'));
   video.addEventListener('canplay',play);
   video.addEventListener('error',()=>{if(!video.dataset.fallback){video.dataset.fallback='true';video.src='assets/dragon-loop.mp4';video.load();play();}});
   play();

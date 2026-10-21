@@ -86,3 +86,15 @@ header>div{padding-top:8px!important;padding-bottom:8px!important}
    artifacts) showing over the dragon during hardware AV1 decode. */
 .nex-dragon-video{will-change:transform;transform:translateZ(0)}
 .nex-dragon-video-layer,.nex-dragon-video-stage{transform:translateZ(0)}
+
+
+/* ==== FIX 1: the dragon video must not show a blue/placeholder box while the
+   106 MB mp4 decodes. Hide the video element until its first frame is ready. ==== */
+.nex-dragon-video{visibility:hidden;background:transparent!important;opacity:0;transition:opacity .45s ease}
+.nex-dragon-video.is-ready{visibility:visible;opacity:1}
+.nex-dragon-video-stage,.nex-dragon-video-layer{background:transparent!important}
+.nex-dragon-video-section{background:transparent!important}
+
+/* ==== FIX 2: while the Arkanoid game is running the cursor becomes a paddle. ==== */
+.morfiai-game-cursor,.morfiai-game-cursor *{cursor:none!important}
+.morfiai-game-cursor div.pointer-events-none.fixed.left-0.top-0{visibility:hidden!important}

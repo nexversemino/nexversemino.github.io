@@ -3,9 +3,9 @@
 //   the mouse). While the game runs we drive that real element; when the game
 //   pauses (scroll) we hand it back to the site's own mouse-follower.
 // - Bricks are small, semi-transparent and laid out to spell MORFIAI.
+// - While the game runs the OS cursor is hidden and replaced by the paddle
+//   drawn under the mouse. The paddle can move anywhere on the screen.
 // - Scrolling pauses; scrolling back to the top resumes.
-// - The canvas overlay lives on document.body so React's hydration failure
-//   (#418) cannot remove it.
 
 (() => {
   'use strict';
@@ -94,7 +94,34 @@
     if (!ballEl) return;
     ballEl.style.boxShadow = '';
     ballEl.style.opacity = '1';
-    // the site's own mousemove handler resumes driving it
+  }
+
+  // ---- the paddle as the OS cursor ----
+  let cursorEl = null, cursorRing = null;
+
+  function ensureCursorEl() {
+    cursorEl = document.getElementById('morfiai-paddle-cursor');
+    if (cursorEl) return cursorEl;
+    cursorEl = document.createElement('div');
+    cursorEl.id = 'morfiai-paddle-cursor';
+    cursorEl.style.cssText = 'position:fixed;left:0;top:0;z-index:200;pointer-events:none;will-change:transform;display:none;';
+    cursorRing = document.createElement('div');
+    cursorRing.style.cssText = 'width:100%;height:100%;border-radius:4px;background:linear-gradient(90deg,#00e5ff,#ff1fd0);opacity:.55;box-shadow:0 0 12px #00e5ff,0 0 24px rgba(0,229,255,.35);border:1px solid rgba(0,229,255,.9);';
+    cursorEl.appendChild(cursorRing);
+    document.body.appendChild(cursorEl);
+    return cursorEl;
+  }
+
+  function showCursorPaddle(x, y, w) {
+    const el = ensureCursorEl();
+    el.style.display = 'block';
+    el.style.width = Math.round(w) + 'px';
+    el.style.height = '9px';
+    el.style.transform = 'translate(' + Math.round(x - w / 2) + 'px, ' + Math.round(y - 4) + 'px)';
+  }
+
+  function hideCursorPaddle() {
+    if (cursorEl) cursorEl.style.display = 'none';
   }
 
   function mount() {
@@ -268,15 +295,6 @@
       ctx.fillText(PU_LABEL[pu.type], pu.x, pu.y + pu.h / 2);
     }
 
-    const pg = ctx.createLinearGradient(paddle.x, 0, paddle.x + paddle.w, 0);
-    pg.addColorStop(0, '#00e5ff'); pg.addColorStop(1, '#ff1fd0');
-    ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 12; ctx.fillStyle = pg;
-    ctx.globalAlpha = 0.55;
-    rr(paddle.x, paddle.y, paddle.w, paddle.h, 4); ctx.fill();
-    ctx.globalAlpha = 0.9;
-    ctx.strokeStyle = '#00e5ff'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-
     for (const pt of particles) {
       ctx.globalAlpha = Math.max(0, pt.life * 2); ctx.fillStyle = pt.color;
       ctx.beginPath(); ctx.arc(pt.x, pt.y, 2, 0, Math.PI * 2); ctx.fill();
@@ -297,7 +315,15 @@
       if (!ctx) { requestAnimationFrame(loop); return; }
     }
     sync();
-    if (paused) releaseBall(); else hijackBall();
+    if (paused) {
+      releaseBall();
+      hideCursorPaddle();
+    } else {
+      hijackBall();
+      const h = hero();
+      const hr = h ? h.getBoundingClientRect() : { left: 0, top: 0 };
+      showCursorPaddle(hr.left + paddle.x + paddle.w / 2, hr.top + paddle.y + paddle.h / 2, paddle.w);
+    }
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
     update(dt);
@@ -305,11 +331,19 @@
     requestAnimationFrame(loop);
   }
 
+  // Hide the OS cursor only while the game is actually running (at the top).
+  function applyCursorMode() {
+    const active = running && !paused;
+    document.documentElement.classList.toggle('morfiai-game-cursor', active);
+    if (!active) hideCursorPaddle();
+  }
+  window.addEventListener('scroll', applyCursorMode, { passive: true });
+
   let tries = 0;
   const start = () => {
     if (ctx) return;
     mount();
-    if (ctx) { sync(); last = performance.now(); requestAnimationFrame(loop); }
+    if (ctx) { sync(); applyCursorMode(); last = performance.now(); requestAnimationFrame(loop); }
     else if (++tries < 200) setTimeout(start, 50);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
@@ -318,6 +352,7 @@
   window.__arkanoid = {
     state: () => ({ paused, running, hasCtx: !!ctx, W, H, score, lives,
                     brickCount: bricks.filter(b => b.alive).length,
-                    ballIsRealElement: !!(ballEl && ballEl.isConnected) }),
+                    ballIsRealElement: !!(ballEl && ballEl.isConnected),
+                    paddleCursorShown: !!(cursorEl && cursorEl.style.display === 'block') }),
   };
 })();

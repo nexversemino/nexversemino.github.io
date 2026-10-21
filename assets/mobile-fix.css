@@ -224,3 +224,15 @@
   section#funkce h3 { font-size: clamp(19px, 5.4vw, 25px) !important; }
   .nex-dragon-video-section > .grid-bg { padding-top: 10rem !important; }
 }
+
+
+/* ==== FIX: the dragon 3D preview must never show the flat navy poster. ==== */
+/* The poster (dragon-preview-poster.png) is a solid slate-blue plate; while the
+   6.7 MB GLB loads from the CDN it would sit there as a blue rectangle. */
+#nex-glb-viewer model-viewer{background:transparent!important;--poster-color:transparent!important}
+#nex-glb-viewer model-viewer::part(default-progress-bar){display:none!important}
+#nex-glb-viewer .nex-glb-static{display:none!important}
+/* Until the model reports `load`, keep the area dark and blend it in. */
+#nex-glb-viewer:not(.nex-glb-loaded){background:#07080a!important}
+#nex-glb-viewer:not(.nex-glb-loaded) model-viewer{opacity:.0;transition:opacity .4s ease}
+#nex-glb-viewer.nex-glb-loaded model-viewer{opacity:1}

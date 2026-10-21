@@ -17,7 +17,6 @@ function buildDragonViewer(){
  wrap.innerHTML=`
   <model-viewer class="nex-glb-model"
    src="assets/dragon-preview.glb"
-   poster="assets/dragon-preview-poster.png"
    alt="3D model neonového draka"
    camera-controls
    auto-rotate
@@ -40,7 +39,7 @@ function buildDragonViewer(){
  // do tabu se pokusy obnoví, takže se model vždy dočte a fallback zmizí.
  let kicks=0,failed=false;
  const mEl=()=>wrap.querySelector('model-viewer');
- mEl().addEventListener('load',()=>{failed=false;wrap.classList.remove('nex-glb-fallback')});
+ mEl().addEventListener('load',()=>{failed=false;wrap.classList.remove('nex-glb-fallback');wrap.classList.add('nex-glb-loaded')});
  document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState==='visible'&&failed&&!mEl().loaded){failed=false;kicks=0;wrap.classList.remove('nex-glb-fallback')}
  });

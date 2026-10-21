@@ -28,7 +28,7 @@ function buildDragonViewer(){
    exposure="1.15"
    touch-action="pan-y"></model-viewer>
   <img class="nex-glb-static" src="assets/dragon-preview-poster.png" alt="Neonový drak — 3D náhled"/>
-  <span class="nex-glb-hint">⟲ otočíš tažením myši</span>`;
+  <span class="nex-glb-hint">⟲ otočíš tažením ${matchMedia('(pointer:coarse)').matches?'prstu':'myši'}</span>`;
  funkce.insertBefore(wrap,grid);
  let loaded=false;
  for(const url of GLB_SOURCES){

@@ -1,0 +1,165 @@
+/* ============================================================
+   Morfiai — mobilní doladění (max-width: 640px)
+   Načítá se jako poslední, takže přebíjí dřívější pravidla.
+   ============================================================ */
+
+/* --- 1. HERO: text musí být čitelný nad drakem ------------------ */
+@media (max-width: 640px) {
+  /* Silnější gradient pod textem, aby titulek nesplýval s drakem. */
+  .nex-dragon-video-section > .grid-bg {
+    padding-top: 12rem !important;
+    padding-bottom: 2.5rem !important;
+    background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, .97) 0%,
+      rgba(0, 0, 0, .92) 28%,
+      rgba(0, 0, 0, .62) 48%,
+      rgba(0, 0, 0, .12) 66%,
+      transparent 78%
+    ) !important;
+  }
+
+  /* Drak se posune výš a zmenší, ať nepřekáží textu. */
+  .nex-dragon-video-stage {
+    top: 56px !important;
+    height: calc(100svh - 210px) !important;
+    bottom: auto !important;
+  }
+  .nex-dragon-video {
+    object-position: center 22% !important;
+    mask-image: radial-gradient(ellipse 88% 78% at center 42%, #000 62%, transparent 100%) !important;
+    -webkit-mask-image: radial-gradient(ellipse 88% 78% at center 42%, #000 62%, transparent 100%) !important;
+  }
+
+  /* Titulek: menší, těsnější řádkování, ať se vejde bez odřezání. */
+  .morfiai-hero-title {
+    font-size: clamp(30px, 8.2vw, 44px) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 14px !important;
+  }
+  .morfiai-hero-description {
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+    max-width: 100% !important;
+    margin-bottom: 20px !important;
+    color: #d8d4de !important;
+  }
+
+  /* CTA tlačítka na plnou šířku — lépe se trefují prstem. */
+  .nex-dragon-video-section .grid-bg .bg-neon-gradient,
+  .nex-dragon-video-section .grid-bg a[class*="border"] {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .nex-dragon-video-section .grid-bg > div:last-child,
+  .nex-dragon-video-section .grid-bg > .flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: .7rem !important;
+  }
+}
+
+/* --- 2. Sekce: menší nadpisy, méně zbytečného místa ------------ */
+@media (max-width: 640px) {
+  /* #funkce a další sekce — 48px/36px nadpisy jsou na mobil moc. */
+  section#funkce {
+    padding: 4rem 1.15rem !important;
+  }
+  section#funkce h2,
+  main h2.font-display,
+  h2.mt-4.max-w-2xl {
+    font-size: clamp(28px, 7.6vw, 38px) !important;
+    line-height: 1.18 !important;
+    letter-spacing: -.02em !important;
+    max-width: 100% !important;
+  }
+  section#funkce h3,
+  h3.mt-6.font-display {
+    font-size: clamp(22px, 6vw, 30px) !important;
+    line-height: 1.25 !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Sekce obecně: menší svislé odsazení. */
+  section.py-28 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  section.py-32 { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
+  section.px-6  { padding-left: 1.15rem !important; padding-right: 1.15rem !important; }
+
+  /* Karty funkcí: jeden sloupec, menší mezery. */
+  .mt-16.grid { margin-top: 2.5rem !important; gap: 1.6rem !important; }
+  .mt-16.grid > * { width: 100% !important; }
+
+  /* Obrázky/náhledy v kartách ať nepřetékají. */
+  section#funkce img,
+  section#funkce video,
+  section#funkce canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* --- 3. 3D náhled (GLB): ovládání prstem + čitelný popisek ------ */
+@media (max-width: 640px) {
+  .nex-glb-live {
+    height: auto !important;
+    min-height: 300px !important;
+  }
+  .nex-glb-live canvas,
+  .nex-glb-live > div {
+    max-height: 62vh !important;
+    touch-action: pan-y !important; /* svislý scroll stránky zůstane, otáčení řeší JS */
+  }
+  /* Popisek „otočíš tažením myší“ → na mobilu je správně prst. */
+  .nex-glb-hint {
+    font-size: 12px !important;
+    letter-spacing: .04em !important;
+    padding: .5rem .75rem !important;
+  }
+}
+
+/* --- 4. Statistiky: tři sloupce ať se vejdou bez odřezání ------- */
+@media (max-width: 640px) {
+  .nex-stats,
+  section .grid.grid-cols-3,
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: .4rem !important;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+  }
+  .grid-cols-3 > * { min-width: 0 !important; }
+  .grid-cols-3 .text-5xl,
+  .grid-cols-3 .text-4xl { font-size: 1.6rem !important; line-height: 1.1 !important; }
+  .grid-cols-3 p,
+  .grid-cols-3 span { font-size: 11px !important; line-height: 1.35 !important; }
+}
+
+/* --- 5. Hlavička: ať se logo a tlačítko netlačí ----------------- */
+@media (max-width: 400px) {
+  .morfiai-brand-word { font-size: 20px !important; letter-spacing: .06em !important; }
+  .morfiai-brand-symbol { width: 42px !important; height: 42px !important; }
+  header a[class*="border-neon"] {
+    font-size: 11px !important;
+    padding: .35rem .6rem !important;
+    letter-spacing: .08em !important;
+  }
+}
+
+/* --- 6. Nikdy nedovol vodorovné přetékání ---------------------- */
+@media (max-width: 640px) {
+  html, body { overflow-x: hidden; }
+  img, video, canvas, svg, iframe { max-width: 100%; }
+  pre, code, table { overflow-x: auto; max-width: 100%; }
+  h1, h2, h3, p { overflow-wrap: break-word; word-break: break-word; }
+}
+
+/* --- 7. Menší telefony: ještě těsnější -------------------------- */
+@media (max-width: 380px) {
+  .morfiai-hero-title { font-size: clamp(26px, 7.8vw, 34px) !important; }
+  section#funkce h2 { font-size: clamp(24px, 7vw, 30px) !important; }
+  section#funkce h3 { font-size: clamp(19px, 5.4vw, 25px) !important; }
+  .nex-dragon-video-section > .grid-bg { padding-top: 10rem !important; }
+}

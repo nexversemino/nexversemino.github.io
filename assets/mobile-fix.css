@@ -171,14 +171,34 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 40px !important;
-    padding: .5rem .9rem !important;
+    min-height: 44px !important;
+    padding: .6rem 1rem !important;
     font-size: 12px !important;
     letter-spacing: .1em !important;
   }
 }
 
-/* --- 5. Hlavička: ať se logo a tlačítko netlačí ----------------- */
+/* --- 4d. Statistiky: stejná výška sloupců, střední popisek na 2 řádky --- */
+@media (max-width: 640px) {
+  .grid-cols-3 { align-items: start; }
+  .grid-cols-3 > * { display: flex; flex-direction: column; }
+  .grid-cols-3 .text-xs,
+  .grid-cols-3 .text-muted-foreground {
+    /* vyhrazený prostor pro dva řádky → všechny sloupce stejně vysoké */
+    min-height: 2.8em;
+  }
+}
+
+/* --- 4e. Vyšší kontrast popisného textu v hero ------------------- */
+@media (max-width: 640px) {
+  .morfiai-hero-description {
+    color: #e6e3ec !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .85);
+  }
+  .nex-dragon-video-section > .grid-bg p:not(.font-mono) {
+    color: #e6e3ec;
+  }
+}
 @media (max-width: 400px) {
   .morfiai-brand-word { font-size: 20px !important; letter-spacing: .06em !important; }
   .morfiai-brand-symbol { width: 42px !important; height: 42px !important; }

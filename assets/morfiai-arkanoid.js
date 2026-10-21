@@ -1,6 +1,7 @@
 // Morfiai — Arkanoid mini-game on the hero section.
-// Renders into a fixed overlay OUTSIDE the React tree, so React's hydration
-// failure (#418) can never remove it. Auto-starts at page top; stops on scroll.
+// The overlay is appended to document.body as a position:fixed layer, so
+// React's hydration failure (#418) can never remove it. Geometry is synced
+// to the hero section every frame. Auto-starts at page top; stops on scroll.
 
 (() => {
   'use strict';
@@ -26,11 +27,11 @@
     bricks = [];
     const cols = 8, gap = 12;
     const bw = (W - gap * (cols + 1)) / cols;
-    const bh = Math.max(12, H * 0.02);
+    const bh = Math.max(14, H * 0.022);
     const top = H * 0.16;
     for (let c = 0; c < cols; c++) {
       bricks.push({ x: gap + c * (bw + gap), y: top, w: bw, h: bh,
-                    color: COLORS[c % COLORS.length], alive: true, vy: 18 });
+                    color: COLORS[c % COLORS.length], alive: true, vy: 16 });
     }
   }
 
@@ -43,26 +44,24 @@
     W = Math.round(r.width); H = Math.round(r.height);
     dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    // If React/hydration wiped the overlay but the loop is still alive,
-    // re-mount it instead of silently dying.
-    const existingWrap = document.getElementById('morfiai-arkanoid-wrap');
-    if (existingWrap && existingWrap.parentElement !== h) existingWrap.remove();
-
-    wrap = existingWrap || document.createElement('div');
-    wrap.id = 'morfiai-arkanoid-wrap';
-    wrap.style.cssText = 'position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;';
-    canvas = document.createElement('canvas');
-    canvas.id = 'morfiai-arkanoid';
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;';
-    if (existingWrap) {
-      canvas = existingWrap.querySelector('canvas') || canvas;
-    } else {
+    // Reuse the existing overlay if it is still in the document.
+    wrap = document.getElementById('morfiai-arkanoid-wrap');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.id = 'morfiai-arkanoid-wrap';
+      wrap.style.cssText = 'position:fixed;pointer-events:none;overflow:hidden;z-index:30;';
+      document.body.appendChild(wrap);
+      canvas = document.createElement('canvas');
+      canvas.id = 'morfiai-arkanoid';
+      canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;';
       wrap.appendChild(canvas);
-      h.appendChild(wrap);
+    } else {
+      canvas = wrap.querySelector('canvas') || canvas;
     }
 
     ctx = canvas.getContext('2d');
-    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     paddle.y = H - 50; paddle.w = 90; paddle.targetW = 90; paddle.x = W / 2 - paddle.w / 2;
@@ -72,9 +71,24 @@
     last = performance.now();
   }
 
+  // Keep the fixed overlay aligned with the hero section (it moves on scroll).
+  function sync() {
+    if (!wrap) return;
+    const h = hero();
+    if (!h) return;
+    const r = h.getBoundingClientRect();
+    if (r.width < 50) { wrap.style.display = 'none'; return; }
+    wrap.style.display = 'block';
+    wrap.style.left = Math.round(r.left) + 'px';
+    wrap.style.top = Math.round(r.top) + 'px';
+    wrap.style.width = Math.round(r.width) + 'px';
+    wrap.style.height = Math.round(r.height) + 'px';
+  }
+
   function setTarget(cx) {
     if (!W) return;
-    const r = hero() ? hero().getBoundingClientRect() : { left: 0 };
+    const h = hero();
+    const r = h ? h.getBoundingClientRect() : { left: 0 };
     targetX = clamp(cx - r.left, paddle.w / 2, W - paddle.w / 2);
   }
   window.addEventListener('mousemove', e => setTarget(e.clientX), { passive: true });
@@ -102,8 +116,7 @@
   }
 
   window.addEventListener('scroll', () => { if (window.scrollY > 60 && !stopped) stop(); }, { passive: true });
-  const stopAll = () => { if (!stopped) stop(); };
-  window.addEventListener('mousedown', e => { const t = e.target; if (t && t.closest && t.closest('a,button')) stopAll(); }, { passive: true });
+  window.addEventListener('mousedown', e => { const t = e.target; if (t && t.closest && t.closest('a,button')) stop(); }, { passive: true });
 
   function update(dt) {
     if (!running || !ctx) return;
@@ -115,7 +128,7 @@
     for (const b of bricks) {
       if (!b.alive) continue;
       b.y += b.vy * dt;
-      if (b.y + b.h > H - 80) b.vy = 0;
+      if (b.y + b.h > H - 90) b.vy = 0;
     }
 
     ball.x += ball.vx * dt; ball.y += ball.vy * dt;
@@ -141,7 +154,7 @@
         const dx = (ball.x - (b.x + b.w / 2)) / (b.w / 2);
         const dy = (ball.y - (b.y + b.h / 2)) / (b.h / 2);
         if (Math.abs(dx) > Math.abs(dy)) ball.vx = -ball.vx; else ball.vy = -ball.vy;
-        if (Math.random() < 0.3) spawnPowerup(b.x + b.w / 2, b.y + b.h);
+        if (Math.random() < 0.35) spawnPowerup(b.x + b.w / 2, b.y + b.h);
         for (let i = 0; i < 8; i++) particles.push({ x: ball.x, y: ball.y, vx: (Math.random()-0.5)*160, vy: (Math.random()-0.5)*160, life: 0.4, color: b.color });
       }
     }
@@ -230,6 +243,7 @@
       mount();
       if (!ctx) { requestAnimationFrame(loop); return; }
     }
+    sync();
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
     update(dt);
@@ -237,16 +251,20 @@
     requestAnimationFrame(loop);
   }
 
-  // Hero section is created by hero-video.js after DOMContentLoaded.
-  // Poll until it exists, then start. The loop also re-mounts the overlay
-  // if React's hydration failure wipes the DOM out from under us.
+  // Hero section is created by hero-video.js; poll until it exists.
   let tries = 0;
   const start = () => {
     if (ctx) return;
     mount();
-    if (ctx) { last = performance.now(); requestAnimationFrame(loop); }
+    if (ctx) { sync(); last = performance.now(); requestAnimationFrame(loop); }
     else if (++tries < 200) setTimeout(start, 50);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
+
+  // Debug handle (harmless in production).
+  window.__arkanoid = {
+    state: () => ({ stopped, running, hasCtx: !!ctx, wrapConnected: !!(wrap && wrap.isConnected), W, H, score, lives }),
+    stop,
+  };
 })();

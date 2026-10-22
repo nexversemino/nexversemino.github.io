@@ -62,12 +62,31 @@
   let ballEl = null;
 
   function findBallEl() {
+    const tagged = document.getElementById('morfiai-cursor-ball');
+    if (tagged) return tagged;
     const root = document.querySelector('.min-h-screen');
     if (!root) return null;
-    return Array.from(root.children).find(e => {
+    const el = Array.from(root.children).find(e => {
       const c = String(e.className || '');
       return /h-2\b/.test(c) && /w-2\b/.test(c) && /rounded-full/.test(c) && /bg-neon-cyan/.test(c);
     }) || null;
+    if (el) el.id = 'morfiai-cursor-ball';
+    return el;
+  }
+
+  // The page's cursor ring (40px outline) is a separate element — hide only that
+  // during the game, never the ball (the ball IS the game's ball).
+  function findRingEl() {
+    const tagged = document.getElementById('morfiai-cursor-ring');
+    if (tagged) return tagged;
+    const root = document.querySelector('.min-h-screen');
+    if (!root) return null;
+    const el = Array.from(root.children).find(e => {
+      const c = String(e.className || '');
+      return /h-10\b/.test(c) && /w-10\b/.test(c) && /rounded-full/.test(c) && /border/.test(c);
+    }) || null;
+    if (el) el.id = 'morfiai-cursor-ring';
+    return el;
   }
 
   function ensureBallEl() {
@@ -86,14 +105,19 @@
     const h = hero();
     const r = h ? h.getBoundingClientRect() : { left: 0, top: 0 };
     el.style.opacity = '1';
+    el.style.visibility = 'visible';
     el.style.boxShadow = '0 0 14px 4px rgba(0,229,255,.95)';
     el.style.transform = 'translate(' + Math.round(r.left + ball.x - 4) + 'px, ' + Math.round(r.top + ball.y - 4) + 'px)';
+    const ring = findRingEl();
+    if (ring) ring.style.visibility = 'hidden';
   }
 
   function releaseBall() {
     if (!ballEl) return;
     ballEl.style.boxShadow = '';
     ballEl.style.opacity = '1';
+    const ring = findRingEl();
+    if (ring) ring.style.visibility = '';
   }
 
   // ---- the paddle as the OS cursor ----

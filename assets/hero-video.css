@@ -97,4 +97,6 @@ header>div{padding-top:8px!important;padding-bottom:8px!important}
 
 /* ==== FIX 2: while the Arkanoid game is running the cursor becomes a paddle. ==== */
 .morfiai-game-cursor,.morfiai-game-cursor *{cursor:none!important}
-.morfiai-game-cursor div.pointer-events-none.fixed.left-0.top-0{visibility:hidden!important}
+/* Hide only the cursor RING during the game — the ball must stay visible,
+   it IS the game's ball. */
+.morfiai-game-cursor #morfiai-cursor-ring{visibility:hidden!important}

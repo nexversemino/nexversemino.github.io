@@ -236,3 +236,8 @@
 #nex-glb-viewer:not(.nex-glb-loaded){background:#07080a!important}
 #nex-glb-viewer:not(.nex-glb-loaded) model-viewer{opacity:.0;transition:opacity .4s ease}
 #nex-glb-viewer.nex-glb-loaded model-viewer{opacity:1}
+
+
+/* ==== Morfiai Arkanoid: hide the cursor ring while the game runs. ==== */
+.morfiai-game-cursor,.morfiai-game-cursor *{cursor:none!important}
+.morfiai-game-cursor #morfiai-cursor-ring{visibility:hidden!important}

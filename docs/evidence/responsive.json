@@ -1,0 +1,98 @@
+[
+  {
+    "contentWidth": 305,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/",
+    "width": 320
+  },
+  {
+    "contentWidth": 305,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/engine/",
+    "width": 320
+  },
+  {
+    "contentWidth": 305,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/command-center/",
+    "width": 320
+  },
+  {
+    "contentWidth": 305,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/milo/",
+    "width": 320
+  },
+  {
+    "contentWidth": 305,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/laya/",
+    "width": 320
+  },
+  {
+    "contentWidth": 305,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/blog/",
+    "width": 320
+  },
+  {
+    "contentWidth": 375,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/",
+    "width": 390
+  },
+  {
+    "contentWidth": 375,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/engine/",
+    "width": 390
+  },
+  {
+    "contentWidth": 375,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/command-center/",
+    "width": 390
+  },
+  {
+    "contentWidth": 375,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/milo/",
+    "width": 390
+  },
+  {
+    "contentWidth": 375,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/laya/",
+    "width": 390
+  },
+  {
+    "contentWidth": 375,
+    "fonts": "loaded",
+    "h1": true,
+    "menu": true,
+    "path": "/blog/",
+    "width": 390
+  }
+]

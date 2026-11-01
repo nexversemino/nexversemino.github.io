@@ -1,0 +1,55 @@
+{
+  "dimensions": [
+    926,
+    1425,
+    3
+  ],
+  "compared_pixels": 885300,
+  "changed_over_15_percent": 0.05613916186603411,
+  "mean_channel_delta": 0.06364546857938928,
+  "excluded_rectangles": [
+    [
+      0,
+      0,
+      1440,
+      90
+    ],
+    [
+      0,
+      80,
+      480,
+      410
+    ],
+    [
+      70,
+      210,
+      520,
+      250
+    ],
+    [
+      70,
+      480,
+      540,
+      560
+    ],
+    [
+      70,
+      600,
+      550,
+      700
+    ],
+    [
+      70,
+      740,
+      540,
+      840
+    ],
+    [
+      1100,
+      870,
+      1440,
+      1000
+    ]
+  ],
+  "note": "Only intended copy/navigation changes and animated glow were masked; same frozen poster frame. JPEG tolerance 15."
+}

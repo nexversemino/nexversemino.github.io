@@ -1,7 +1,6 @@
 // Morfiai — Arkanoid mini-game on the hero section.
-// - The ball IS the page's own cursor dot (the neon-cyan kulička that follows
-//   the mouse). While the game runs we drive that real element; when the game
-//   pauses (scroll) we hand it back to the site's own mouse-follower.
+// - The ball IS the existing ScrollOrb guide. Arkanoid owns the same DOM node
+//   at the top; scrolling hands its position back to the original guide.
 // - Bricks are small, semi-transparent and laid out to spell MORFIAI.
 // - While the game runs the OS cursor is hidden and replaced by the paddle
 //   drawn under the mouse. The paddle can move anywhere on the screen.
@@ -20,7 +19,7 @@
   const PU_LABEL = { big:'BIG', small:'SMALL', hopik:'+10', life:'+1UP', speed:'FAST', slow:'SLOW' };
 
   let paddle = { x: 0, y: 0, w: 90, h: 9, targetW: 90 };
-  let ball = { x: 0, y: 0, r: 4, vx: 200, vy: -260 };
+  let ball = { x: 0, y: 0, r: 8, vx: 200, vy: -260 };
   let bricks = [], powerups = [], particles = [];
   let score = 0, lives = 3, running = true, paused = false, last = 0, targetX = 0;
 
@@ -62,16 +61,7 @@
   let ballEl = null;
 
   function findBallEl() {
-    const tagged = document.getElementById('morfiai-cursor-ball');
-    if (tagged) return tagged;
-    const root = document.querySelector('.min-h-screen');
-    if (!root) return null;
-    const el = Array.from(root.children).find(e => {
-      const c = String(e.className || '');
-      return /h-2\b/.test(c) && /w-2\b/.test(c) && /rounded-full/.test(c) && /bg-neon-cyan/.test(c);
-    }) || null;
-    if (el) el.id = 'morfiai-cursor-ball';
-    return el;
+    return document.getElementById('morfiai-guide-ball');
   }
 
   // The page's cursor ring (40px outline) is a separate element — hide only that
@@ -90,31 +80,35 @@
   }
 
   function ensureBallEl() {
-    ballEl = findBallEl();
-    if (!ballEl) {
-      const root = document.querySelector('.min-h-screen') || document.body;
-      ballEl = document.createElement('div');
-      ballEl.className = 'pointer-events-none fixed left-0 top-0 z-[100] h-2 w-2 rounded-full bg-neon-cyan';
-      root.appendChild(ballEl);
-    }
+    // Never create a replacement. Wait for the original React ScrollOrb to mount.
+    if (!ballEl || !ballEl.isConnected) ballEl = findBallEl();
     return ballEl;
   }
 
   function hijackBall() {
     const el = ensureBallEl();
+    if (!el) return;
+    el.dataset.ballOwner = 'arkanoid';
     const h = hero();
     const r = h ? h.getBoundingClientRect() : { left: 0, top: 0 };
+    el.style.display = 'block';
     el.style.opacity = '1';
     el.style.visibility = 'visible';
-    el.style.boxShadow = '0 0 14px 4px rgba(0,229,255,.95)';
-    el.style.transform = 'translate(' + Math.round(r.left + ball.x - 4) + 'px, ' + Math.round(r.top + ball.y - 4) + 'px)';
+    el.style.background = 'var(--neon-violet)';
+    el.style.boxShadow = '0 0 20px 4px var(--neon-violet)';
+    el.style.transform = 'translate(' + (r.left + ball.x - ball.r).toFixed(2) + 'px, ' + (r.top + ball.y - ball.r).toFixed(2) + 'px)';
     const ring = findRingEl();
     if (ring) ring.style.visibility = 'hidden';
   }
 
   function releaseBall() {
-    if (!ballEl) return;
-    ballEl.style.boxShadow = '';
+    if (!ballEl || ballEl.dataset.ballOwner !== 'arkanoid') return;
+    // Give the guide its current viewport position, so it continues from this ball.
+    const r = ballEl.getBoundingClientRect();
+    ballEl.dataset.resumeX = String(r.left + r.width / 2);
+    ballEl.dataset.resumeY = String(r.top + r.height / 2);
+    ballEl.dataset.ballOwner = 'guide';
+    ballEl.style.display = '';
     ballEl.style.opacity = '1';
     const ring = findRingEl();
     if (ring) ring.style.visibility = '';
@@ -221,7 +215,7 @@
   }
 
   // Scrolling pauses; scrolling back to the top resumes. The game never dies.
-  window.addEventListener('scroll', () => { paused = window.scrollY > 60; }, { passive: true });
+  window.addEventListener('scroll', () => { paused = window.scrollY > 2; }, { passive: true });
 
   function update(dt) {
     if (!running || !ctx || paused) return;
@@ -339,6 +333,7 @@
       if (!ctx) { requestAnimationFrame(loop); return; }
     }
     sync();
+    if (wrap) wrap.dataset.ballMode = paused ? 'guide' : 'arkanoid';
     if (paused) {
       releaseBall();
       hideCursorPaddle();
@@ -367,7 +362,7 @@
   const start = () => {
     if (ctx) return;
     mount();
-    if (ctx) { sync(); applyCursorMode(); last = performance.now(); requestAnimationFrame(loop); }
+    if (ctx) { paused = window.scrollY > 2; sync(); applyCursorMode(); last = performance.now(); requestAnimationFrame(loop); }
     else if (++tries < 200) setTimeout(start, 50);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

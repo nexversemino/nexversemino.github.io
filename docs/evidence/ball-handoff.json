@@ -1,0 +1,29 @@
+[
+  {
+    "count": 1,
+    "cursorVisible": "hidden",
+    "instance": "9a255d11-ad2b-4221-9655-b0d2dcbe3520",
+    "owner": "arkanoid",
+    "phase": "top",
+    "transform": "translate(700.32px, 536.57px)",
+    "y": 0
+  },
+  {
+    "count": 1,
+    "instance": "9a255d11-ad2b-4221-9655-b0d2dcbe3520",
+    "mode": "guide",
+    "owner": "guide",
+    "phase": "down",
+    "transform": "translate(332.288px, 108.903px)",
+    "y": 1001.3333129882812
+  },
+  {
+    "count": 1,
+    "instance": "9a255d11-ad2b-4221-9655-b0d2dcbe3520",
+    "mode": "arkanoid",
+    "owner": "arkanoid",
+    "phase": "top-again",
+    "transform": "translate(244.2px, 446.16px)",
+    "y": 0
+  }
+]

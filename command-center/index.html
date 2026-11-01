@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="cs"><head><base href="/"/>
+<script>/* hydration guard: hydration crashes (React #418) and would wipe the Arkanoid overlay */try{var m=document.querySelector('meta[name="tsr-no-hydrate"]');if(!m){m=document.createElement("meta");m.name="tsr-no-hydrate";document.head.appendChild(m);}}catch(e){}</script>
+<script src="assets/morfiai-arkanoid.js?v=11" defer></script>
+<meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="assets/hero-CWIhvXXv.png"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Karla:wght@400;500&amp;display=swap" data-precedence="default"/><link rel="stylesheet" href="assets/styles-Dsiogmp1.css" data-precedence="default"/><title>NexVerse AI Command Center — MORFIAI</title><meta name="description" content="Desktopová aplikace pro lokální AI modely, agenty, nástroje a projekty. Vlastní prostředí pro práci s AI."/><meta property="og:title" content="NexVerse AI Command Center — MORFIAI"/><meta property="og:description" content="Desktopová aplikace pro lokální AI modely, agenty, nástroje a projekty. Vlastní prostředí pro práci s AI."/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="assets/morfiai-logo.svg" type="image/svg+xml"/>
+
+<meta name="twitter:title" content="NexVerse AI Command Center — MORFIAI"><meta name="twitter:description" content="Desktopová aplikace pro lokální AI modely, agenty, nástroje a projekty. Vlastní prostředí pro práci s AI."><meta property="og:image" content="https://morfiai.eu/assets/hero-CWIhvXXv.png"><meta name="twitter:image" content="https://morfiai.eu/assets/hero-CWIhvXXv.png"><link rel="stylesheet" href="assets/hero-video.css?v=13"/><script type="module" src="assets/hero-video.js?v=11"></script><script type="module" src="assets/hero-copy.js?v=6"></script><link rel="stylesheet" href="assets/dragon-viewer.css?v=6"/><link rel="stylesheet" href="assets/mobile-fix.css?v=15"/><script type="module" src="assets/dragon-viewer.js?v=13"></script><script type="module" src="assets/living-word.js"></script><style>
+#hopik-mascot{position:fixed;left:0;top:0;width:40px;height:66px;z-index:9999;pointer-events:none;opacity:0;transform-origin:20px 14px;will-change:transform;transition:opacity .35s ease}
+#hopik-mascot.is-visible{opacity:1}
+.hopik-inner{position:relative;width:40px;height:66px;transform-origin:20px 14px}
+.hopik-head{position:absolute;left:12px;top:6px;width:16px;height:16px;border-radius:50%;background:#00f7f8;box-shadow:0 0 20px 4px rgba(0,247,248,.85)}
+.hopik-svg{position:absolute;left:0;top:0;width:40px;height:66px;display:block;overflow:visible}
+.hopik-svg .figure{color:var(--c,#49e2ff);filter:drop-shadow(0 0 2.5px currentColor) drop-shadow(0 0 7px currentColor)}
+.hopik-svg .limb{stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.hopik-svg .body-stick{transform-box:view-box;transform-origin:20px 22px;transform:scale(0);opacity:0}
+#hopik-mascot.is-growing .body-stick{animation:hopik-grow .85s cubic-bezier(.175,.885,.32,1.275) both}
+#hopik-mascot.is-grown .body-stick{transform:scale(1);opacity:1}
+.hopik-svg .arm-r{transform-box:fill-box;transform-origin:0% 0%;transform:rotate(0deg);transition:transform .26s cubic-bezier(.22,.68,0,.99)}
+.hopik-svg .arm-l{transform-box:fill-box;transform-origin:100% 0%}
+.hopik-svg .leg-l{transform-box:fill-box;transform-origin:100% 0%}
+.hopik-svg .leg-r{transform-box:fill-box;transform-origin:0% 0%}
+#hopik-mascot.is-walking .leg-l{animation:hopik-leg-l .5s ease-in-out infinite alternate}
+#hopik-mascot.is-walking .leg-r{animation:hopik-leg-r .5s ease-in-out infinite alternate}
+#hopik-mascot.is-walking .arm-l{animation:hopik-arm-l .5s ease-in-out infinite alternate}
+#hopik-mascot.is-walking .hopik-inner{animation:hopik-bob .25s ease-in-out infinite alternate}
+#hopik-mascot.is-pointing .arm-r{transform:scaleX(1.2)}
+#hopik-mascot.is-pointing.is-urgent .arm-r{animation:hopik-point .48s ease-in-out infinite alternate}
+#hopik-mascot.is-idle .hopik-inner{animation:hopik-breathe 1.9s ease-in-out infinite}
+@keyframes hopik-grow{0%{transform:scale(0);opacity:0}55%{opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes hopik-leg-l{from{transform:rotate(-13deg)}to{transform:rotate(17deg)}}
+@keyframes hopik-leg-r{from{transform:rotate(13deg)}to{transform:rotate(-17deg)}}
+@keyframes hopik-arm-l{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+@keyframes hopik-point{from{transform:scaleX(1.2) rotate(-7deg)}to{transform:scaleX(1.2) rotate(5deg)}}
+@keyframes hopik-bob{from{transform:translateY(0)}to{transform:translateY(-1.2px)}}
+@keyframes hopik-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
+@media(prefers-reduced-motion:reduce){#hopik-mascot,#hopik-mascot *{animation:none!important;transition:none!important}}
+</style>
+<link rel="stylesheet" href="assets/site-navigation.css"/><script type="module" src="assets/site-client.js"></script><link rel="canonical" href="https://morfiai.eu/command-center/"/><noscript><style>.opacity-0{opacity:1!important}.translate-y-8{transform:none!important}</style></noscript></head><body><div class="min-h-screen bg-background"><div id="site-interactions"></div><header class="fixed inset-x-0 top-0 z-50 border-b bg-background/70 backdrop-blur-md"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><span class="font-mono text-sm font-bold tracking-[0.3em] text-neon-gradient">MORFIAI</span><nav class="hidden gap-8 font-mono text-xs uppercase tracking-widest text-muted-foreground md:flex"><a href="/#funkce" class="hover:text-neon-cyan">Produkty</a><a href="/engine/" class="hover:text-neon-pink">Engine</a><a href="/#kontakt" class="hover:text-neon-lime">Kontakt</a></nav><details class="site-menu"><summary class="block border border-neon-cyan px-4 py-2 font-mono text-xs uppercase tracking-widest text-neon-cyan transition hover:bg-neon-cyan hover:text-primary-foreground">Projekty</summary><nav aria-label="Projekty MORFIAI" class="site-menu-links font-mono text-xs"><a href="/">MORFIAI</a><a href="/engine/">NexVerse Asset Engine</a><a href="/command-center/">AI Command Center</a><a href="/milo/">MILO</a><a href="/laya/">Laya a Korálkový lov</a><a href="/blog/">Firma, která se napsala sama</a></nav></details></div></header><section data-title-line1="AI po tvém." data-title-line2="Na tvém PC." class="relative z-10 grid min-h-screen lg:grid-cols-2"><div class="grid-bg relative flex flex-col justify-center px-6 pb-16 pt-32 lg:px-16"><p class="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-neon-lime">&gt; system.init(command-center)<span class="blink">_</span></p><h1 class="font-display text-6xl font-light leading-[1.15] md:text-8xl"><span class="inline-block " aria-label="Kujeme světy"><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:0ms">K</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:25ms">u</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:50ms">j</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:75ms">e</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:100ms">m</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:125ms">e</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:150ms"> </span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:175ms">s</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:200ms">v</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:225ms">ě</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:250ms">t</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:275ms">y</span></span><br/><em class="font-semibold text-neon-gradient"><span class="inline-block " aria-label="pomocí AI"><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:0ms">p</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:25ms">o</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:50ms">m</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:75ms">o</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:100ms">c</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:125ms">í</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:150ms"> </span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:175ms">A</span><span aria-hidden="true" class="wave-letter inline-block transition-transform duration-300" style="transition-delay:200ms">I</span></span></em></h1><p class="mt-8 max-w-md text-lg text-muted-foreground">Desktopová aplikace pro lokální AI modely, agenty, nástroje a projekty. Vlastní prostředí pro práci s AI.</p><div class="mt-10 flex flex-wrap gap-4"><div class="inline-block transition-transform duration-300 ease-out will-change-transform "><a href="/command-center/#funkce" class="block bg-neon-gradient px-8 py-4 font-mono text-sm font-bold uppercase tracking-widest text-primary-foreground">Poznat projekt</a></div><div class="inline-block transition-transform duration-300 ease-out will-change-transform "><a href="/command-center/#kontakt" class="block border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest transition hover:border-neon-pink hover:text-neon-pink">Kontakt</a></div></div><div class="mt-16 grid max-w-md grid-cols-3 gap-6 border-t pt-8"><div><div class="font-mono text-2xl font-bold text-neon-cyan">AI</div><div class="mt-1 text-xs text-muted-foreground">vlastní nástroje</div></div><div><div class="font-mono text-2xl font-bold text-neon-pink">PC</div><div class="mt-1 text-xs text-muted-foreground">lokální projekty</div></div><div><div class="font-mono text-2xl font-bold text-neon-lime">Vy</div><div class="mt-1 text-xs text-muted-foreground">vlastní nápady</div></div></div></div><div class="relative min-h-[60vh] overflow-hidden"><div class="transition-transform duration-200 ease-out will-change-transform absolute inset-0"><img src="assets/hero-CWIhvXXv.png" alt="Drak generovaný AI s neonovou drátěnou sítí" width="1024" height="1280" class="h-full w-full object-contain object-bottom"/></div><div data-bounce="true" class="absolute bottom-8 left-8 border border-neon-cyan bg-background/80 p-4 font-mono text-xs text-neon-cyan backdrop-blur"><div>UKÁZKA: neonový drak</div><div class="text-muted-foreground">animovaná ukázka · 3D náhled</div></div></div></section><div class="h-px bg-neon-gradient"></div><section id="funkce" class="relative z-10 mx-auto max-w-7xl px-6 py-28"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-pink">// AI Command Center</p><h2 class="mt-4 max-w-2xl font-display text-5xl font-light leading-[1.2] md:text-6xl"><span data-orb="bounce" data-orb-color="var(--neon-pink)">Modely a projekty <em class="text-neon-gradient">na jednom místě</em></span></h2></div><div data-orb="cards" class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-cyan hover:glow-cyan"><span class="font-mono text-sm text-neon-cyan">[<!-- -->01<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-cyan"><span data-typed-title="Lokální modely">Lokální modely</span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Připojování vlastních kompatibilních lokálních modelů. Dostupnost závisí na jejich rozhraní a konfiguraci.</p></div></div></div><div style="transition-delay:120ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-pink hover:glow-cyan"><span class="font-mono text-sm text-neon-pink">[<!-- -->02<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-pink"><span data-typed-title="Agenti a nástroje">Agenti a nástroje</span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Správa nástrojů a agentů pro konkrétní práci. Oprávnění a dostupné akce je potřeba nastavit pro daný projekt.</p></div></div></div><div style="transition-delay:240ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><div class="transition-transform duration-200 ease-out will-change-transform h-full"><div data-bounce="true" class="h-full border border-border bg-background p-8 transition duration-300 hover:border-neon-lime hover:glow-cyan"><span class="font-mono text-sm text-neon-lime">[<!-- -->03<!-- -->]</span><h3 class="mt-6 font-display text-4xl font-medium leading-tight text-neon-lime"><span data-typed-title="Základ zdarma">Základ zdarma</span></h3><p class="mt-4 text-lg leading-relaxed text-foreground/85">Základní verze bude dostupná zdarma. Veřejné stažení a podmínky zveřejníme, až budou připravené.</p></div></div></div></div></section><section id="engine" class="relative z-10 grid border-y lg:grid-cols-2"><div class="bg-card p-6 font-mono text-sm lg:p-16"><div class="mb-4 flex gap-2"><span class="h-3 w-3 rounded-full bg-neon-pink"></span><span class="h-3 w-3 rounded-full bg-neon-orange"></span><span class="h-3 w-3 rounded-full bg-neon-lime"></span></div><pre class="whitespace-pre-wrap leading-7 text-muted-foreground">počítač → kompatibilní místní model
+projekt → nástroje → agenti
+nastavení → kontrola výsledku</pre></div><div class="flex flex-col justify-center p-6 lg:p-16"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan">// Samostatná desktopová aplikace</p><h2 class="mt-4 font-display text-5xl font-light leading-[1.2]">Vlastní prostředí. <em data-orb="drop" data-orb-color="var(--neon-lime)" class="text-neon-gradient">Vlastní volba.</em></h2><p class="mt-6 max-w-md text-muted-foreground">Command Center je samostatný projekt MORFIAI. Kompatibilní model si volíte sami podle svého hardwaru a potřeb.</p></div></div></section><section id="kontakt" class="grid-bg relative z-10 px-6 py-32 text-center"><div style="transition-delay:0ms" class="transition-all duration-700 ease-out translate-y-8 opacity-0 "><h2 class="mx-auto max-w-3xl font-display text-5xl font-light leading-[1.2] md:text-7xl"><span data-orb="orbit" data-orb-color="var(--neon-orange)">Máte nápad? <em class="text-neon-gradient">Ozvěte se.</em></span></h2><p class="mt-6 font-mono text-sm text-muted-foreground">Zajímá vás některý z projektů nebo spolupráce? Napište nám.</p><div class="inline-block transition-transform duration-300 ease-out will-change-transform mt-10"><a href="mailto:ahoj@morfiai.eu" class="block bg-neon-gradient px-10 py-5 font-mono text-sm font-bold uppercase tracking-widest text-primary-foreground">Ozvat se</a></div></div></section><footer class="relative z-10 border-t px-6 py-8 text-center font-mono text-xs text-muted-foreground">© 2026 Morfiai · morfiai.eu</footer></div><script>
+(function(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  if(window.__hopikMascot)return;window.__hopikMascot=1;
+  var HX=20,HY=14,BH=16;
+  var el=null,inner=null,head=null,ball=null,ballHidden=false;
+  var state='track',pos={x:0,y:0},facing=1;
+  var headRect=null,lastHead=0;
+  var trackStart=0,prevAng=null,accum=0;
+  var walkFrom=null,walkTo=null,walkT0=0,walkDur=0;
+  var pointStart=0,pointUntil=0;
+  var wanderFrom=null,wanderNext=null,wanderT0=0,wanderDur=0,planAt=0;
+  var btn=null,btnRect=null,lastBtn=0;
+
+  function qs(s,r){return (r||document).querySelector(s);}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function rand(a,b){return Math.random()*(b-a)+a;}
+  function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
+
+  function build(){
+    if(el)return;
+    el=document.createElement('div');el.id='hopik-mascot';el.setAttribute('aria-hidden','true');
+    inner=document.createElement('div');inner.className='hopik-inner';
+    head=document.createElement('div');head.className='hopik-head';
+    var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('class','hopik-svg');svg.setAttribute('viewBox','0 0 40 66');
+    svg.innerHTML=
+      '<g class="figure"><g class="body-stick">'
+      +'<line class="limb" x1="20" y1="22" x2="20" y2="44.4"/>'
+      +'<g class="arm arm-l"><line class="limb" x1="20" y1="28.4" x2="5.6" y2="38"/></g>'
+      +'<g class="arm arm-r"><line class="limb" x1="20" y1="28.4" x2="37.6" y2="28.4"/></g>'
+      +'<g class="leg leg-l"><line class="limb" x1="20" y1="44.4" x2="8.8" y2="62"/></g>'
+      +'<g class="leg leg-r"><line class="limb" x1="20" y1="44.4" x2="31.2" y2="62"/></g>'
+      +'</g></g>';
+    inner.appendChild(head);inner.appendChild(svg);el.appendChild(inner);
+    document.body.appendChild(el);
+  }
+
+  function findBall(){
+    if(ball&&ball.isConnected)return ball;
+    ball=qs('div[class*="z-40"][class*="rounded-full"][class*="h-4"]');
+    return ball;
+  }
+  function ballTopLeft(b){
+    var m=(b.style.transform||'').match(/-?[\d.]+/g);
+    if(m&&m.length>=2)return{x:+m[0],y:+m[1]};
+    var r=b.getBoundingClientRect();return{x:r.left,y:r.top};
+  }
+  function setBall(hide){
+    var b=findBall();if(!b)return;
+    if(ballHidden!==hide){ballHidden=hide;b.style.opacity=hide?'0':'';}
+  }
+  function setPos(x,y,f){
+    pos.x=x;pos.y=y;
+    if(f!==undefined&&f!==facing)facing=f;
+    el.style.transform='translate('+(x-HX).toFixed(1)+'px,'+(y-HY).toFixed(1)+'px) scaleX('+facing+')';
+  }
+  function faceTo(x){if(Math.abs(x-pos.x)>2)facing=(x>pos.x?1:-1);setPos(pos.x,pos.y);}
+  function headingRect(now){
+    if(!headRect||now-lastHead>120){
+      lastHead=now;
+      var h=qs('#kontakt h2 [data-orb]')||qs('#kontakt h2 span');
+      headRect=h?h.getBoundingClientRect():null;
+    }
+    return headRect;
+  }
+  function buttonRect(now){
+    if(!btn||!btn.isConnected)btn=qs('#kontakt a[href*="mailto"]')||qs('#kontakt a');
+    if(!btn)return null;
+    if(!btnRect||now-lastBtn>150){lastBtn=now;btnRect=btn.getBoundingClientRect();}
+    return btnRect;
+  }
+  function standPoint(br){
+    var x=br.left-34,y=br.bottom-48;
+    if(x<52){x=br.left+br.width/2;y=br.top-70;}
+    return{x:clamp(x,46,innerWidth-46),y:clamp(y,92,innerHeight-70)};
+  }
+
+  function startGrow(now,x,y){
+    if(state!=='track')return;
+    state='grow';
+    setPos(x,y);
+    el.classList.add('is-visible','is-growing');
+    setBall(true);
+    setTimeout(function(){
+      if(state!=='grow')return;
+      el.classList.remove('is-growing');el.classList.add('is-grown');
+      startWalk(performance.now());
+    },880);
+  }
+  function startWalk(now){
+    var br=buttonRect(now);
+    if(!br||!(br.top<innerHeight&&br.bottom>0)){state='wait';return;}
+    walkFrom={x:pos.x,y:pos.y};
+    walkTo=standPoint(br);
+    walkT0=now;
+    walkDur=clamp(dist(walkFrom,walkTo)/36,1800,9000);
+    faceTo(walkTo.x);
+    state='walk';
+  }
+  function startPoint(now){
+    state='point';pointStart=now;pointUntil=now+2600;
+    var br=buttonRect(now);if(br)faceTo(br.left+br.width/2);
+  }
+  function startWander(now){
+    state='wander';wanderNext=null;planAt=now+rand(500,1100);
+  }
+  function planWander(now,br){
+    var cx=br.left+br.width/2,cy=br.top+br.height/2,ang=rand(0,Math.PI*2);
+    wanderNext={
+      x:clamp(cx+Math.cos(ang)*rand(70,112),46,innerWidth-46),
+      y:clamp(cy+Math.sin(ang)*rand(34,66),92,innerHeight-64)
+    };
+    wanderFrom={x:pos.x,y:pos.y};
+    wanderT0=now+rand(450,1000);
+    wanderDur=clamp(dist(wanderFrom,wanderNext)/40,700,1600);
+    planAt=wanderT0;
+    faceTo(wanderNext.x);
+  }
+
+  function trackTick(now,b,hr){
+    el.classList.remove('is-visible');
+    setBall(false);
+    if(!hr||hr.top>innerHeight*.85||hr.bottom<innerHeight*.15){trackStart=0;prevAng=null;accum=0;return;}
+    var cx=hr.left+hr.width/2,cy=hr.top+hr.height/2;
+    if(!b){
+      if(!trackStart)trackStart=now;
+      if(now-trackStart>4000)startGrow(now,cx,cy);
+      return;
+    }
+    var p=ballTopLeft(b),ax=p.x+BH/2,ay=p.y+BH/2;
+    setPos(ax,ay);
+    if(!trackStart){trackStart=now;prevAng=null;accum=0;}
+    var R=(hr.width/2+30+hr.height/2+30)/2;
+    if(Math.hypot(ax-cx,ay-cy)>R*2.7){trackStart=now;prevAng=null;accum=0;return;}
+    var ang=Math.atan2(ay-cy,ax-cx);
+    if(prevAng===null){prevAng=ang;return;}
+    var delta=ang-prevAng;
+    while(delta>Math.PI)delta-=Math.PI*2;
+    while(delta<-Math.PI)delta+=Math.PI*2;
+    prevAng=ang;
+    if(Math.abs(delta)<1.5)accum+=delta;
+    var passed=now-trackStart;
+    if((Math.abs(accum)>=Math.PI&&passed>1500)||passed>7000)startGrow(now,ax,ay);
+  }
+
+  function applyCls(now){
+    el.classList.toggle('is-walking',state==='walk'||(state==='wander'&&!!wanderNext&&now>=wanderT0));
+    el.classList.toggle('is-pointing',state==='point');
+    el.classList.toggle('is-urgent',state==='point'&&(now-pointStart)<1700);
+    el.classList.toggle('is-idle',state==='wait');
+  }
+
+  function tick(now){
+    if(!el)build();
+    var b=findBall();
+    if(b&&b.style.background){
+      head.style.background=b.style.background;
+      if(b.style.boxShadow)head.style.boxShadow=b.style.boxShadow;
+      inner.style.setProperty('--c',b.style.background);
+    }
+    var hr=headingRect(now);
+    if(state==='track'){
+      trackTick(now,b,hr);
+    }else{
+      var br=buttonRect(now);
+      var on=!!br&&br.top<innerHeight+30&&br.bottom>-30&&br.left<innerWidth+30&&br.right>-30;
+      el.classList.toggle('is-visible',on);
+      setBall(on);
+      if(on){
+        if(state==='wait'){startWalk(now);}
+        else if(state==='walk'){
+          var p=clamp((now-walkT0)/walkDur,0,1),e=ease(p);
+          setPos(lerp(walkFrom.x,walkTo.x,e),lerp(walkFrom.y,walkTo.y,e));
+          faceTo(walkTo.x);
+          if(p>=1)startPoint(now);
+        }
+        else if(state==='point'){
+          faceTo(br.left+br.width/2);
+          if(dist(pos,standPoint(br))>95)startWalk(now);
+          else if(now>=pointUntil)startWander(now);
+        }
+        else if(state==='wander'){
+          if(!wanderNext){
+            if(now>=planAt)planWander(now,br);
+          }else if(now>=wanderT0){
+            var wp=clamp((now-wanderT0)/wanderDur,0,1),we=ease(wp);
+            setPos(lerp(wanderFrom.x,wanderNext.x,we),lerp(wanderFrom.y,wanderNext.y,we));
+            faceTo(wanderNext.x);
+            if(wp>=1){
+              setPos(wanderNext.x,wanderNext.y);
+              wanderNext=null;
+              if(Math.random()<.45){startPoint(now);pointUntil=now+rand(900,1500);}
+              else planWander(now,br);
+            }
+          }
+        }
+      }
+    }
+    applyCls(now);
+    requestAnimationFrame(tick);
+  }
+
+  build();
+  requestAnimationFrame(tick);
+})();
+</script></body></html>

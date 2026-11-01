@@ -25,6 +25,7 @@ function fixture({scroll=0,reduced=false,late=false}={}){
   return {window,classes,created,addGuide,get guide(){return guide},
     frame(){const callbacks=frames.splice(0);time+=16;callbacks.forEach(f=>f(time))},
     scrollTo(y){window.scrollY=y;(events.scroll||[]).forEach(f=>f())},
+    move(x,y){(events.mousemove||[]).forEach(f=>f({clientX:x,clientY:y}))},
   };
 }
 const f=fixture();const original=f.guide;f.frame();
@@ -39,4 +40,13 @@ const deep=fixture({scroll:900});deep.frame();assert.equal(deep.guide.dataset.ba
 const reduced=fixture({reduced:true});reduced.frame();assert.equal(reduced.guide.dataset.ballOwner,'guide');
 const late=fixture({late:true});late.frame();assert.equal(late.created.filter(e=>e.id==='morfiai-guide-ball').length,0);
 const lateOriginal=late.addGuide();late.frame();assert.equal(late.guide,lateOriginal);assert.equal(lateOriginal.dataset.ballOwner,'arkanoid');
-console.log('PASS: same real guide node; top/down/top ownership; one-time release; deep links; reduced motion; late mount without duplicate.');
+const free=fixture();free.move(540,300);for(let i=0;i<35;i++)free.frame();
+const paddle=free.created.find(e=>e.id==='morfiai-paddle-cursor');
+let xy=paddle.style.transform.match(/-?\d+(?:\.\d+)?/g).map(Number);
+assert.ok(Math.abs(xy[0]-495)<2, 'platform follows horizontal pointer position');
+assert.ok(Math.abs(xy[1]-296)<2, 'platform follows vertical pointer position');
+free.move(1100,700);for(let i=0;i<35;i++)free.frame();
+xy=paddle.style.transform.match(/-?\d+(?:\.\d+)?/g).map(Number);
+assert.ok(Math.abs(xy[0]-1055)<2);assert.ok(Math.abs(xy[1]-696)<2);
+free.scrollTo(800);free.frame();assert.equal(paddle.style.display,'none');
+console.log('PASS: same guide node; top/down/top; one-time release; deep links; reduced motion; late mount; free X/Y cursor paddle; hidden after scroll.');

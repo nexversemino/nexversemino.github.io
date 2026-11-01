@@ -28,7 +28,7 @@ HTML soubory v kořeni a adresářích `engine`, `command-center`, `milo`, `laya
 
 ## Míček
 
-`ScrollOrb` vytváří jediný `#morfiai-guide-ball`. Arkanoid jej nikdy nenahrazuje ani nekopíruje. Nahoře přebírá jeho transformaci hra; při odrolování pod více než 2 pixely se hra pozastaví a předá aktuální pozici zpět původnímu průvodci. Při návratu nahoru hra pokračuje. Tečka kurzoru je během hry skrytá, aby nevypadala jako druhý míček. Při omezeném pohybu se hra ani pohybující průvodce nespouští.
+`ScrollOrb` vytváří jediný `#morfiai-guide-ball`. Arkanoid jej nikdy nenahrazuje ani nekopíruje. Nahoře přebírá jeho transformaci hra; při odrolování pod více než 2 pixely se hra pozastaví a předá aktuální pozici zpět původnímu průvodci. Při návratu nahoru hra pokračuje. Tečka kurzoru je během hry skrytá, aby nevypadala jako druhý míček. Samotný kurzor nahrazuje plošinka, která sleduje myš v obou osách po celé uvítací obrazovce; po odrolování se skryje a vrátí běžný kurzor. Při omezeném pohybu se hra ani pohybující průvodce nespouští.
 
 ## Co se nezpřístupňuje
 

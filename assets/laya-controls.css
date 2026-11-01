@@ -21,3 +21,16 @@
 
 .nex-face-controls{position:absolute;bottom:58px;left:0;right:0;display:flex;justify-content:center;gap:24px;color:var(--neon-cyan);font:12px JetBrains Mono,monospace;z-index:1}.nex-face-controls label{display:flex;align-items:center;gap:8px;min-height:44px}.nex-face-controls input{width:20px;height:20px;accent-color:var(--neon-cyan)}
 #nex-glb-viewer .nex-model-slot{bottom:110px}@media(max-width:640px){#nex-glb-viewer.nex-glb-live{height:555px!important;min-height:555px!important}#nex-glb-viewer .nex-model-slot{bottom:135px}.nex-face-controls{bottom:85px}}
+
+/* Keep selection below the preview so long lists never cover the character. */
+#nex-glb-viewer{margin-bottom:24px}
+#nex-glb-viewer:has(.nex-download-controls){height:auto!important;min-height:0!important;display:flex;flex-direction:column}
+#nex-glb-viewer:has(.nex-download-controls) .nex-character-picker{position:relative;order:0}
+#nex-glb-viewer:has(.nex-download-controls) .nex-model-slot{position:relative;top:auto;bottom:auto;left:auto;right:auto;order:1;flex:none;height:330px;max-height:none!important}
+#nex-glb-viewer:has(.nex-download-controls) .nex-face-controls{position:relative;bottom:auto;order:2}
+#nex-glb-viewer:has(.nex-download-controls) .nex-animation-controls{position:relative;bottom:auto;order:3}
+.nex-download-controls{order:4;color:var(--neon-cyan);font:12px JetBrains Mono,monospace;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0}
+.nex-download-controls label{display:flex;align-items:center;gap:8px;min-height:44px}.nex-download-controls input{width:20px;height:20px;accent-color:var(--neon-cyan)}
+.nex-download-controls button{padding:8px;border:1px solid currentColor;background:#080c10;color:inherit;min-height:40px}.nex-download-controls button:disabled{opacity:.4}.nex-download-message,.nex-download-note{width:100%;text-align:center;font-size:11px}.nex-download-note{opacity:.7}.nex-selected-list{width:min(100%,700px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.nex-selected-list li{display:flex;min-width:0;gap:4px}.nex-selected-list li button:first-child{min-width:0;flex:1;overflow-wrap:anywhere;text-align:left}
+@media(max-width:640px){#nex-glb-viewer:has(.nex-download-controls) .nex-model-slot{height:340px}.nex-selected-list{grid-template-columns:1fr}.nex-download-controls{gap:8px}.nex-download-controls button{min-height:44px}}
+.nex-glb-live > .nex-download-controls{max-height:none!important}

@@ -1,0 +1,3 @@
+Pět postav: Laya 670 animací, Holografický Míno 537 animací, Ametyst 146 animací, Rose 139 animací, Robot B 36 animací
+Ověřeno místně v prohlížeči: všech pět skutečně vykresleno, přepnutí idle/walk/jump, české nabídky, automatické otáčení vypnuto. Mobilní rozměr 390x844, výška modelu 365 px, bez vodorovného přetečení. Jde o emulaci rozměru, nikoli fyzický telefon.
+Původní soubory Areny a knihovna Studia neupravovány. GLB jsou jejich samostatné kopie. Vzhled materiálů může mezi webovým a herním rendererem záviset na světle. České názvy dlouhých generovaných klipů jsou zjednodušené kategorie a číslované varianty. Kvalita všech animací nebyla jednotlivě vizuálně prověřena.

@@ -60,4 +60,7 @@ class SiteTests(unittest.TestCase):
     def test_real_arkanoid_handoff_module(self):
         result=subprocess.run(['node','tests/arkanoid-handoff.test.cjs'],cwd=ROOT,text=True,capture_output=True)
         self.assertEqual(result.returncode,0,result.stderr)
+    def test_dragon_loader_does_not_cancel_slow_download(self):
+        result=subprocess.run(['node','tests/dragon-loader.test.cjs'],cwd=ROOT,text=True,capture_output=True)
+        self.assertEqual(result.returncode,0,result.stderr)
 if __name__=='__main__':unittest.main()

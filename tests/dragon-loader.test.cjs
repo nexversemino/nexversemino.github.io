@@ -9,7 +9,7 @@ async function fixture(fail=false){
  await new Promise(resolve=>setImmediate(resolve));return {timers,changes,events,status,retry,wrap,names};
 }
 (async()=>{
- const f=await fixture();assert.match(f.wrap.innerHTML,/loading="eager"/);assert.match(f.wrap.innerHTML,/src="\/assets\/dragon-preview.glb"/);
+ const f=await fixture();assert.match(f.wrap.innerHTML,/loading="eager"/);assert.match(f.wrap.innerHTML,/src="\/assets\/dragon-walk-v2-9993010d.glb"/);
  for(const timer of f.timers)timer();assert.equal(f.changes.length,0,'slow loading must not restart the GLB request');assert.equal(f.wrap.dataset.loadState,'loading');
  f.events.load();assert.equal(f.wrap.dataset.loadState,'loaded');assert.ok(f.names.has('nex-glb-loaded'));
  const broken=await fixture(true);assert.equal(broken.wrap.dataset.loadState,'error');assert.equal(broken.retry.hidden,false);

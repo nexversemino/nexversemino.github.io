@@ -1,3 +1,4 @@
+import {attachDownloads} from './animation-downloads.js?v=1';
 import {bindFace} from './facial-controls.js?v=1';
 import {characters,labels} from './character-data.js?v=2';
 let viewerRuntime;
@@ -14,14 +15,15 @@ function buildDragonViewer(){
  const picker=wrap.querySelector('[aria-label="Postava v náhledu"]'),select=wrap.querySelector('[aria-label="Animace postavy"]'),controls=wrap.querySelector('.nex-animation-controls'),buttons=controls.querySelectorAll('button'),counter=wrap.querySelector('.nex-animation-count'),slot=wrap.querySelector('.nex-model-slot'),status=wrap.querySelector('[role="status"]'),retry=wrap.querySelector('.nex-glb-loading button');
  const blinkInput=wrap.querySelector('[aria-label="Mrkání"]'),talkInput=wrap.querySelector('[aria-label="Mluva"]');let disposeFace=()=>{};
  let model,character=characters[0],clips=[],index=0,generation=0;
+ const downloads=attachDownloads(wrap,characters,()=>character,()=>clips[index],name=>{const i=clips.indexOf(name);if(i>=0)choose(i)});downloads.setLabels(labels);
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  function option(value,text){const o=document.createElement('option');o.value=value;o.textContent=text;return o}
  picker.replaceChildren(...characters.map(c=>option(c.id,c.label)));
  function pauseLabel(paused){buttons[2].textContent=paused?'▶':'Ⅱ';buttons[2].setAttribute('aria-label',paused?'Přehrát animaci':'Pozastavit animaci')}
  function enabled(value){select.disabled=!value;buttons.forEach(b=>b.disabled=!value)}
- function choose(next,play=true){if(!clips.length)return;index=(next+clips.length)%clips.length;model.animationName=clips[index];select.value=String(index);counter.textContent=`${index+1} / ${clips.length}`;wrap.dataset.animationName=clips[index];if(play)model.play();else model.pause();pauseLabel(!play)}
+ function choose(next,play=true){if(!clips.length)return;index=(next+clips.length)%clips.length;model.animationName=clips[index];select.value=String(index);counter.textContent=`${index+1} / ${clips.length}`;wrap.dataset.animationName=clips[index];if(play)model.play();else model.pause();pauseLabel(!play);downloads.update()}
  async function loadCharacter(c){
-  disposeFace();blinkInput.disabled=true;talkInput.disabled=true;wrap.querySelector('[data-blink-label]').textContent=c.id==='robot-b'?'Mrkání šesti očí':'Mrkání';character=c;const current=++generation;clips=[];enabled(false);counter.textContent='';select.replaceChildren();wrap.dataset.loadState='loading';wrap.dataset.character=c.id;wrap.dataset.animationState='loading';delete wrap.dataset.animationName;wrap.classList.remove('nex-glb-loaded');status.textContent=`Načítám: ${c.label}…`;retry.hidden=true;
+  disposeFace();blinkInput.disabled=true;talkInput.disabled=true;wrap.querySelector('[data-blink-label]').textContent=c.id==='robot-b'?'Mrkání šesti očí':'Mrkání';character=c;const current=++generation;clips=[];enabled(false);counter.textContent='';select.replaceChildren();wrap.dataset.loadState='loading';wrap.dataset.character=c.id;wrap.dataset.animationState='loading';delete wrap.dataset.animationName;downloads.update();wrap.classList.remove('nex-glb-loaded');status.textContent=`Načítám: ${c.label}…`;retry.hidden=true;
   if(model)model.pause();slot.replaceChildren();
   try{
    const viewerAPI=await runtime();if(current!==generation)return;

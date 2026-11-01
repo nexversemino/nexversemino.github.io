@@ -9,7 +9,7 @@ async function fixture(fail=false){
  controls.querySelectorAll=()=>buttons;const map={'[aria-label="Postava v náhledu"]':picker,'[aria-label="Animace postavy"]':select,'.nex-animation-controls':controls,'.nex-animation-count':counter,'.nex-model-slot':slot,'[role="status"]':status,'.nex-glb-loading button':retry,'[aria-label="Mrkání"]':new E(),'[aria-label="Mluva"]':new E(),'[data-blink-label]':new E()};wrap.querySelector=k=>map[k];let inserted=false;
  const characters=[{id:'laya',label:'Laya',src:'/assets/laya-complete-670.glb'},{id:'rose',label:'Rose',src:'/assets/showcase-rose.glb'}];
  const document={body:{},readyState:'complete',getElementById:id=>id==='funkce'?{insertBefore(){inserted=true}}:inserted?wrap:null,querySelector:()=>({}),createElement(tag){if(tag==='div')return wrap;const e=new E();if(tag==='model-viewer')models.push(e);return e}};
- vm.runInNewContext(source,{bindFace:()=>()=>{},characters,labels:{idle:'Klidový postoj',walk:'Chůze'},document,MutationObserver:class{observe(){}},matchMedia:()=>({matches:false}),__import:()=>fail?Promise.reject(Error('offline')):Promise.resolve({getFacialScene:()=>({})})});await new Promise(setImmediate);
+ vm.runInNewContext(source,{attachDownloads:()=>({update(){},setLabels(){}}),bindFace:()=>()=>{},characters,labels:{idle:'Klidový postoj',walk:'Chůze'},document,MutationObserver:class{observe(){}},matchMedia:()=>({matches:false}),__import:()=>fail?Promise.reject(Error('offline')):Promise.resolve({getFacialScene:()=>({})})});await new Promise(setImmediate);
  return {wrap,picker,select,buttons,slot,status,retry,models};
 }
 (async()=>{

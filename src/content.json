@@ -1,0 +1,386 @@
+{
+  "": {
+    "title": "MORFIAI",
+    "description": "Nástroje pro tvoření, lokální AI i každodenní život. Z nápadů a experimentů vzniká MORFIAI.",
+    "lines": [
+      "Tvoř světy.",
+      "Dej jim život."
+    ],
+    "eyebrow": "Projekty MORFIAI",
+    "heading": "Každý nápad má <em class=\"text-neon-gradient\">vlastní cestu</em>",
+    "cards": [
+      [
+        "NexVerse Asset Engine",
+        "Desktopový nástroj pro 2D/3D assety, textury, rigy a animace. Výstupy pro Godot, Unity a Unreal Engine.",
+        "/engine/"
+      ],
+      [
+        "AI Command Center",
+        "Místní modely, agenti, nástroje a projekty v jedné desktopové aplikaci. Základní verze bude zdarma.",
+        "/command-center/"
+      ],
+      [
+        "MILO",
+        "Nákupní asistent pro úsporu času, hlasové ovládání, přístupnost a hledání slev. Ve vývoji a testování.",
+        "/milo/"
+      ],
+      [
+        "Laya",
+        "Experimentální autonomní herní AI. Její rozhodování a učení zkoušíme ve hře Korálkový lov.",
+        "/laya/"
+      ],
+      [
+        "Firma, která se napsala sama",
+        "Příběhy z vývoje. Co se povedlo, co zatím nefunguje a proč zkoušíme pokračovat.",
+        "/blog/"
+      ]
+    ],
+    "split": [
+      "Jak vzniká MORFIAI",
+      "Zvědavost, která <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">tvoří</em>",
+      "Začíná to hraním a otázkou, jestli by něco nešlo jednodušeji. Z experimentu vznikne nástroj pro vlastní práci. A když může pomoci i ostatním, hledáme cestu, jak ho zpřístupnit."
+    ],
+    "workflow": [
+      "Hrát si",
+      "→ Tvořit",
+      "→ Zprovoznit",
+      "→ Usnadnit život",
+      "→ Dát příležitost ostatním"
+    ],
+    "stats": [
+      "4",
+      "samostatných projektů",
+      "AI",
+      "nástroj pro lidi",
+      "Vy",
+      "vlastní nápady"
+    ],
+    "cta": "Objevit projekty",
+    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
+  },
+  "engine": {
+    "title": "NexVerse Asset Engine",
+    "description": "2D/3D assety, textury, kostry a animace v desktopové aplikaci. Tvoř lokálně a připrav výstupy pro svoji hru.",
+    "lines": [
+      "Tvoř světy.",
+      "Dej jim život."
+    ],
+    "eyebrow": "NexVerse Asset Engine",
+    "heading": "Celá produkční linka v <em class=\"text-neon-gradient\">jednom nástroji</em>",
+    "cards": [
+      [
+        "Generování 2D/3D",
+        "Nástroje pro AI tvorbu obrázků a 3D modelů z předlohy. Výsledek závisí na modelu, vstupu a dostupném hardwaru."
+      ],
+      [
+        "Textury",
+        "Tvorba a úprava textur pro assety. Rozlišení a kvalitu výstupu je potřeba ověřit u konkrétního modelu."
+      ],
+      [
+        "Automatický rigging",
+        "Příprava kostry a vah modelu. Automatický výsledek je nutné zkontrolovat, zejména u neobvyklé anatomie."
+      ],
+      [
+        "Retargeting animací",
+        "Přenos pohybu na jinou kostru. Shoda kloubů a kontrola deformací jsou součástí přípravy výsledku."
+      ],
+      [
+        "Timeline a pózy",
+        "Nástroje pro práci s animacemi, jejich časováním a pózami. Doladění pohybu patří k tvorbě použitelného assetu."
+      ],
+      [
+        "Assetová knihovna",
+        "Správa modelů, textur a animací v místní knihovně. Výběr a příprava assetů pro další práci."
+      ],
+      [
+        "Lokální orchestrátor",
+        "Propojení místních AI nástrojů a pracovních kroků. Dostupnost závisí na instalovaných modelech a workerech."
+      ],
+      [
+        "Export do hry",
+        "Výstupy pro Godot, Unity a Unreal Engine. Import a animace je potřeba ověřit v cílovém projektu."
+      ],
+      [
+        "Vlastní hardware",
+        "Zpracování běží lokálně na počítači zákazníka. Některé postupy vyžadují odpovídající GPU, paměť a konfiguraci."
+      ]
+    ],
+    "split": [
+      "Animace a příprava assetu",
+      "Pohyb, který <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">žije</em>",
+      "Asset Engine není herní engine. Pomáhá připravovat obsah pro hru: model, textury, kostru a animace. Jednotlivé nástroje se průběžně ověřují a dolaďují; stránka neslibuje bezchybný automatický výsledek."
+    ],
+    "workflow": [
+      "předloha → 2D / 3D",
+      "model → textury",
+      "kostra → váhy → kontrola",
+      "animace → retargeting → úpravy",
+      "export → ověření v cílovém enginu"
+    ],
+    "stats": [
+      "2D/3D",
+      "tvorba assetů",
+      "Rig",
+      "kostry a animace",
+      "Export",
+      "Godot · Unity · Unreal"
+    ],
+    "cta": "Prozkoumat nástroje",
+    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
+  },
+  "command-center": {
+    "title": "NexVerse AI Command Center",
+    "description": "Desktopová aplikace pro lokální AI modely, agenty, nástroje a projekty. Vlastní prostředí pro práci s AI.",
+    "lines": [
+      "AI po tvém.",
+      "Na tvém PC."
+    ],
+    "eyebrow": "AI Command Center",
+    "heading": "Modely a projekty <em class=\"text-neon-gradient\">na jednom místě</em>",
+    "cards": [
+      [
+        "Lokální modely",
+        "Připojování vlastních kompatibilních lokálních modelů. Dostupnost závisí na jejich rozhraní a konfiguraci."
+      ],
+      [
+        "Agenti a nástroje",
+        "Správa nástrojů a agentů pro konkrétní práci. Oprávnění a dostupné akce je potřeba nastavit pro daný projekt."
+      ],
+      [
+        "Základ zdarma",
+        "Základní verze bude dostupná zdarma. Veřejné stažení a podmínky zveřejníme, až budou připravené."
+      ]
+    ],
+    "split": [
+      "Samostatná desktopová aplikace",
+      "Vlastní prostředí. <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">Vlastní volba.</em>",
+      "Command Center je samostatný projekt MORFIAI. Kompatibilní model si volíte sami podle svého hardwaru a potřeb."
+    ],
+    "workflow": [
+      "počítač → kompatibilní místní model",
+      "projekt → nástroje → agenti",
+      "nastavení → kontrola výsledku"
+    ],
+    "stats": [
+      "AI",
+      "vlastní nástroje",
+      "PC",
+      "lokální projekty",
+      "Vy",
+      "vlastní nápady"
+    ],
+    "cta": "Poznat projekt",
+    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
+  },
+  "milo": {
+    "title": "MILO",
+    "description": "Autonomní nákupní asistent pro úsporu času. Hlas, přístupnost, slevy a jednodušší každodenní nákupy.",
+    "lines": [
+      "Méně hledání.",
+      "Více času."
+    ],
+    "eyebrow": "MILO · ve vývoji",
+    "heading": "Nákupy s menší <em class=\"text-neon-gradient\">námahou</em>",
+    "cards": [
+      [
+        "Hlas a přístupnost",
+        "Cílem je ovládání, které pomůže i lidem, pro které je běžné procházení e-shopů obtížné."
+      ],
+      [
+        "Hledání slev",
+        "Vyhledávání nabídek a úspora času při porovnávání nákupních možností jsou součástí zaměření projektu."
+      ],
+      [
+        "Vývoj a testování",
+        "MILO zatím není veřejně dostupná hotová služba. Automatizaci nákupů ověřujeme na konkrétních postupech."
+      ]
+    ],
+    "split": [
+      "Každodenní pomoc",
+      "Nástroj, který <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">usnadňuje</em>",
+      "MILO vzniká z praktické potřeby: nechat si pomoci s opakovaným hledáním a ovládáním nákupních webů. Tato stránka představuje projekt; neobjednává zboží ani nepřijímá platby."
+    ],
+    "workflow": [
+      "potřeba → hledání nabídky",
+      "hlas → přístupnější ovládání",
+      "vývoj → testování → další krok"
+    ],
+    "stats": [
+      "AI",
+      "vlastní nástroje",
+      "PC",
+      "lokální projekty",
+      "Vy",
+      "vlastní nápady"
+    ],
+    "cta": "Poznat MILO",
+    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
+  },
+  "laya": {
+    "title": "Laya a Korálkový lov",
+    "description": "Experimentální autonomní herní AI. Ve hře Korálkový lov zkoušíme rozhodování, učení a reakce postav.",
+    "lines": [
+      "Co když hra",
+      "myslí sama?"
+    ],
+    "eyebrow": "Laya · experiment",
+    "heading": "Rozhodnutí, která <em class=\"text-neon-gradient\">můžeš pozorovat</em>",
+    "cards": [
+      [
+        "Autonomní postavy",
+        "Projekt zkoumá, jak postavy volí další postup podle situace ve hře. Výsledek sledujeme v reálném běhu."
+      ],
+      [
+        "Korálkový lov",
+        "Herní prostředí pro experimenty s Layou. Učení a chování postav se průběžně testuje a upravuje."
+      ],
+      [
+        "Budoucí veřejná ukázka",
+        "Tady bude prostor pro ověřenou ukázku hry. Zatím ji zde nelze spustit ani stáhnout."
+      ]
+    ],
+    "split": [
+      "Průběžný vývoj",
+      "Pozorovat. Zkusit. <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">Pochopit.</em>",
+      "Laya je experiment, nikoli univerzální herní inteligence. Veřejnou ukázku doplníme až ve chvíli, kdy bude připravená pro návštěvníky."
+    ],
+    "workflow": [
+      "situace → rozhodnutí → akce",
+      "pozorování → vyhodnocení",
+      "úprava → další test"
+    ],
+    "stats": [
+      "AI",
+      "vlastní nástroje",
+      "PC",
+      "lokální projekty",
+      "Vy",
+      "vlastní nápady"
+    ],
+    "cta": "Poznat Layu",
+    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
+  },
+  "blog": {
+    "title": "Firma, která se napsala sama",
+    "description": "Příběhy MORFIAI: z hraní a zvědavosti k nástrojům, které mohou dát příležitost i ostatním.",
+    "lines": [
+      "Každý nápad",
+      "má svůj příběh."
+    ],
+    "eyebrow": "Firma, která se napsala sama",
+    "heading": "Z experimentu <em class=\"text-neon-gradient\">do skutečnosti</em>",
+    "cards": [
+      [
+        "„Mami, já chci taky!“",
+        "Příběh MinoBuddy. Hledáme odborníky a partnery, kteří pomohou s bezpečným spuštěním.",
+        "/blog/#pribeh"
+      ],
+      [
+        "Co vzniká v MORFIAI",
+        "Čtyři samostatné projekty spojuje chuť zkoušet nové věci a usnadňovat život.",
+        "/#funkce"
+      ],
+      [
+        "Od nápadu k assetu",
+        "NexVerse Asset Engine vzniká z potřeby tvořit obsah pro vlastní hry.",
+        "/engine/"
+      ],
+      [
+        "Učení ve hře",
+        "Laya a Korálkový lov: experimenty s rozhodováním a chováním postav.",
+        "/laya/"
+      ]
+    ],
+    "split": [
+      "O vývoji bez velkých slibů",
+      "Začíná to tím, že <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">zkusíš</em>",
+      "Ne každý experiment se povede a ne každý nápad musí skončit hotovým produktem. Chceme ukazovat konkrétní výsledky i to, co ještě potřebuje práci."
+    ],
+    "workflow": [
+      "nápad → pokus → zkušenost",
+      "vlastní potřeba → užitečný nástroj",
+      "sdílení → příležitost pro další"
+    ],
+    "stats": [
+      "AI",
+      "vlastní nástroje",
+      "PC",
+      "lokální projekty",
+      "Vy",
+      "vlastní nápady"
+    ],
+    "cta": "Číst příběhy",
+    "contact_text": "Máte zkušenosti, technologie nebo možnosti, které pomohou s bezpečným spuštěním MinoBuddy? Budeme rádi, když se ozvete.",
+    "article": [
+      [
+        "h3",
+        "„Mami, já chci taky!“"
+      ],
+      [
+        "p",
+        "Jednoho dne jsem si jako obvykle hrála s vývojem vlastní aplikace pro tvorbu 3D animovaných modelů do své hry. Zkoušela jsem postavy, animace a možnosti umělé inteligence. Další z mých experimentů, ze kterých občas vznikne něco užitečného a občas jen další položka do už tak přeplněné knihovny assetů."
+      ],
+      [
+        "p",
+        "Pak přišla moje dcera. „Mami, já chci taky!“ A vlastně proč ne? Jenže nástroje, se kterými jsem pracovala, nebyly vytvořené pro děti. Byly složité, vyžadovaly určité znalosti a především výkonný počítač."
+      ],
+      [
+        "p",
+        "Proč by děti nemohly mít vlastní prostředí, kde by tvořily stejně svobodně jako já? Ne jen vybírat z hotových her a sledovat práci ostatních. Mohly by vymýšlet postavy, světy, příběhy, animace nebo hry. Zkoušet, měnit, pokazit, opravit a klidně začít znovu — bez nutnosti předem umět programovat nebo modelovat. A tak se z jedné dětské věty postupně zrodil MinoBuddy."
+      ],
+      [
+        "h3",
+        "Z nápadu se stal skutečný projekt"
+      ],
+      [
+        "p",
+        "MinoBuddy má být samostatné kreativní prostředí, kde děti s pomocí průvodce Mína objevují kreslení, animace, 3D tvorbu, hudbu a základy vytváření her. Smyslem je učit se novým dovednostem a mít možnost zkoušet vlastní nápady. Platforma zatím není veřejně dostupná."
+      ],
+      [
+        "p",
+        "MinoBuddy má být místem, kde nemusí být každý nápad dokonalý a každé tvoření nemusí skončit hotovým výsledkem. Někdy je nejcennější právě to, co dítě objeví cestou."
+      ],
+      [
+        "h3",
+        "Proč MinoBuddy ještě není spuštěný?"
+      ],
+      [
+        "p",
+        "Vytvořit funkční platformu pro děti a bezpečně ji zpřístupnit dětem jsou dvě rozdílné věci. Samotný vývoj je téměř dokončený, ale k veřejnému spuštění stále chybí několik zásadních podmínek: odpovídající zabezpečení, odborné posouzení legislativních požadavků a dostatečné výpočetní zázemí."
+      ],
+      [
+        "p",
+        "Chci, aby MinoBuddy mohly využívat i děti, jejichž rodiny si nemohou dovolit výkonný počítač, drahé programy nebo placené AI generování. Právě dostupnost je jednou z největších technologických a finančních výzev. Nechci otevřít dětem něco, pro co nedokážu zajistit bezpečné a udržitelné prostředí."
+      ],
+      [
+        "p",
+        "MinoBuddy je samostatná platforma. Její dětské účty se nepropojují se zákaznickými účty MORFIAI. Tento web projekt pouze představuje; dětské účty zde nezakládáme."
+      ],
+      [
+        "h3",
+        "Proč postupně zpřístupňuji ostatní projekty MORFIAI?"
+      ],
+      [
+        "p",
+        "NexVerse Asset Engine, AI Command Center a další nástroje původně vznikaly hlavně proto, aby něco usnadnily mně nebo mým blízkým. Postupně jsem zjistila, že mohou pomoci i dalším lidem. Jejich představováním chci ukázat, co už vzniklo, a navázat kontakt s lidmi, kteří by mohli pomoci uskutečnit i poslední krok MinoBuddy."
+      ],
+      [
+        "p",
+        "Hledám odborníky na bezpečnost, legislativu, vzdělávání a dětské online prostředí i technologické partnery, kteří by pomohli zajistit infrastrukturu. Nehledám někoho, kdo za mě vymyslí další dětský web. Hledám cestu, jak ten téměř hotový dostat bezpečně k dětem."
+      ],
+      [
+        "h3",
+        "Pomozte nám otevřít MinoBuddy"
+      ],
+      [
+        "p",
+        "Celý projekt začal tím, že jedna malá holka chtěla zkusit to, co dělala její maminka. Byla bych ráda, kdyby podobnou možnost dostaly i další děti. Aby mohly přijít, něco je napadlo a ony to prostě zkusily."
+      ],
+      [
+        "p",
+        "Nikdy nevíme, co všechno může vzniknout z obyčejného: „Mami, já chci taky!“ Máte zkušenosti, technologie nebo možnosti, které by pomohly s bezpečným spuštěním MinoBuddy? Budu ráda, když se ozvete."
+      ]
+    ],
+    "contact_heading": "Pomozte nám otevřít <em class=\"text-neon-gradient\">MinoBuddy</em>"
+  }
+}

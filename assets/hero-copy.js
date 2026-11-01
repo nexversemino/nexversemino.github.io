@@ -2,8 +2,8 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 function updateHero(){
  const hero=document.querySelector('.nex-dragon-video-section');if(!hero)return;
  const heading=hero.querySelector('h1');if(!heading||heading.dataset.morfiaiCopy)return;
- heading.dataset.morfiaiCopy='true';heading.className='morfiai-hero-title';heading.setAttribute('aria-label','Tvoř světy. Dej jim život.');heading.replaceChildren();
- for(const [index,text] of ['Tvoř světy.','Dej jim život.'].entries()){
+ heading.dataset.morfiaiCopy='true';heading.className='morfiai-hero-title';heading.setAttribute('aria-label',[hero.dataset.titleLine1||'Tvoř světy.',hero.dataset.titleLine2||'Dej jim život.'].join(' '));heading.replaceChildren();
+ for(const [index,text] of [hero.dataset.titleLine1||'Tvoř světy.',hero.dataset.titleLine2||'Dej jim život.'].entries()){
   const line=document.createElement('span');line.className='morfiai-title-line'+(index?' morfiai-title-accent':'');line.setAttribute('aria-hidden','true');
   for(const letter of text){const span=document.createElement('span');span.className='morfiai-title-char';span.textContent=letter===' '?'\u00a0':letter;line.append(span)}heading.append(line);
  }
@@ -36,6 +36,6 @@ function updateHero(){
  }
  heading.addEventListener('pointermove',event=>{if(reduced.matches)return;for(const char of chars){const box=char.getBoundingClientRect(),distance=Math.hypot(event.clientX-box.left-box.width/2,event.clientY-box.top-box.height/2),strength=Math.max(0,1-distance/125);char.style.transform=`translateY(${-10*strength}px) rotate(${(event.clientX-box.left-box.width/2)*strength*.1}deg)`;char.style.filter=`brightness(${1+strength*.6})`;}});
  heading.addEventListener('pointerleave',()=>{for(const char of chars){char.style.transform='';char.style.filter=''}});
- const description=heading.nextElementSibling;if(description?.tagName==='P'){description.textContent='Postavy, pohyb, hudba i dialogy. Proměň svoje nápady v herní světy pomocí AI.';description.classList.add('morfiai-hero-description')}
+ const description=heading.nextElementSibling;if(description?.tagName==='P'){description.textContent=description.dataset.description||description.textContent;description.classList.add('morfiai-hero-description')}
 }
 new MutationObserver(updateHero).observe(document.body,{childList:true,subtree:true});updateHero();

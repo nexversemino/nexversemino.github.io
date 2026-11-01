@@ -1,0 +1,65 @@
+{
+  ".morfiai-hero-description": {
+    "background": "rgba(0, 0, 0, 0)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "rgb(192, 187, 200)",
+    "font": "Karla, sans-serif",
+    "line": "31.5px",
+    "padding": "0px",
+    "size": "18px"
+  },
+  "body": {
+    "background": "oklch(0.08 0 0)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "oklch(0.96 0 0)",
+    "font": "Karla, sans-serif",
+    "line": "24px",
+    "padding": "0px",
+    "size": "16px"
+  },
+  "h1": {
+    "background": "rgba(0, 0, 0, 0)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "oklch(0.96 0 0)",
+    "font": "\"Cormorant Garamond\", Georgia, serif",
+    "line": "82.4256px",
+    "padding": "0px",
+    "size": "76.32px"
+  },
+  "header": {
+    "background": "oklab(0.08 0 0 / 0.7)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "oklch(0.96 0 0)",
+    "font": "Karla, sans-serif",
+    "line": "24px",
+    "padding": "0px",
+    "size": "16px"
+  },
+  "section#funkce [data-bounce]": {
+    "background": "oklch(0.08 0 0)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "oklch(0.96 0 0)",
+    "font": "Karla, sans-serif",
+    "line": "24px",
+    "padding": "32px",
+    "size": "16px"
+  },
+  "section#funkce h2": {
+    "background": "rgba(0, 0, 0, 0)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "oklch(0.96 0 0)",
+    "font": "\"Cormorant Garamond\", serif",
+    "line": "72px",
+    "padding": "0px",
+    "size": "60px"
+  },
+  "section#funkce h3": {
+    "background": "rgba(0, 0, 0, 0)",
+    "border": "oklch(1 0 0 / 0.1)",
+    "color": "oklch(0.88 0.16 195)",
+    "font": "\"Cormorant Garamond\", serif",
+    "line": "45px",
+    "padding": "0px",
+    "size": "36px"
+  }
+}

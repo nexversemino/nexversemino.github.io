@@ -19,7 +19,7 @@ function buildDragonViewer(){
    src="assets/dragon-preview.glb"
    alt="3D model neonového draka"
    camera-controls
-   auto-rotate
+   ${matchMedia('(prefers-reduced-motion: reduce)').matches?'':'auto-rotate'}
    auto-rotate-delay="2500"
    auto-rotate-speed="0.6"
    interaction-prompt="none"
@@ -30,9 +30,9 @@ function buildDragonViewer(){
   <span class="nex-glb-hint">⟲ otočíš tažením ${matchMedia('(pointer:coarse)').matches?'prstu':'myši'}</span>`;
  funkce.insertBefore(wrap,grid);
  let loaded=false;
- for(const url of GLB_SOURCES){
-  import(url).then(()=>{loaded=true;wrap.classList.add('nex-glb-live')}).catch(()=>{});
- }
+ (async()=>{for(const url of GLB_SOURCES){
+  try{await import(url);loaded=true;wrap.classList.add('nex-glb-live');break}catch(error){}
+ }})();
  // Pojistka: model-viewer nespustí načítání, dokud element není viditelný
  // (a v neaktivním tabu se IntersectionObserver vůbec nespouští). Smyčka proto
  // resetuje src jen když je stránka viditelná a náhled ve viewportu; po návratu

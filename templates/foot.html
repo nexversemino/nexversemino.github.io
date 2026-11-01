@@ -1,0 +1,209 @@
+<footer class="relative z-10 border-t px-6 py-8 text-center font-mono text-xs text-muted-foreground">© 2026 Morfiai · morfiai.eu</footer></div><script>
+(function(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  if(window.__hopikMascot)return;window.__hopikMascot=1;
+  var HX=20,HY=14,BH=16;
+  var el=null,inner=null,head=null,ball=null,ballHidden=false;
+  var state='track',pos={x:0,y:0},facing=1;
+  var headRect=null,lastHead=0;
+  var trackStart=0,prevAng=null,accum=0;
+  var walkFrom=null,walkTo=null,walkT0=0,walkDur=0;
+  var pointStart=0,pointUntil=0;
+  var wanderFrom=null,wanderNext=null,wanderT0=0,wanderDur=0,planAt=0;
+  var btn=null,btnRect=null,lastBtn=0;
+
+  function qs(s,r){return (r||document).querySelector(s);}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function rand(a,b){return Math.random()*(b-a)+a;}
+  function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
+
+  function build(){
+    if(el)return;
+    el=document.createElement('div');el.id='hopik-mascot';el.setAttribute('aria-hidden','true');
+    inner=document.createElement('div');inner.className='hopik-inner';
+    head=document.createElement('div');head.className='hopik-head';
+    var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('class','hopik-svg');svg.setAttribute('viewBox','0 0 40 66');
+    svg.innerHTML=
+      '<g class="figure"><g class="body-stick">'
+      +'<line class="limb" x1="20" y1="22" x2="20" y2="44.4"/>'
+      +'<g class="arm arm-l"><line class="limb" x1="20" y1="28.4" x2="5.6" y2="38"/></g>'
+      +'<g class="arm arm-r"><line class="limb" x1="20" y1="28.4" x2="37.6" y2="28.4"/></g>'
+      +'<g class="leg leg-l"><line class="limb" x1="20" y1="44.4" x2="8.8" y2="62"/></g>'
+      +'<g class="leg leg-r"><line class="limb" x1="20" y1="44.4" x2="31.2" y2="62"/></g>'
+      +'</g></g>';
+    inner.appendChild(head);inner.appendChild(svg);el.appendChild(inner);
+    document.body.appendChild(el);
+  }
+
+  function findBall(){
+    if(ball&&ball.isConnected)return ball;
+    ball=qs('div[class*="z-40"][class*="rounded-full"][class*="h-4"]');
+    return ball;
+  }
+  function ballTopLeft(b){
+    var m=(b.style.transform||'').match(/-?[\d.]+/g);
+    if(m&&m.length>=2)return{x:+m[0],y:+m[1]};
+    var r=b.getBoundingClientRect();return{x:r.left,y:r.top};
+  }
+  function setBall(hide){
+    var b=findBall();if(!b)return;
+    if(ballHidden!==hide){ballHidden=hide;b.style.opacity=hide?'0':'';}
+  }
+  function setPos(x,y,f){
+    pos.x=x;pos.y=y;
+    if(f!==undefined&&f!==facing)facing=f;
+    el.style.transform='translate('+(x-HX).toFixed(1)+'px,'+(y-HY).toFixed(1)+'px) scaleX('+facing+')';
+  }
+  function faceTo(x){if(Math.abs(x-pos.x)>2)facing=(x>pos.x?1:-1);setPos(pos.x,pos.y);}
+  function headingRect(now){
+    if(!headRect||now-lastHead>120){
+      lastHead=now;
+      var h=qs('#kontakt h2 [data-orb]')||qs('#kontakt h2 span');
+      headRect=h?h.getBoundingClientRect():null;
+    }
+    return headRect;
+  }
+  function buttonRect(now){
+    if(!btn||!btn.isConnected)btn=qs('#kontakt a[href*="mailto"]')||qs('#kontakt a');
+    if(!btn)return null;
+    if(!btnRect||now-lastBtn>150){lastBtn=now;btnRect=btn.getBoundingClientRect();}
+    return btnRect;
+  }
+  function standPoint(br){
+    var x=br.left-34,y=br.bottom-48;
+    if(x<52){x=br.left+br.width/2;y=br.top-70;}
+    return{x:clamp(x,46,innerWidth-46),y:clamp(y,92,innerHeight-70)};
+  }
+
+  function startGrow(now,x,y){
+    if(state!=='track')return;
+    state='grow';
+    setPos(x,y);
+    el.classList.add('is-visible','is-growing');
+    setBall(true);
+    setTimeout(function(){
+      if(state!=='grow')return;
+      el.classList.remove('is-growing');el.classList.add('is-grown');
+      startWalk(performance.now());
+    },880);
+  }
+  function startWalk(now){
+    var br=buttonRect(now);
+    if(!br||!(br.top<innerHeight&&br.bottom>0)){state='wait';return;}
+    walkFrom={x:pos.x,y:pos.y};
+    walkTo=standPoint(br);
+    walkT0=now;
+    walkDur=clamp(dist(walkFrom,walkTo)/36,1800,9000);
+    faceTo(walkTo.x);
+    state='walk';
+  }
+  function startPoint(now){
+    state='point';pointStart=now;pointUntil=now+2600;
+    var br=buttonRect(now);if(br)faceTo(br.left+br.width/2);
+  }
+  function startWander(now){
+    state='wander';wanderNext=null;planAt=now+rand(500,1100);
+  }
+  function planWander(now,br){
+    var cx=br.left+br.width/2,cy=br.top+br.height/2,ang=rand(0,Math.PI*2);
+    wanderNext={
+      x:clamp(cx+Math.cos(ang)*rand(70,112),46,innerWidth-46),
+      y:clamp(cy+Math.sin(ang)*rand(34,66),92,innerHeight-64)
+    };
+    wanderFrom={x:pos.x,y:pos.y};
+    wanderT0=now+rand(450,1000);
+    wanderDur=clamp(dist(wanderFrom,wanderNext)/40,700,1600);
+    planAt=wanderT0;
+    faceTo(wanderNext.x);
+  }
+
+  function trackTick(now,b,hr){
+    el.classList.remove('is-visible');
+    setBall(false);
+    if(!hr||hr.top>innerHeight*.85||hr.bottom<innerHeight*.15){trackStart=0;prevAng=null;accum=0;return;}
+    var cx=hr.left+hr.width/2,cy=hr.top+hr.height/2;
+    if(!b){
+      if(!trackStart)trackStart=now;
+      if(now-trackStart>4000)startGrow(now,cx,cy);
+      return;
+    }
+    var p=ballTopLeft(b),ax=p.x+BH/2,ay=p.y+BH/2;
+    setPos(ax,ay);
+    if(!trackStart){trackStart=now;prevAng=null;accum=0;}
+    var R=(hr.width/2+30+hr.height/2+30)/2;
+    if(Math.hypot(ax-cx,ay-cy)>R*2.7){trackStart=now;prevAng=null;accum=0;return;}
+    var ang=Math.atan2(ay-cy,ax-cx);
+    if(prevAng===null){prevAng=ang;return;}
+    var delta=ang-prevAng;
+    while(delta>Math.PI)delta-=Math.PI*2;
+    while(delta<-Math.PI)delta+=Math.PI*2;
+    prevAng=ang;
+    if(Math.abs(delta)<1.5)accum+=delta;
+    var passed=now-trackStart;
+    if((Math.abs(accum)>=Math.PI&&passed>1500)||passed>7000)startGrow(now,ax,ay);
+  }
+
+  function applyCls(now){
+    el.classList.toggle('is-walking',state==='walk'||(state==='wander'&&!!wanderNext&&now>=wanderT0));
+    el.classList.toggle('is-pointing',state==='point');
+    el.classList.toggle('is-urgent',state==='point'&&(now-pointStart)<1700);
+    el.classList.toggle('is-idle',state==='wait');
+  }
+
+  function tick(now){
+    if(!el)build();
+    var b=findBall();
+    if(b&&b.style.background){
+      head.style.background=b.style.background;
+      if(b.style.boxShadow)head.style.boxShadow=b.style.boxShadow;
+      inner.style.setProperty('--c',b.style.background);
+    }
+    var hr=headingRect(now);
+    if(state==='track'){
+      trackTick(now,b,hr);
+    }else{
+      var br=buttonRect(now);
+      var on=!!br&&br.top<innerHeight+30&&br.bottom>-30&&br.left<innerWidth+30&&br.right>-30;
+      el.classList.toggle('is-visible',on);
+      setBall(on);
+      if(on){
+        if(state==='wait'){startWalk(now);}
+        else if(state==='walk'){
+          var p=clamp((now-walkT0)/walkDur,0,1),e=ease(p);
+          setPos(lerp(walkFrom.x,walkTo.x,e),lerp(walkFrom.y,walkTo.y,e));
+          faceTo(walkTo.x);
+          if(p>=1)startPoint(now);
+        }
+        else if(state==='point'){
+          faceTo(br.left+br.width/2);
+          if(dist(pos,standPoint(br))>95)startWalk(now);
+          else if(now>=pointUntil)startWander(now);
+        }
+        else if(state==='wander'){
+          if(!wanderNext){
+            if(now>=planAt)planWander(now,br);
+          }else if(now>=wanderT0){
+            var wp=clamp((now-wanderT0)/wanderDur,0,1),we=ease(wp);
+            setPos(lerp(wanderFrom.x,wanderNext.x,we),lerp(wanderFrom.y,wanderNext.y,we));
+            faceTo(wanderNext.x);
+            if(wp>=1){
+              setPos(wanderNext.x,wanderNext.y);
+              wanderNext=null;
+              if(Math.random()<.45){startPoint(now);pointUntil=now+rand(900,1500);}
+              else planWander(now,br);
+            }
+          }
+        }
+      }
+    }
+    applyCls(now);
+    requestAnimationFrame(tick);
+  }
+
+  build();
+  requestAnimationFrame(tick);
+})();
+</script></body></html>

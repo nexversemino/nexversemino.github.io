@@ -1,0 +1,13 @@
+{
+  "name": "morfiai-published-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:client": "esbuild src/client.tsx --bundle --minify --jsx=automatic --format=esm --outfile=assets/site-client.js --define:process.env.NODE_ENV=\"\\\"production\\\"\"",
+    "build": "npm run build:client && python -X utf8 scripts/build.py",
+    "preview": "python -X utf8 scripts/preview.py",
+    "test": "python -X utf8 -m unittest discover -s tests -v"
+  },
+  "dependencies": {"react": "19.2.0", "react-dom": "19.2.0"},
+  "devDependencies": {"esbuild": "0.25.12"}
+}

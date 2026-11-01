@@ -1,0 +1,22 @@
+/* Only navigation, accessibility, and progressive enhancement; original design CSS stays intact. */
+.site-menu{position:relative}
+.site-menu summary{list-style:none;cursor:pointer}
+.site-menu summary::-webkit-details-marker{display:none}
+.site-menu-links{position:absolute;right:0;top:calc(100% + 12px);width:min(310px,calc(100vw - 36px));max-height:calc(100svh - 100px);overflow-y:auto;padding:8px;border:1px solid var(--border);background:var(--background);box-shadow:0 10px 30px #0008;letter-spacing:.04em}
+.site-menu-links a{display:block;padding:13px 14px;color:var(--muted-foreground);text-decoration:none}
+.site-menu-links a:hover,.site-menu-links a[aria-current=page]{color:var(--neon-cyan);background:var(--card)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--neon-cyan);outline-offset:4px}
+#site-interactions{display:contents;pointer-events:none}
+.morfiai-game-cursor #morfiai-cursor-ball{visibility:hidden!important}
+.site-card-link{display:block;height:100%;color:inherit;text-decoration:none}
+.site-card-link:hover h3{text-decoration:underline;text-underline-offset:.15em}
+.site-article p{margin-top:1.5rem;line-height:1.8}
+.site-article h3{margin-top:3rem}
+@media(max-width:640px){header .site-menu summary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.6rem 1rem;font-size:12px;letter-spacing:.1em}}
+@media(max-width:400px){header .site-menu summary{font-size:11px;padding:.35rem .6rem;letter-spacing:.08em}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  #site-interactions,#hopik-mascot,#morfiai-arkanoid,.morfiai-living-word,.morfiai-battle-ui{display:none!important}
+  .translate-y-8{transform:none!important}.opacity-0{opacity:1!important}
+  .morfiai-game-cursor,.morfiai-game-cursor *{cursor:auto!important}
+}

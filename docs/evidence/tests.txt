@@ -1,0 +1,13 @@
+test_all_directories_are_real_pages (test_site.SiteTests.test_all_directories_are_real_pages) ... ok
+test_all_local_links_and_assets_resolve (test_site.SiteTests.test_all_local_links_and_assets_resolve) ... ok
+test_no_fake_product_actions_or_accounts (test_site.SiteTests.test_no_fake_product_actions_or_accounts) ... ok
+test_one_shared_design_and_navigation (test_site.SiteTests.test_one_shared_design_and_navigation) ... ok
+test_original_design_and_binary_assets_unchanged (test_site.SiteTests.test_original_design_and_binary_assets_unchanged) ... ok
+test_real_arkanoid_handoff_module (test_site.SiteTests.test_real_arkanoid_handoff_module) ... ok
+test_reproducible_build (test_site.SiteTests.test_reproducible_build) ... ok
+test_story_does_not_expose_the_platform (test_site.SiteTests.test_story_does_not_expose_the_platform) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.306s
+
+OK

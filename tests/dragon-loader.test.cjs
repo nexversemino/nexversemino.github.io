@@ -1,15 +1,15 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const source=fs.readFileSync('assets/dragon-viewer.js','utf8').replace(/^import .*?;\s*/,'').replace(/import\(/g,'__import(');
+const source=fs.readFileSync('assets/dragon-viewer.js','utf8').replace(/^import .*?;\s*/gm,'').replace(/import\(/g,'__import(');
 class E{
  constructor(){this.events={};this.dataset={};this.attrs={};this.children=[];this.classList={add(){},remove(){}};this.availableAnimations=['idle','walk'];this.paused=true}
  setAttribute(k,v){this.attrs[k]=v} addEventListener(k,f){this.events[k]=f} replaceChildren(...c){this.children=c}appendChild(c){this.children.push(c)}play(){this.paused=false;this.events.play?.()}pause(){this.paused=true;this.events.pause?.()}
 }
 async function fixture(fail=false){
  const wrap=new E(),picker=new E(),select=new E(),controls=new E(),buttons=[new E(),new E(),new E()],counter=new E(),slot=new E(),status=new E(),retry=new E(),models=[];
- controls.querySelectorAll=()=>buttons;const map={'[aria-label="Postava v náhledu"]':picker,'[aria-label="Animace postavy"]':select,'.nex-animation-controls':controls,'.nex-animation-count':counter,'.nex-model-slot':slot,'[role="status"]':status,'.nex-glb-loading button':retry};wrap.querySelector=k=>map[k];let inserted=false;
+ controls.querySelectorAll=()=>buttons;const map={'[aria-label="Postava v náhledu"]':picker,'[aria-label="Animace postavy"]':select,'.nex-animation-controls':controls,'.nex-animation-count':counter,'.nex-model-slot':slot,'[role="status"]':status,'.nex-glb-loading button':retry,'[aria-label="Mrkání"]':new E(),'[aria-label="Mluva"]':new E(),'[data-blink-label]':new E()};wrap.querySelector=k=>map[k];let inserted=false;
  const characters=[{id:'laya',label:'Laya',src:'/assets/laya-complete-670.glb'},{id:'rose',label:'Rose',src:'/assets/showcase-rose.glb'}];
  const document={body:{},readyState:'complete',getElementById:id=>id==='funkce'?{insertBefore(){inserted=true}}:inserted?wrap:null,querySelector:()=>({}),createElement(tag){if(tag==='div')return wrap;const e=new E();if(tag==='model-viewer')models.push(e);return e}};
- vm.runInNewContext(source,{characters,labels:{idle:'Klidový postoj',walk:'Chůze'},document,MutationObserver:class{observe(){}},matchMedia:()=>({matches:false}),__import:()=>fail?Promise.reject(Error('offline')):Promise.resolve({})});await new Promise(setImmediate);
+ vm.runInNewContext(source,{bindFace:()=>()=>{},characters,labels:{idle:'Klidový postoj',walk:'Chůze'},document,MutationObserver:class{observe(){}},matchMedia:()=>({matches:false}),__import:()=>fail?Promise.reject(Error('offline')):Promise.resolve({getFacialScene:()=>({})})});await new Promise(setImmediate);
  return {wrap,picker,select,buttons,slot,status,retry,models};
 }
 (async()=>{

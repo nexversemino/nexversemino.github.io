@@ -1,0 +1,5 @@
+Mrkání a naznačená mluva jsou nezávislé checkboxy. Původní animace těla se nepřepíná ani nenahrazuje. Robot B používá šest původních EyeNNBlink morfů a JawOpen. Laya a Ametyst používají své existující mimické tvary. Pro holografického Mína a Rose vznikly samostatné odvozené webové GLB s cílenými obličejovými morfy. Originály zůstávají zachované.
+
+Ověření: pět modelů načteno s dostupnými oběma ovladači; Laya při skoku, Míno/Rose/Ametyst při chůzi, Robot B při chůzi. Robot má přesně šest očních ovladačů. Test ověřuje jejich hodnoty, vrácení při vypnutí a odstranění vrstvy. Devět testů webu prošlo. Kontrola při mobilním rozměru 390x844 bez vodorovného přetečení. Nejde o fyzický telefon ani synchronizaci úst s hlasem.
+
+Registrace, kvóta osmi animací a soukromá evidence stažení nejsou aktivované: GitHub Pages nemá server účtů ani databázi. Čeká se na odpověď uživatelky ohledně hostingu/backendu a významu limitu. Nezveřejňovat slib funkční registrace před zprovozněním skutečného toku. Záznamy uživatelů nesmí být ukládány do veřejného repozitáře. Současné plné GLB náhledy jsou veřejné; účetní limit exportů sám o sobě neomezuje stažení veřejných náhledových souborů.

@@ -21,7 +21,7 @@
   let paddle = { x: 0, y: 0, w: 90, h: 9, targetW: 90 };
   let ball = { x: 0, y: 0, r: 8, vx: 200, vy: -260 };
   let bricks = [], powerups = [], particles = [];
-  let score = 0, lives = 3, running = true, paused = false, last = 0, targetX = 0;
+  let score = 0, lives = 3, running = true, paused = false, last = 0, targetX = 0, targetY = 0;
 
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const hero = () => document.querySelector('.nex-dragon-video-section');
@@ -172,7 +172,7 @@
 
     paddle.y = H - 50; paddle.w = 90; paddle.targetW = 90; paddle.x = W / 2 - paddle.w / 2;
     ball.x = W / 2; ball.y = H * 0.55; ball.vx = 200 * (Math.random() > 0.5 ? 1 : -1); ball.vy = -260;
-    targetX = W / 2;
+    targetX = W / 2; targetY = H - 50;
     buildBricks();
     last = performance.now();
   }
@@ -190,15 +190,16 @@
     wrap.style.height = Math.round(r.height) + 'px';
   }
 
-  function setTarget(cx) {
+  function setTarget(cx, cy) {
     if (!W) return;
     const h = hero();
-    const r = h ? h.getBoundingClientRect() : { left: 0 };
+    const r = h ? h.getBoundingClientRect() : { left: 0, top: 0 };
     targetX = clamp(cx - r.left, paddle.w / 2, W - paddle.w / 2);
+    targetY = clamp(cy - r.top - paddle.h / 2, 4, H - paddle.h - 4);
   }
-  window.addEventListener('mousemove', e => setTarget(e.clientX), { passive: true });
-  window.addEventListener('touchstart', e => { if (e.touches[0]) setTarget(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchmove', e => { if (e.touches[0]) setTarget(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('mousemove', e => setTarget(e.clientX, e.clientY), { passive: true });
+  window.addEventListener('touchstart', e => { if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  window.addEventListener('touchmove', e => { if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
 
   function spawnPowerup(x, y) {
     powerups.push({ x, y, w: 24, h: 14, vy: 120, type: POWERUPS[(Math.random() * POWERUPS.length) | 0], alive: true });
@@ -221,8 +222,10 @@
     if (!running || !ctx || paused) return;
 
     paddle.x += (targetX - paddle.w / 2 - paddle.x) * Math.min(1, dt * 14);
+    paddle.y += (targetY - paddle.y) * Math.min(1, dt * 14);
     paddle.w += (paddle.targetW - paddle.w) * Math.min(1, dt * 6);
     paddle.x = clamp(paddle.x, 4, W - paddle.w - 4);
+    paddle.y = clamp(paddle.y, 4, H - paddle.h - 4);
 
     for (const b of bricks) {
       if (!b.alive) continue;

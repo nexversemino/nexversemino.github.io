@@ -1,5 +1,4 @@
-// Existing dragon viewer, with a same-origin runtime and one uninterrupted GLB load.
-const MODEL='/assets/laya-complete-670.glb';
+import {characters,labels} from './character-data.js?v=1';
 let viewerRuntime;
 function runtime(){
  if(!viewerRuntime)viewerRuntime=import('/assets/vendor/model-viewer-3.5.0.min.js').catch(error=>{viewerRuntime=null;throw error});
@@ -8,35 +7,38 @@ function runtime(){
 function buildDragonViewer(){
  const section=document.getElementById('funkce'),grid=document.querySelector('#funkce div[data-orb="cards"]');
  if(!section||!grid||document.getElementById('nex-glb-viewer'))return;
- const wrap=document.createElement('div');wrap.id='nex-glb-viewer';wrap.setAttribute('aria-label','Laya – interaktivní ukázka animací');wrap.dataset.loadState='loading';
- wrap.innerHTML=`<model-viewer class="nex-glb-model" src="${MODEL}" loading="eager" reveal="auto"
-  ${matchMedia('(prefers-reduced-motion: reduce)').matches?'':'autoplay'} alt="Růžový robot Laya – ukázka animací" camera-controls ${matchMedia('(prefers-reduced-motion: reduce)').matches?'':'auto-rotate'}
- auto-rotate-delay="2500" auto-rotate-speed="0.6" interaction-prompt="none" shadow-intensity="0.5" exposure="1.15" touch-action="pan-y"></model-viewer>
- 
- <span class="nex-glb-hint">← → animace · ⟲ otočíš tažením ${matchMedia('(pointer:coarse)').matches?'prstu':'myši'}</span>
- <div class="nex-glb-loading font-mono text-xs text-neon-cyan"><span role="status" aria-live="polite">Načítám Layu…</span> <button type="button" hidden>Zkusit znovu</button></div>`;
+ const wrap=document.createElement('div');wrap.id='nex-glb-viewer';wrap.tabIndex=0;wrap.setAttribute('aria-label','Ukázka postav a animací');
+ wrap.innerHTML='<div class="nex-character-picker"><label>Postava <select aria-label="Postava v náhledu"></select></label></div><div class="nex-model-slot"></div><span class="nex-glb-hint">← → animace · model otočíš tažením</span><div class="nex-glb-loading font-mono text-xs text-neon-cyan"><span role="status" aria-live="polite">Načítám postavu…</span> <button type="button" hidden>Zkusit znovu</button></div><div class="nex-animation-controls"><button type="button" aria-label="Předchozí animace">←</button><label>Animace <select aria-label="Animace postavy"></select></label><button type="button" aria-label="Další animace">→</button><button type="button" aria-label="Pozastavit animaci">Ⅱ</button><span class="nex-animation-count" aria-live="polite"></span></div>';
  section.insertBefore(wrap,grid);
- const controls=document.createElement('div');controls.className='nex-animation-controls';
- controls.innerHTML='<button type="button" aria-label="Předchozí animace">←</button><label>Animace <select aria-label="Animace Laya"></select></label><button type="button" aria-label="Další animace">→</button><button type="button" aria-label="Pozastavit animaci">Ⅱ</button><span class="nex-animation-count" aria-live="polite"></span>';
- wrap.appendChild(controls);
- const select=controls.querySelector('select'),buttons=controls.querySelectorAll('button'),counter=controls.querySelector('.nex-animation-count');let clips=[],index=0;
- function choose(next){if(!clips.length)return;index=(next+clips.length)%clips.length;model.animationName=clips[index];select.value=String(index);counter.textContent=`${index+1} / ${clips.length}`;model.play();buttons[2].textContent='Ⅱ';buttons[2].setAttribute('aria-label','Pozastavit animaci');wrap.dataset.animationName=clips[index]}
+ const picker=wrap.querySelector('[aria-label="Postava v náhledu"]'),select=wrap.querySelector('[aria-label="Animace postavy"]'),controls=wrap.querySelector('.nex-animation-controls'),buttons=controls.querySelectorAll('button'),counter=wrap.querySelector('.nex-animation-count'),slot=wrap.querySelector('.nex-model-slot'),status=wrap.querySelector('[role="status"]'),retry=wrap.querySelector('.nex-glb-loading button');
+ let model,character=characters[0],clips=[],index=0,generation=0;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function option(value,text){const o=document.createElement('option');o.value=value;o.textContent=text;return o}
+ picker.replaceChildren(...characters.map(c=>option(c.id,c.label)));
+ function pauseLabel(paused){buttons[2].textContent=paused?'▶':'Ⅱ';buttons[2].setAttribute('aria-label',paused?'Přehrát animaci':'Pozastavit animaci')}
+ function enabled(value){select.disabled=!value;buttons.forEach(b=>b.disabled=!value)}
+ function choose(next,play=true){if(!clips.length)return;index=(next+clips.length)%clips.length;model.animationName=clips[index];select.value=String(index);counter.textContent=`${index+1} / ${clips.length}`;wrap.dataset.animationName=clips[index];if(play)model.play();else model.pause();pauseLabel(!play)}
+ async function loadCharacter(c){
+  character=c;const current=++generation;clips=[];enabled(false);counter.textContent='';select.replaceChildren();wrap.dataset.loadState='loading';wrap.dataset.character=c.id;wrap.dataset.animationState='loading';delete wrap.dataset.animationName;wrap.classList.remove('nex-glb-loaded');status.textContent=`Načítám: ${c.label}…`;retry.hidden=true;
+  if(model)model.pause();slot.replaceChildren();
+  try{
+   await runtime();if(current!==generation)return;
+   model=document.createElement('model-viewer');const active=model;
+   model.className='nex-glb-model';model.setAttribute('alt',c.label+' – ukázka animací');model.setAttribute('camera-controls','');model.setAttribute('camera-orbit',(c.id==='holographic'||c.id==='amethyst'||c.id==='rose')?'180deg 75deg auto':'0deg 75deg auto');model.setAttribute('loading','eager');model.setAttribute('reveal','auto');model.setAttribute('interaction-prompt','none');model.setAttribute('touch-action','pan-y');model.setAttribute('shadow-intensity','0.5');model.setAttribute('exposure','1.15');
+   model.addEventListener('load',()=>{if(current!==generation)return;clips=active.availableAnimations;select.replaceChildren(...clips.map((name,i)=>option(String(i),labels[name]||'Animace '+(i+1))));enabled(clips.length>0);wrap.dataset.loadState='loaded';wrap.classList.add('nex-glb-loaded');status.textContent=c.label+' je načtený.';retry.hidden=true;choose(Math.max(0,clips.findIndex(n=>/^(idle|idle_loop|Original_idle_loop)$/i.test(n))),!reduced)});
+   model.addEventListener('error',()=>{if(current===generation)error()});
+   model.addEventListener('play',()=>{if(current===generation)wrap.dataset.animationState='playing'});model.addEventListener('pause',()=>{if(current===generation)wrap.dataset.animationState='paused'});
+   model.addEventListener('loop',()=>{if(current===generation)wrap.dataset.animationLoops=String(Number(wrap.dataset.animationLoops||0)+1)});
+   model.setAttribute('src',c.src);slot.appendChild(model);wrap.classList.add('nex-glb-live');
+  }catch(failure){if(current===generation)error()}
+ }
+ function error(){wrap.dataset.loadState='error';status.textContent='Postavu se nepodařilo načíst. Zkus ji načíst znovu.';retry.hidden=false;enabled(false)}
+ picker.addEventListener('change',()=>loadCharacter(characters.find(c=>c.id===picker.value)||characters[0]));
  buttons[0].addEventListener('click',()=>choose(index-1));buttons[1].addEventListener('click',()=>choose(index+1));select.addEventListener('change',()=>choose(Number(select.value)));
- buttons[2].addEventListener('click',()=>{if(model.paused){model.play();buttons[2].textContent='Ⅱ';buttons[2].setAttribute('aria-label','Pozastavit animaci')}else{model.pause();buttons[2].textContent='▶';buttons[2].setAttribute('aria-label','Přehrát animaci')}});
- wrap.tabIndex=0;
- wrap.addEventListener('keydown',event=>{if(event.target.closest('select,input,textarea'))return;if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();event.stopPropagation();choose(index+(event.key==='ArrowRight'?1:-1))}});
- const model=wrap.querySelector('model-viewer'),status=wrap.querySelector('[role="status"]'),retry=wrap.querySelector('button');let retries=0;
- function error(){if(wrap.dataset.loadState==='loaded')return;wrap.dataset.loadState='error';status.textContent='3D náhled se nepodařilo načíst. Zkus jej načíst znovu.';retry.hidden=false}
- model.addEventListener('load',()=>{wrap.dataset.loadState='loaded';wrap.classList.remove('nex-glb-fallback');wrap.classList.add('nex-glb-loaded');status.textContent='Laya je načtená.';retry.hidden=true;clips=model.availableAnimations;select.replaceChildren(...clips.map((name,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=name;return option}));if(clips.length){index=Math.max(0,clips.findIndex(name=>/^idle$/i.test(name)));model.animationName=clips[index];select.value=String(index);counter.textContent=`${index+1} / ${clips.length}`;wrap.dataset.animationName=clips[index];if(!matchMedia('(prefers-reduced-motion: reduce)').matches)model.play()}});
- model.addEventListener('play',()=>{wrap.dataset.animationState='playing'});
- model.addEventListener('pause',()=>{wrap.dataset.animationState='paused'});
- model.addEventListener('loop',()=>{wrap.dataset.animationLoops=String(Number(wrap.dataset.animationLoops||0)+1)});
- model.addEventListener('error',error);
- async function start(){try{await runtime();wrap.classList.add('nex-glb-live')}catch(failure){error()}}
- retry.addEventListener('click',()=>{wrap.dataset.loadState='loading';status.textContent='Načítám Layu…';retry.hidden=true;model.setAttribute('src',MODEL+'?retry='+(++retries));start()});
- // A slow connection is not a failed load. Never restart or abort a pending download.
- setTimeout(()=>{if(wrap.dataset.loadState==='loading')status.textContent='Laya se stále načítá…'},30000);
- start();
+ buttons[2].addEventListener('click',()=>{if(!model||!clips.length)return;if(model.paused){model.play();pauseLabel(false)}else{model.pause();pauseLabel(true)}});
+ wrap.addEventListener('keydown',event=>{if(event.target.closest('select,input,textarea'))return;if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();event.stopPropagation();choose(index+(event.key==='ArrowRight'?1:-1))}},true);
+ retry.addEventListener('click',()=>loadCharacter(character));
+ loadCharacter(character);
 }
 const observer=new MutationObserver(buildDragonViewer);
 function start(){observer.observe(document.body,{childList:true,subtree:true});buildDragonViewer()}

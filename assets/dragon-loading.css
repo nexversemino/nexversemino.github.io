@@ -1,0 +1,8 @@
+/* Loading/error treatment only; the successfully rendered original viewer is unchanged. */
+#nex-glb-viewer:not(.nex-glb-loaded){background:transparent!important}
+#nex-glb-viewer:not(.nex-glb-loaded) .nex-glb-static{display:block!important;width:100%;height:100%;object-fit:contain;opacity:1;filter:none;pointer-events:none}
+#nex-glb-viewer.nex-glb-loaded .nex-glb-static{display:none!important}
+#nex-glb-viewer:not(.nex-glb-loaded) .nex-glb-hint{visibility:hidden}
+.nex-glb-loading{position:absolute;bottom:12px;left:12px;right:12px;text-align:center;letter-spacing:.04em}
+.nex-glb-loading button{margin-left:8px;text-decoration:underline;cursor:pointer}
+.nex-glb-loading button[hidden],.nex-glb-loaded .nex-glb-loading{display:none}

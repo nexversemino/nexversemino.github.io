@@ -35,3 +35,7 @@ HTML soubory v kořeni a adresářích `engine`, `command-center`, `milo`, `laya
 Stránky jsou prezentace. Nepřidávají účty, platby, falešná stažení ani spouštění nehotových produktů. Příběh MinoBuddy na blogu slouží k hledání partnerů; neobsahuje odkaz na platformu, registraci ani dětské účty.
 
 Podrobnosti a omezení ověření: [docs/OVERENI.md](docs/OVERENI.md).
+
+## Načítání GLB draka
+
+`assets/dragon-viewer.js` načítá model jednou, bez časovaných změn URL. Runtime model-viewer 3.5.0 je uložený na stejné doméně v `assets/vendor/`; jde o oficiální distribuci npm `@google/model-viewer@3.5.0` s přiloženou licencí Apache 2.0. Původní GLB není změněný. Při pomalém spojení zůstane vidět označený statický náhled; nové načtení spouští jen výslovné tlačítko při chybě.

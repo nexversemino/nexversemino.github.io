@@ -1,5 +1,5 @@
 import {attachDownloads} from './animation-downloads.js?v=3';
-import {bindFace} from './facial-controls.js?v=3';
+import {bindFace} from './facial-controls.js?v=4';
 import {characters,labels} from './character-data.js?v=11';
 let viewerRuntime;
 function runtime(){

@@ -1,6 +1,6 @@
 import {attachDownloads} from './animation-downloads.js?v=2';
 import {bindFace} from './facial-controls.js?v=2';
-import {characters,labels} from './character-data.js?v=4';
+import {characters,labels} from './character-data.js?v=8';
 let viewerRuntime;
 function runtime(){
  if(!viewerRuntime)viewerRuntime=import('/assets/vendor/model-viewer-3.5.0.min.js?face=1').catch(error=>{viewerRuntime=null;throw error});

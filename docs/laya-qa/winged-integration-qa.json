@@ -1,0 +1,140 @@
+{
+  "reports": [
+    {
+      "id": "mino-01",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.327581270666635
+    },
+    {
+      "id": "mino-02",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.3283614005400315
+    },
+    {
+      "id": "mino-03",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.283869111936828
+    },
+    {
+      "id": "mino-04",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.222708080598419
+    },
+    {
+      "id": "mino-05",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.327581270666635
+    },
+    {
+      "id": "mino-06",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.250010844536271
+    },
+    {
+      "id": "mino-07",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.315131487339095
+    },
+    {
+      "id": "mino-08",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.250010844536271
+    },
+    {
+      "id": "mino-09",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.341683598978467
+    },
+    {
+      "id": "mino-10",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.2268200199222274
+    },
+    {
+      "id": "mino-11",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.342102923496341
+    },
+    {
+      "id": "mino-12",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.248416672142574
+    },
+    {
+      "id": "mino-13",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.235173436196573
+    },
+    {
+      "id": "mino-14",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1823,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.399152157367105
+    },
+    {
+      "id": "mino-15",
+      "clips": 137,
+      "originalBodyTracksPreserved": 1835,
+      "facialTargetsChecked": 152,
+      "twoHeadParentedEyes": true,
+      "animationSamples": 685,
+      "maxSpan": 4.327581270666635
+    }
+  ],
+  "limits": "All original tracks exact; all facial targets bounded; sampled animation transforms/bounds, not all-frame contact QA."
+}

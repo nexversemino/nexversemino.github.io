@@ -1,0 +1,1834 @@
+[
+  {
+    "id": "mino-01",
+    "sourceSha256": "6c8be9a3d42cad4b26509a28f924d8c8686a7bd8f392eaa7e138099d5a82c12f",
+    "sha256": "c332156681ea97d17d34fd70a8cc5d2a9f10792d3cb50b754e3f898b4b5e0865",
+    "bytes": 18466700,
+    "face": {
+      "eyeVariant": {
+        "number": 1,
+        "style": "bevel",
+        "halfWidth": 0.138,
+        "halfHeight": 0.05,
+        "mirroredSlope": 0.0,
+        "color": [
+          0.1,
+          0.9,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-02",
+    "sourceSha256": "f6d224d6df18e0fb3071888ae6a6df675871abd89b05e62b79f2a8cbbfe71d2a",
+    "sha256": "e1cd746232569b8bafa65ff1295adadbb2f00b09964c093f7010cd377313ee99",
+    "bytes": 18062620,
+    "face": {
+      "eyeVariant": {
+        "number": 2,
+        "style": "oval",
+        "halfWidth": 0.124,
+        "halfHeight": 0.067,
+        "mirroredSlope": 0.0,
+        "color": [
+          0.55,
+          0.82,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-03",
+    "sourceSha256": "01ce12ddf9884af4cc6d5ebddd1f4b3e71cc76c57588ff2b585255f26438b5c5",
+    "sha256": "02a861d9c7997f75a7b49f86e4aed6c6ec9e93647e7996e6393537fa6de134cd",
+    "bytes": 18611108,
+    "face": {
+      "eyeVariant": {
+        "number": 3,
+        "style": "bevel",
+        "halfWidth": 0.136,
+        "halfHeight": 0.047,
+        "mirroredSlope": 0.15,
+        "color": [
+          1,
+          0.65,
+          0.72
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [
+        {
+          "node": "FeatherWingBase",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "FeatherWingBase",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        }
+      ],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-04",
+    "sourceSha256": "9701653239677424913f8d6c6fefbfc0e722cb99e2d7aaaa2669f3ed0d4d98d1",
+    "sha256": "4369f4b9246e0ed94c4607c304d4316062726c145c41abc9c638598c4a1a157c",
+    "bytes": 18479440,
+    "face": {
+      "eyeVariant": {
+        "number": 4,
+        "style": "hex",
+        "halfWidth": 0.132,
+        "halfHeight": 0.059,
+        "mirroredSlope": -0.08,
+        "color": [
+          0.4,
+          1,
+          0.72
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-05",
+    "sourceSha256": "b7e525fb0243ce7776b444c96d00512202fa9f6d6ca711d1e8071197d8adda4e",
+    "sha256": "8c8b3605814d5ba69b0dcf072132ced4b932ce946c8b4d2a282078d6029da230",
+    "bytes": 18479244,
+    "face": {
+      "eyeVariant": {
+        "number": 5,
+        "style": "oval",
+        "halfWidth": 0.142,
+        "halfHeight": 0.047,
+        "mirroredSlope": 0.05,
+        "color": [
+          0.28,
+          0.62,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-06",
+    "sourceSha256": "e0de062e4f6589634b6ceb981ff60c92b2bb6dc3671fddc388588a72b713c427",
+    "sha256": "b02dbe7a27b8de079c4db9d237ec465f24493500880da7d9306ab62d742af464",
+    "bytes": 18049104,
+    "face": {
+      "eyeVariant": {
+        "number": 6,
+        "style": "hex",
+        "halfWidth": 0.126,
+        "halfHeight": 0.061,
+        "mirroredSlope": 0.0,
+        "color": [
+          1,
+          0.72,
+          0.22
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-07",
+    "sourceSha256": "54d91bee50dcb00a6153bc9df3764079eab7fdabf525fbe6ad66ba658dec18b9",
+    "sha256": "5eaee95111370ab079d65b8257d112ffbdd0bf9011d528c26ee86b7674cdb748",
+    "bytes": 18256844,
+    "face": {
+      "eyeVariant": {
+        "number": 7,
+        "style": "oval",
+        "halfWidth": 0.131,
+        "halfHeight": 0.058,
+        "mirroredSlope": -0.05,
+        "color": [
+          0.76,
+          0.5,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-08",
+    "sourceSha256": "ef9c3c5652c35d5dd6d8bd96881a262fca418f9e4362d03ac9d757d18dae8f30",
+    "sha256": "f9816408ee09e3adccca2c0c36d28d4f082242d0f6f5b52e62cf8900ddb0a4f8",
+    "bytes": 18050128,
+    "face": {
+      "eyeVariant": {
+        "number": 8,
+        "style": "bevel",
+        "halfWidth": 0.144,
+        "halfHeight": 0.045,
+        "mirroredSlope": 0.0,
+        "color": [
+          0.7,
+          0.9,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-09",
+    "sourceSha256": "306e166e0cec8f77f5ac422d2eb8188cd740ebd2b08cee1badc492cd7120518f",
+    "sha256": "8bae6885c18682d46b53316cfc44d82b7a8e43a74f823a5965a6f6231a35d0bb",
+    "bytes": 18193400,
+    "face": {
+      "eyeVariant": {
+        "number": 9,
+        "style": "hex",
+        "halfWidth": 0.137,
+        "halfHeight": 0.053,
+        "mirroredSlope": 0.06,
+        "color": [
+          1,
+          0.86,
+          0.36
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [
+        {
+          "node": "FeatherWingBase",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "L"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "L"
+        },
+        {
+          "node": "FeatherWingBase",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        },
+        {
+          "node": "LayeredFeather",
+          "side": "R"
+        },
+        {
+          "node": "FeatherShaft",
+          "side": "R"
+        }
+      ],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-10",
+    "sourceSha256": "9eefd37c46b42453d1deccc3c1c05afe490102b6a3a66c9847e03be1e5f22fde",
+    "sha256": "ebb0c2e8cda74bdf3c24b97f884aa84c372c93ea504ee5a19a1c4e83e5e6e8ca",
+    "bytes": 18480528,
+    "face": {
+      "eyeVariant": {
+        "number": 10,
+        "style": "bevel",
+        "halfWidth": 0.13,
+        "halfHeight": 0.05,
+        "mirroredSlope": 0.19,
+        "color": [
+          1,
+          0.22,
+          0.42
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-11",
+    "sourceSha256": "f92601f9d9cd7fda5d247b49ba2a4c3353cba86ef7b56259797dd2670b7f0726",
+    "sha256": "aa490d1962af39afb2cd6c9a1abf085e3472b14143155801cb7890972f81a77a",
+    "bytes": 18479280,
+    "face": {
+      "eyeVariant": {
+        "number": 11,
+        "style": "oval",
+        "halfWidth": 0.142,
+        "halfHeight": 0.049,
+        "mirroredSlope": -0.09,
+        "color": [
+          0.36,
+          0.8,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-12",
+    "sourceSha256": "e04cc725cccfd1e1c17e12391d3f265b55525abc89deb3935a5b51a5b7d4a3c4",
+    "sha256": "0c0438435c14db6f3f64297018620767e8ae2a0db2da1431ac658f2c2ede1868",
+    "bytes": 18130864,
+    "face": {
+      "eyeVariant": {
+        "number": 12,
+        "style": "bevel",
+        "halfWidth": 0.132,
+        "halfHeight": 0.055,
+        "mirroredSlope": -0.04,
+        "color": [
+          0.46,
+          1,
+          0.89
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-13",
+    "sourceSha256": "01306243450ebfefee96620a115162bd24299172775517f654f5902d7db15fb2",
+    "sha256": "061118233c07ad59d44ce30af348d81c168e505d29294a22532307a1eeeb9311",
+    "bytes": 18465700,
+    "face": {
+      "eyeVariant": {
+        "number": 13,
+        "style": "hex",
+        "halfWidth": 0.135,
+        "halfHeight": 0.052,
+        "mirroredSlope": 0.0,
+        "color": [
+          1,
+          0.75,
+          0.45
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-14",
+    "sourceSha256": "c20a7bde8593c4d8b5d6584374d844c8a63876c94fcfcde81a0d80e58441665d",
+    "sha256": "61c3eca63f54a8cd6f68f31c0161ccdee92977d5913c86de6fb430129c51d3a3",
+    "bytes": 18062664,
+    "face": {
+      "eyeVariant": {
+        "number": 14,
+        "style": "oval",
+        "halfWidth": 0.126,
+        "halfHeight": 0.064,
+        "mirroredSlope": 0.04,
+        "color": [
+          0.78,
+          0.86,
+          1
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  },
+  {
+    "id": "mino-15",
+    "sourceSha256": "2006aee3be72cd1e23ce5d7860866d3f52fadf1b3d9775d5f9eef0f6b2b4b2e5",
+    "sha256": "055c08978d29cab13de1f07b63dc1c7cc8cf8582085cdd3b23bb9c5abe55fa9c",
+    "bytes": 18466796,
+    "face": {
+      "eyeVariant": {
+        "number": 15,
+        "style": "bevel",
+        "halfWidth": 0.142,
+        "halfHeight": 0.046,
+        "mirroredSlope": -0.14,
+        "color": [
+          1,
+          0.45,
+          0.84
+        ]
+      },
+      "removedFacialMeshes": [
+        {
+          "node": 32,
+          "name": "head_panel_17",
+          "mesh": 16
+        },
+        {
+          "node": 33,
+          "name": "head_panel_18",
+          "mesh": 17
+        },
+        {
+          "node": 34,
+          "name": "head_panel_19",
+          "mesh": 18
+        },
+        {
+          "node": 45,
+          "name": "head_panel_30",
+          "mesh": 29
+        },
+        {
+          "node": 46,
+          "name": "head_panel_31",
+          "mesh": 30
+        },
+        {
+          "node": 47,
+          "name": "head_panel_32",
+          "mesh": 31
+        },
+        {
+          "node": 58,
+          "name": "head_panel_43",
+          "mesh": 42
+        }
+      ],
+      "newFacialNodes": [
+        "Mino_NEX_Eye_L",
+        "Mino_NEX_Brow_L",
+        "Mino_NEX_Eye_R",
+        "Mino_NEX_Brow_R",
+        "Mino_Face_Mouth_Rim",
+        "Mino_Face_Mouth",
+        "Mino_Face_Teeth",
+        "Mino_Face_Tongue"
+      ],
+      "twoEyes": true,
+      "visemes": [
+        "viseme_A",
+        "viseme_E",
+        "viseme_I",
+        "viseme_O",
+        "viseme_U",
+        "viseme_MBP",
+        "viseme_FV",
+        "viseme_L",
+        "viseme_TDN",
+        "viseme_SZ",
+        "viseme_SH",
+        "viseme_KG",
+        "viseme_R"
+      ],
+      "standaloneFacialClips": 19,
+      "maxLocalDelta": 0.083,
+      "bodyClipsPreserved": 113,
+      "newTotalClips": 132,
+      "headParent": 3,
+      "headRestY": 1.7199999999999998,
+      "limitations": "Articulated robot mouth visemes, not audio forced alignment; closed-eye shape is compressed emissive aperture."
+    },
+    "wings": {
+      "sourceClips": 132,
+      "outputClips": 137,
+      "secondaryWingTracksAdded": 512,
+      "flightClipsAdded": [
+        "takeoff",
+        "fly",
+        "land",
+        "dive",
+        "wing_dodge"
+      ],
+      "featherGeometryReprofiled": [],
+      "shimmerPreserved": true,
+      "skinsAndMaterialsUnchanged": true,
+      "bodyTracksPreserved": true
+    }
+  }
+]

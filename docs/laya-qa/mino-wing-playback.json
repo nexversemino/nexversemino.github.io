@@ -1,0 +1,125 @@
+{
+  "report": [
+    {
+      "id": "01",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7902200694509522,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "02",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7902200694509522,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "03",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7486945267873035,
+      "flyWingVertexMotion": 0.921502055571177,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "04",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.675982585119418,
+      "flyWingVertexMotion": 1.0328763004166885,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "05",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7902200694509522,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "06",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.6867149201741167,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "07",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7648659011616243,
+      "flyWingVertexMotion": 0.9173236823525572,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "08",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.6867149201741167,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "09",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.813262900813931,
+      "flyWingVertexMotion": 0.921502055571177,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "10",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.675982585119418,
+      "flyWingVertexMotion": 1.0328763004166885,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "11",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7902200703342808,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "12",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.6976648935128296,
+      "flyWingVertexMotion": 0.9777726618083232,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "13",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.6867149193226463,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "14",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.854092821582564,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    },
+    {
+      "id": "15",
+      "clips": 118,
+      "sampled": 708,
+      "maxBounds": 3.7902200694509522,
+      "flyWingVertexMotion": 1.0513941372614133,
+      "wingJointTracksPerClip": 4
+    }
+  ],
+  "limits": "Six finite-transform/bounds samples per clip; actual skinned wing vertex motion verified for flight. Not exhaustive contact or airworthiness simulation."
+}

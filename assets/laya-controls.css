@@ -34,3 +34,5 @@
 .nex-download-controls button{padding:8px;border:1px solid currentColor;background:#080c10;color:inherit;min-height:40px}.nex-download-controls button:disabled{opacity:.4}.nex-download-message,.nex-download-note{width:100%;text-align:center;font-size:11px}.nex-download-note{opacity:.7}.nex-selected-list{width:min(100%,700px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.nex-selected-list li{display:flex;min-width:0;gap:4px}.nex-selected-list li button:first-child{min-width:0;flex:1;overflow-wrap:anywhere;text-align:left}
 @media(max-width:640px){#nex-glb-viewer:has(.nex-download-controls) .nex-model-slot{height:340px}.nex-selected-list{grid-template-columns:1fr}.nex-download-controls{gap:8px}.nex-download-controls button{min-height:44px}}
 .nex-glb-live > .nex-download-controls{max-height:none!important}
+
+.nex-face-controls{flex-wrap:wrap;gap:8px 18px}.nex-face-controls select{background:#080c10;color:var(--neon-cyan);border:1px solid currentColor;padding:8px;min-height:40px;max-width:155px}

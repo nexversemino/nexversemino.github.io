@@ -1,0 +1,5 @@
+NEX Ametyst a NEX Vela přidány do stejného výběru postav. Každá má 662 klipů, přesné kopie ověřených GLB ze Studia. Bez automatického otáčení. Doplněny kompatibilní názvy morfů eyeBlinkLeft/Right a jawOpen a česká nabídka emocí Radost/Smutek/Hněv/Pláč. Nepodporované emoce se zakazují. Při přepnutí postavy se odstraní staré obličejové ovladače a zpráva o předchozím exportu.
+
+Ověřeno lokálně v prohlížeči a při rozměru 390x844: obě postavy, souběžné mrkání/mluva/emoce s tělesnou animací, samostatný výběr osmi animací přes U a skutečné stažení GLB z obou postav. Každý stažený soubor má osm klipů, 201 sítí a obličejové morfy. Vodorovné přetečení není přítomné. Testy exportu všech šesti postav zachovávají meshe, skiny a binární chunky. Testy mimiky ověřují šest původních očí Robota B i NEX morfy a vrácení neutrálního stavu. Devět testů webu prošlo.
+
+Mrkání, mluva a zvolená emoce jsou nadále efekty náhledu; do stažených klipů se automaticky nezapékají. Samostatné mimické klipy lze také vybrat mezi osmi exportovanými animacemi. Není to synchronizace s hlasem. Ověřen mobilní rozměr, nikoli fyzický telefon. Původní assety ve Studiu ani jejich oprávnění se neupravovaly.

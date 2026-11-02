@@ -1,0 +1,499 @@
+[
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-01"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-02"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [
+      {
+        "node": "FeatherWingBase",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "FeatherWingBase",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      }
+    ],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-03"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-04"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-05"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-06"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-07"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-08"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [
+      {
+        "node": "FeatherWingBase",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "L"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "L"
+      },
+      {
+        "node": "FeatherWingBase",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      },
+      {
+        "node": "LayeredFeather",
+        "side": "R"
+      },
+      {
+        "node": "FeatherShaft",
+        "side": "R"
+      }
+    ],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-09"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-10"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-11"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-12"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-13"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-14"
+  },
+  {
+    "sourceClips": 113,
+    "outputClips": 118,
+    "secondaryWingTracksAdded": 436,
+    "flightClipsAdded": [
+      "takeoff",
+      "fly",
+      "land",
+      "dive",
+      "wing_dodge"
+    ],
+    "featherGeometryReprofiled": [],
+    "shimmerPreserved": true,
+    "skinsAndMaterialsUnchanged": true,
+    "bodyTracksPreserved": true,
+    "id": "mino-15"
+  }
+]

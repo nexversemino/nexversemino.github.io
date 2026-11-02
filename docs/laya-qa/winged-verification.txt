@@ -1,0 +1,18 @@
+Okřídlení Mínové 01–15 – ověření 2026-11-02
+
+Původní soubory: ověřené neměněné kopie mimo web v H:/NexVerse-task-backups/winged-mino-20261102/originals. Originály na Drivu se neupravovaly.
+Každý výsledný GLB:137 klipů (113 zachovaných +19 obličejových +5 letových).
+Oči: všech15 mají dva nové širší NEX-styl optické prvky.15 variant obrysu, rozměrů, sklonu a barev.8 obličejových částí přímo pod kloubem head. Mrkání snižuje výšku na3,5%; lokální tvary bez úniku očí z hlavy.
+Řeč:13 vizémových rodin, mapování českých samohlásek/souhlásek včetně CH, Ř, Ť, Ď, Ň. Přechody mezi tvary a pauzy. Němá demonstrace artikulace, nikoli synchronizace s konkrétní audionahrávkou. Více souhlásek má stejný viditelný tvar (například M/B/P). Samostatné tvary zubního plátu a jazyka.
+Křídla: všem doplněny tracks čtyř skutečných kloubů do převedených animací.113 původních bodyclips/tracks přesně zachovaných.03/09 mají protažená pera a nosný náběžný díl. Lesklé/ploché vrstvení a materiály nebyly upravovány kvůli blikání; uživatelka jeho zachování výslovně požadovala.12 tvar ponechaný.
+Let: vzlet, mávavý let, přistání, nálet, úskok s křídly. Převzato a přizpůsobeno z vlastního MinoBuddy wing-rig.js. Kamera pro let posouvá střed záběru, jiné postavy beze změny.
+
+Důkazy:
+- winged-integration-qa.json: všech15 finálních GLB, přesná shoda původních tracks,152 facial targets/model,685 časových vzorků/model s konečnými maticemi a omezenými rozměry.
+- winged-face-runtime-qa.json: skutečná Three geometrie, zavření očí a nenulový pohyb všech13 vizémů.
+- mino-wing-playback.json:15 wing-only kopií,118 klipů×6vzorků; reálný vnější vrchol křídla se při letu hýbe0,917–1,051jednotky.
+- winged-browser-qa.json: všech15 finálních GLB načteno v prohlížeči, mrkání a mluva aktivní,104vizémových targetkanálů/model.
+- 9 testů webu; facial a speech unit testy; export8 klipů všech34 modelů se zachováním meshes, skins a BIN.
+- mobilní rozměr390×844, žádný vodorovný přetok,03/09 let skutečně zobrazený. Fyzický telefon nebyl připojen.
+
+Limity: vzorkování není kontrola každého snímku/kontaktu, aerodynamická simulace ani audio lip-sync. Náhledové checkbox vrstvy se do exportovaných tělových klipů nezapékají; samostatné obličejové a letové klipy v GLB existují a lze je vybrat pro export.

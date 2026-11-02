@@ -1,0 +1,12 @@
+Rozšíření galerie Míno – 2026-11-02
+28 přidaných postav; katalog celkem 34.
+8 původních variant: 109 animací; 5 barevných: 116; Míno 01–15: 113.
+Míno 00 nebyl v nalezené sadě.
+Převod: přesná shoda názvů, výchozích transformací a rodičů animovaných kloubů. Geometrie, materiály, skins a původní binární data beze změny. Původní 4 animace zachovány.
+Zdrojové soubory na Drivu nejsou upravovány. Uživatelské oprávnění zveřejnit vlastní postavy bylo výslovné.
+Offline přehrávání: pět časových vzorků každé animace všech 28 modelů; konečné matice a omezené rozměry. Nejde o kontrolu každého snímku všech pohybů.
+Prohlížeč: všech 28 modelů načteno při 390×844 a screenshotově ověřeno čelem k návštěvníkovi. Bez automatického otáčení.
+Mimika: Poppy/Tango/Mochi/Pixel/Kiki obsahují blink/talk/happy/angry/sad/surprise. Bez morphů jsou ovladače vypnuté. Pláč nemají.
+Export: všech 34 modelů prošlo testem osmi vybraných klipů s nezměněnými meshes, skins a binární částí.
+Náhledová mimika se do exportovaných tělových animací nezapéká. Výběr a historie zůstávají lokální v prohlížeči.
+Fyzický telefon nebyl připojen, ověřen mobilní rozměr v prohlížeči.

@@ -1,0 +1,233 @@
+[
+  {
+    "id": "classic-copper",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Copper-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 14873884,
+    "morphs": []
+  },
+  {
+    "id": "classic-frost",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Frost-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 15166864,
+    "morphs": []
+  },
+  {
+    "id": "classic-graphite",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Graphite-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 14967120,
+    "morphs": []
+  },
+  {
+    "id": "classic-obsidian",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Obsidian-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 14577116,
+    "morphs": []
+  },
+  {
+    "id": "classic-orbit",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Orbit-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 15463384,
+    "morphs": []
+  },
+  {
+    "id": "classic-pearl",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Pearl-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 15166768,
+    "morphs": []
+  },
+  {
+    "id": "classic-rose",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Rose-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 14486288,
+    "morphs": []
+  },
+  {
+    "id": "classic-verdant",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino_vsech_8_opravene_spoje.zip :: Verdant-109-animaci-connected.glb",
+    "clips": 109,
+    "bytes": 15365484,
+    "morphs": []
+  },
+  {
+    "id": "mino-poppy",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino-5-barevnych-postav-GLB.zip :: Mino-Poppy.glb",
+    "clips": 116,
+    "bytes": 15616836,
+    "morphs": [
+      "angry",
+      "blink",
+      "happy",
+      "sad",
+      "surprise",
+      "talk"
+    ]
+  },
+  {
+    "id": "mino-tango",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino-5-barevnych-postav-GLB.zip :: Mino-Tango.glb",
+    "clips": 116,
+    "bytes": 15553528,
+    "morphs": [
+      "angry",
+      "blink",
+      "happy",
+      "sad",
+      "surprise",
+      "talk"
+    ]
+  },
+  {
+    "id": "mino-mochi",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino-5-barevnych-postav-GLB.zip :: Mino-Mochi.glb",
+    "clips": 116,
+    "bytes": 15361164,
+    "morphs": [
+      "angry",
+      "blink",
+      "happy",
+      "sad",
+      "surprise",
+      "talk"
+    ]
+  },
+  {
+    "id": "mino-pixel",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino-5-barevnych-postav-GLB.zip :: Mino-Pixel.glb",
+    "clips": 116,
+    "bytes": 16104712,
+    "morphs": [
+      "angry",
+      "blink",
+      "happy",
+      "sad",
+      "surprise",
+      "talk"
+    ]
+  },
+  {
+    "id": "mino-kiki",
+    "source": "G:\\Můj disk\\disk C msi\\Archivy\\Downloads\\Mino-5-barevnych-postav-GLB.zip :: Mino-Kiki.glb",
+    "clips": 116,
+    "bytes": 15487684,
+    "morphs": [
+      "angry",
+      "blink",
+      "happy",
+      "sad",
+      "surprise",
+      "talk"
+    ]
+  },
+  {
+    "id": "mino-01",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-01-4-animace.glb",
+    "clips": 113,
+    "bytes": 17365028,
+    "morphs": []
+  },
+  {
+    "id": "mino-02",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-02-4-animace.glb",
+    "clips": 113,
+    "bytes": 16948696,
+    "morphs": []
+  },
+  {
+    "id": "mino-03",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-03-4-animace.glb",
+    "clips": 113,
+    "bytes": 17445532,
+    "morphs": []
+  },
+  {
+    "id": "mino-04",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-04-4-animace.glb",
+    "clips": 113,
+    "bytes": 17378776,
+    "morphs": []
+  },
+  {
+    "id": "mino-05",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-05-4-animace.glb",
+    "clips": 113,
+    "bytes": 17365024,
+    "morphs": []
+  },
+  {
+    "id": "mino-06",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-06-4-animace.glb",
+    "clips": 113,
+    "bytes": 16948684,
+    "morphs": []
+  },
+  {
+    "id": "mino-07",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-07-4-animace.glb",
+    "clips": 113,
+    "bytes": 17142820,
+    "morphs": []
+  },
+  {
+    "id": "mino-08",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-08-4-animace.glb",
+    "clips": 113,
+    "bytes": 16948676,
+    "morphs": []
+  },
+  {
+    "id": "mino-09",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-09-4-animace.glb",
+    "clips": 113,
+    "bytes": 17029100,
+    "morphs": []
+  },
+  {
+    "id": "mino-10",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-10-4-animace.glb",
+    "clips": 113,
+    "bytes": 17378772,
+    "morphs": []
+  },
+  {
+    "id": "mino-11",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-11-4-animace.glb",
+    "clips": 113,
+    "bytes": 17365052,
+    "morphs": []
+  },
+  {
+    "id": "mino-12",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-12-4-animace.glb",
+    "clips": 113,
+    "bytes": 17029156,
+    "morphs": []
+  },
+  {
+    "id": "mino-13",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-13-4-animace.glb",
+    "clips": 113,
+    "bytes": 17365064,
+    "morphs": []
+  },
+  {
+    "id": "mino-14",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-14-4-animace.glb",
+    "clips": 113,
+    "bytes": 16948660,
+    "morphs": []
+  },
+  {
+    "id": "mino-15",
+    "source": "G:\\Můj disk\\Pro nex\\Mino-15-4-animace.glb",
+    "clips": 113,
+    "bytes": 17365072,
+    "morphs": []
+  }
+]

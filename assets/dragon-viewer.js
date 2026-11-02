@@ -1,6 +1,6 @@
 import {attachDownloads} from './animation-downloads.js?v=3';
-import {bindFace} from './facial-controls.js?v=2';
-import {characters,labels} from './character-data.js?v=10';
+import {bindFace} from './facial-controls.js?v=3';
+import {characters,labels} from './character-data.js?v=11';
 let viewerRuntime;
 function runtime(){
  if(!viewerRuntime)viewerRuntime=import('/assets/vendor/model-viewer-3.5.0.min.js?face=1').catch(error=>{viewerRuntime=null;throw error});
@@ -29,7 +29,7 @@ function buildDragonViewer(){
    const viewerAPI=await runtime();if(current!==generation)return;
    model=document.createElement('model-viewer');const active=model;
    model.className='nex-glb-model';model.setAttribute('alt',c.label+' – ukázka animací');model.setAttribute('camera-controls','');model.setAttribute('camera-orbit',(c.id==='holographic'||c.id==='amethyst'||c.id==='rose'||c.id==='robot-b')?'180deg 75deg auto':'0deg 75deg auto');model.setAttribute('loading','eager');model.setAttribute('reveal','auto');model.setAttribute('interaction-prompt','none');model.setAttribute('touch-action','pan-y');model.setAttribute('shadow-intensity','0.5');model.setAttribute('exposure','1.15');
-   model.addEventListener('load',()=>{if(current!==generation)return;clips=active.availableAnimations;select.replaceChildren(...clips.map((name,i)=>option(String(i),labels[name]||'Animace '+(i+1))));enabled(clips.length>0);wrap.dataset.loadState='loaded';wrap.classList.add('nex-glb-loaded');status.textContent=c.label+' je načtený.';retry.hidden=true;disposeFace=bindFace(viewerAPI.getFacialScene(active),c.id,blinkInput,talkInput,wrap,emotionInput);choose(Math.max(0,clips.findIndex(n=>/^(idle|idle_loop|Original_idle_loop)$/i.test(n))),!reduced)});
+   model.addEventListener('load',()=>{if(current!==generation)return;clips=active.availableAnimations;select.replaceChildren(...clips.map((name,i)=>option(String(i),labels[name]||'Animace '+(i+1))));enabled(clips.length>0);wrap.dataset.loadState='loaded';wrap.classList.add('nex-glb-loaded');status.textContent=c.label+' je načtený.';retry.hidden=true;disposeFace=bindFace(viewerAPI.getFacialScene(active),c.id,blinkInput,talkInput,wrap,emotionInput,c.angerEyes);choose(Math.max(0,clips.findIndex(n=>/^(idle|idle_loop|Original_idle_loop)$/i.test(n))),!reduced)});
    model.addEventListener('error',()=>{if(current===generation)error()});
    model.addEventListener('play',()=>{if(current===generation)wrap.dataset.animationState='playing'});model.addEventListener('pause',()=>{if(current===generation)wrap.dataset.animationState='paused'});
    model.addEventListener('loop',()=>{if(current===generation)wrap.dataset.animationLoops=String(Number(wrap.dataset.animationLoops||0)+1)});

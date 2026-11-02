@@ -4,6 +4,7 @@
       "id": "classic-copper",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.1715603936930927,
       "maxBounds": 3.1715603936930927
     },
@@ -11,6 +12,7 @@
       "id": "classic-frost",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.4644335843569514,
       "maxBounds": 3.4644335843569514
     },
@@ -18,6 +20,7 @@
       "id": "classic-graphite",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.3353071808865384,
       "maxBounds": 3.3353071808865384
     },
@@ -25,6 +28,7 @@
       "id": "classic-obsidian",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.173988096694846,
       "maxBounds": 3.173988096694846
     },
@@ -32,6 +36,7 @@
       "id": "classic-orbit",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.19608380335008,
       "maxBounds": 3.19608380335008
     },
@@ -39,6 +44,7 @@
       "id": "classic-pearl",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.097339854006278,
       "maxBounds": 3.097339854006278
     },
@@ -46,6 +52,7 @@
       "id": "classic-rose",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.0632060409820836,
       "maxBounds": 3.0632060409820836
     },
@@ -53,6 +60,7 @@
       "id": "classic-verdant",
       "clips": 109,
       "sampled": 545,
+      "facialTargets": 0,
       "baseBounds": 3.30558631792472,
       "maxBounds": 3.30558631792472
     },
@@ -60,6 +68,7 @@
       "id": "mino-01",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.8382054760707747,
       "maxBounds": 3.8382054760707747
     },
@@ -67,6 +76,7 @@
       "id": "mino-02",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.826954722108799,
       "maxBounds": 3.826954722108799
     },
@@ -74,6 +84,7 @@
       "id": "mino-03",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.74872056073189,
       "maxBounds": 3.74872056073189
     },
@@ -81,6 +92,7 @@
       "id": "mino-04",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.719335352014293,
       "maxBounds": 3.719335352014293
     },
@@ -88,6 +100,7 @@
       "id": "mino-05",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.8382054760707747,
       "maxBounds": 3.8382054760707747
     },
@@ -95,6 +108,7 @@
       "id": "mino-06",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.722955895330853,
       "maxBounds": 3.722955895330853
     },
@@ -102,6 +116,7 @@
       "id": "mino-07",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.812870643474743,
       "maxBounds": 3.812870643474743
     },
@@ -109,6 +124,7 @@
       "id": "mino-08",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.722955895330853,
       "maxBounds": 3.722955895330853
     },
@@ -116,6 +132,7 @@
       "id": "mino-09",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.803333921235073,
       "maxBounds": 3.803333921235073
     },
@@ -123,6 +140,7 @@
       "id": "mino-10",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.719335352014293,
       "maxBounds": 3.719335352014293
     },
@@ -130,6 +148,7 @@
       "id": "mino-11",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.8390470937984658,
       "maxBounds": 3.8390470937984658
     },
@@ -137,6 +156,7 @@
       "id": "mino-12",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.737200424246092,
       "maxBounds": 3.737200424246092
     },
@@ -144,6 +164,7 @@
       "id": "mino-13",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.733705352191053,
       "maxBounds": 3.733705352191053
     },
@@ -151,6 +172,7 @@
       "id": "mino-14",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.8923448104671436,
       "maxBounds": 3.8923448104671436
     },
@@ -158,6 +180,7 @@
       "id": "mino-15",
       "clips": 113,
       "sampled": 565,
+      "facialTargets": 0,
       "baseBounds": 3.8382054760707747,
       "maxBounds": 3.8382054760707747
     },
@@ -165,6 +188,7 @@
       "id": "mino-kiki",
       "clips": 116,
       "sampled": 580,
+      "facialTargets": 72,
       "baseBounds": 3.071819831473907,
       "maxBounds": 3.071819831473907
     },
@@ -172,6 +196,7 @@
       "id": "mino-mochi",
       "clips": 116,
       "sampled": 580,
+      "facialTargets": 48,
       "baseBounds": 3.0147705410389167,
       "maxBounds": 3.0147705410389167
     },
@@ -179,6 +204,7 @@
       "id": "mino-pixel",
       "clips": 116,
       "sampled": 580,
+      "facialTargets": 66,
       "baseBounds": 3.0105045921651357,
       "maxBounds": 3.0105045921651357
     },
@@ -186,6 +212,7 @@
       "id": "mino-poppy",
       "clips": 116,
       "sampled": 580,
+      "facialTargets": 72,
       "baseBounds": 3.1360109846291246,
       "maxBounds": 3.1360109846291246
     },
@@ -193,6 +220,7 @@
       "id": "mino-tango",
       "clips": 116,
       "sampled": 580,
+      "facialTargets": 48,
       "baseBounds": 3.0667680372861983,
       "maxBounds": 3.0667680372861983
     }

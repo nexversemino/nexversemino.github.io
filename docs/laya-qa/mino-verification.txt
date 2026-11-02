@@ -10,3 +10,6 @@ Mimika: Poppy/Tango/Mochi/Pixel/Kiki obsahují blink/talk/happy/angry/sad/surpri
 Export: všech 34 modelů prošlo testem osmi vybraných klipů s nezměněnými meshes, skins a binární částí.
 Náhledová mimika se do exportovaných tělových animací nezapéká. Výběr a historie zůstávají lokální v prohlížeči.
 Fyzický telefon nebyl připojen, ověřen mobilní rozměr v prohlížeči.
+
+Oprava po kontrole uživatelkou: nové modely mají kameru 0°, původní Rose a holografický Míno ponechány 180°. Všech 28 čelem ověřeno screenshoty.
+Pět barevných originálů obsahovalo chybné morph delty. Webové kopie mají nové delty okolo středu očí/úst, bez přesouvání celého obličeje. Geometrie neutrálního modelu, kostra a tělové animace zachovány. Všechny facial targety numericky testovány: posun středu pod 0,06 jednotky, maximální lokální posun pod 0,3. Současné mrkání, mluva a emoce screenshotově ověřeny na všech pěti.

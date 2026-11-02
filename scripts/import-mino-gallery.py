@@ -1,7 +1,7 @@
 """Import owner-authored Mino originals without modifying source archives.
 Transfer only animation buffers to identical named joint hierarchies/rest transforms.
 """
-import pathlib,json,struct,zipfile,copy,hashlib
+import pathlib,json,struct,zipfile,copy,hashlib,runpy
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE=pathlib.Path('G:/Můj disk/disk C msi/Archivy/Downloads')
 def read(b):
@@ -50,10 +50,11 @@ def main():
   for n in z.namelist():
    if n.endswith('.glb'):
     label=n.split('-')[0];add('classic-'+label.lower(),label+' – 109 animací',z.read(n),str(SOURCE/z.filename)+' :: '+n)
+ repair=runpy.run_path(str(ROOT/'scripts/repair-mino-faces.py'))['repair']
  with zipfile.ZipFile(SOURCE/'Mino-5-barevnych-postav-GLB.zip') as z:
   for n in z.namelist():
    if n.endswith('.glb'):
-    label=n.removesuffix('.glb').removeprefix('Mino-');add('mino-'+label.lower(),'Míno '+label,z.read(n),z.filename+' :: '+n)
+    label=n.removesuffix('.glb').removeprefix('Mino-');add('mino-'+label.lower(),'Míno '+label,repair(z.read(n))[0],z.filename+' :: '+n)
  for p in sorted(pathlib.Path('G:/Můj disk/Pro nex').glob('Mino-*-4-animace.glb')):
   number=p.name.split('-')[1];add('mino-'+number,'Míno '+number,transfer(p.read_bytes(),donor),str(p))
  (ROOT/'assets/character-catalog.json').write_text(json.dumps(catalog,ensure_ascii=False),encoding='utf8')

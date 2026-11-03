@@ -74,7 +74,7 @@
       ],
       [
         "Textury",
-        "Tvorba a úprava textur pro assety. Rozlišení a kvalitu výstupu je potřeba ověřit u konkrétního modelu."
+        "Tvorba a ��prava textur pro assety. Rozlišení a kvalitu výstupu je potřeba ověřit u konkrétního modelu."
       ],
       [
         "Automatický rigging",
@@ -177,7 +177,7 @@
     "description": "Autonomní nákupní asistent pro úsporu času. Hlas, přístupnost, slevy a jednodušší každodenní nákupy.",
     "lines": [
       "Méně hledání.",
-      "Více času."
+      "Více ��asu."
     ],
     "eyebrow": "MILO · ve vývoji",
     "heading": "Nákupy s menší <em class=\"text-neon-gradient\">námahou</em>",
@@ -314,71 +314,455 @@
     "article": [
       [
         "h3",
-        "„Mami, já chci taky!“"
+        "Příběh o tom, jak jsem si chtěla jen ulehčit práci, ale místo toho zaměstnala umělou inteligenci."
       ],
       [
         "p",
-        "Jednoho dne jsem si jako obvykle hrála s vývojem vlastní aplikace pro tvorbu 3D animovaných modelů do své hry. Zkoušela jsem postavy, animace a možnosti umělé inteligence. Další z mých experimentů, ze kterých občas vznikne něco užitečného a občas jen další položka do už tak přeplněné knihovny assetů."
+        "Každý nápad je začátek nového světa..."
+      ],
+      [
+        "h2",
+        "Jak to všechno začalo aneb Já si chtěla jen trochu ulehčit život"
       ],
       [
         "p",
-        "Pak přišla moje dcera. „Mami, já chci taky!“ A vlastně proč ne? Jenže nástroje, se kterými jsem pracovala, nebyly vytvořené pro děti. Byly složité, vyžadovaly určité znalosti a především výkonný počítač."
+        "Nikdy jsem neměla v plánu založit technologickou firmu."
       ],
       [
         "p",
-        "Proč by děti nemohly mít vlastní prostředí, kde by tvořily stejně svobodně jako já? Ne jen vybírat z hotových her a sledovat práci ostatních. Mohly by vymýšlet postavy, světy, příběhy, animace nebo hry. Zkoušet, měnit, pokazit, opravit a klidně začít znovu — bez nutnosti předem umět programovat nebo modelovat. A tak se z jedné dětské věty postupně zrodil MinoBuddy."
+        "Nejsem vystudovaná programátorka, nemám za sebou roky práce ve vývojovém studiu a už vůbec jsem nezačínala s podnikatelským plánem, ve kterém by bylo napsáno, že jednoho dne budu řídit armádu umělých inteligencí."
+      ],
+      [
+        "p",
+        "Jsem žena, která má ráda technologie, počítačové hry, tvoření a objevování nových možností. A také jsem člověk, který má občas pocit, že by některé věci mohly fungovat trochu jednodušeji."
+      ],
+      [
+        "p",
+        "Především jsem ale máma tří dětí, takže volného času nemám zrovna na rozdávání."
+      ],
+      [
+        "p",
+        "A někdy bych si prostě chtěla dát nohy nahoru, vypít si teplou kávu a zahrát si DOOMa."
+      ],
+      [
+        "p",
+        "To se nakonec ukázalo jako poměrně ambiciózní životní plán."
+      ],
+      [
+        "p",
+        "Protože kdykoliv jsem si řekla, že by mi něco mohlo ušetřit trochu práce, vznikl další projekt."
+      ],
+      [
+        "h2",
+        "Když jeden nápad nestačí"
+      ],
+      [
+        "p",
+        "Začalo to docela nevinně."
+      ],
+      [
+        "p",
+        "Napadlo mě, že by se některé každodenní úkoly daly svěřit umělé inteligenci. Proč například ručně vyřizovat objednávky, když by to mohl zvládnout asistent? Proč vytvářet všechno od začátku, když lze propojit nástroje, které už existují?"
+      ],
+      [
+        "p",
+        "Tak vznikaly první experimenty."
+      ],
+      [
+        "p",
+        "Pro mamčino nehtové studio jsem vytvořila web s AI objednávacím asistentem, propojeným s Google Kalendářem. Zákaznice si mohou domluvit termín a také si nechat vygenerovat návrh nehtového designu."
+      ],
+      [
+        "p",
+        "Potom přišel e-shop Vitma woodland wool, určený pro ručně vyráběné a kreativní výrobky."
+      ],
+      [
+        "p",
+        "A následovaly další nápady."
+      ],
+      [
+        "p",
+        "Některé vznikly proto, že jsem chtěla někomu pomoci. Jiné proto, že mě něco zaujalo. A některé jednoduše proto, že jsem si řekla:"
+      ],
+      [
+        "p",
+        "„Tohle by přece mohlo jít udělat lépe.“"
+      ],
+      [
+        "p",
+        "Postupně jsem zjišťovala, že s pomocí AI dokážu realizovat věci, do kterých bych se dříve bez znalostí programování vůbec nepustila."
+      ],
+      [
+        "p",
+        "A tak jsem se pustila i do vlastních technologických projektů."
+      ],
+      [
+        "h2",
+        "NexVerse – protože generovat obrázky nestačí"
+      ],
+      [
+        "p",
+        "Počítačové hry mě baví celý život. A jednou jsem si řekla, že bych chtěla vytvořit vlastní hru."
+      ],
+      [
+        "p",
+        "S vlastními postavami, prostředím, animacemi, zbraněmi a hudbou."
+      ],
+      [
+        "p",
+        "Jenže poměrně rychle jsem zjistila, že vytvořit pěkný obrázek postavy je jedna věc. Připravit z něj použitelný 3D model, vytvořit kostru, nastavit animace a dostat všechno do herního prostředí je věc úplně jiná."
+      ],
+      [
+        "p",
+        "Navíc se ukázalo, že jednotlivé nástroje často umí jen jednu část práce. Jeden vytvoří model, druhý textury, třetí animace. Někde narazíte na omezený počet bezplatných pokusů, jinde na předplatné."
+      ],
+      [
+        "p",
+        "A tak přišla další otázka:"
+      ],
+      [
+        "p",
+        "„Proč bych si ty nástroje nemohla propojit do jednoho vlastního prostředí?“"
+      ],
+      [
+        "p",
+        "Tím začal vznikat NexVerse Asset Engine."
+      ],
+      [
+        "p",
+        "Postupně se rozrostl o tvorbu 2D a 3D assetů, práci s texturami, automatické rigování, pozování postav, animace a další nástroje pro herní vývoj."
+      ],
+      [
+        "p",
+        "Nechtěla jsem ale vytvořit jen další generátor."
+      ],
+      [
+        "p",
+        "Chtěla jsem prostředí, ve kterém má tvůrce kontrolu nad výsledkem. Kde může nechat AI připravit základ, ale následně si všechno upravit podle vlastní představ."
+      ],
+      [
+        "p",
+        "A tak se z původního experimentu stal jeden z hlavních projektů MORFIAI."
+      ],
+      [
+        "h2",
+        "A potom přišla dcera: „Mami, já chci taky!“"
+      ],
+      [
+        "p",
+        "Zatímco jsem pracovala na vlastních 3D postavách a nástrojích pro herní tvorbu, přišla za mnou dcera."
+      ],
+      [
+        "p",
+        "Zajímalo ji, co dělám, a chtěla si to také vyzkoušet."
+      ],
+      [
+        "p",
+        "A mně došlo, že podobné možnosti by nemusely být jen pro dospělé vývojáře."
+      ],
+      [
+        "p",
+        "Co kdyby děti měly vlastní prostředí, ve kterém by mohly vytvářet hry, animace, hudbu, webové stránky a příběhy?"
+      ],
+      [
+        "p",
+        "Ne další sociální síť, kde budou pouze sledovat, co vytvořili ostatní."
+      ],
+      [
+        "p",
+        "Ale místo, kde budou samy tvořit."
+      ],
+      [
+        "p",
+        "Tak se zrodil MinoBuddy."
+      ],
+      [
+        "p",
+        "Samostatná kreativně-vzdělávací platforma, která má dětem nabídnout AI průvodce, vlastní kreativní studio a prostor pro prezentaci jejich projektů."
+      ],
+      [
+        "p",
+        "Dítě si může vytvořit vlastní postavu, rozpohybovat ji, složit hudbu, vytvořit hru nebo si připravit osobní webové portfolio."
+      ],
+      [
+        "p",
+        "A právě portfolio je pro mě důležité. Nechci, aby všechny děti dostaly stejnou šablonu a stejnou představu o tom, jak má jejich tvorba vypadat."
+      ],
+      [
+        "p",
+        "Jedno dítě si vytvoří animovanou postavičku, která návštěvníky přivítá. Druhé připraví vlastní minihru. Třetí vytvoří interaktivní svět."
+      ],
+      [
+        "p",
+        "A čtvrté možná rovnou spustí metalový koncert, protože má pocit, že návštěvníka je potřeba přivítat pořádně."
+      ],
+      [
+        "p",
+        "A proč ne?"
+      ],
+      [
+        "p",
+        "MinoBuddy už má za sebou značnou část vývoje. Před veřejným spuštěním ale ještě musí být dokončena a ověřena bezpečnost, ochrana soukromí, rodičovské ověřování a další právní a technologické podmínky."
+      ],
+      [
+        "p",
+        "Nechci dětem nabídnout další digitální prostředí bez odpovídající ochrany."
+      ],
+      [
+        "h2",
+        "Když už mám AI, proč jich nemít rovnou celou armádu?"
+      ],
+      [
+        "p",
+        "Mezitím přibývaly další projekty."
+      ],
+      [
+        "p",
+        "MILO, autonomní nákupní asistent, který má člověku ušetřit čas při hledání produktů, procházení nabídek a přípravě nákupů."
+      ],
+      [
+        "p",
+        "NexVerse AI Command Center, které propojuje různé AI modely a agenty a umožňuje jim rozdělovat práci, spolupracovat a postupně automatizovat vývojové úkoly."
+      ],
+      [
+        "p",
+        "Experimenty s rozhodovací umělou inteligencí, herními postavami a jejich chováním."
+      ],
+      [
+        "p",
+        "A také nápady, které zatím čekají na svou příležitost."
+      ],
+      [
+        "p",
+        "Postupně jsem si uvědomila, že už neřeším jen jednotlivé aplikace. Začíná vznikat celé portfolio projektů, které mají společnou filozofii: využít technologie tak, aby lidem pomáhaly uskutečňovat jejich vlastní nápady."
+      ],
+      [
+        "p",
+        "Tak vznikla zastřešující značka MORFIAI."
+      ],
+      [
+        "p",
+        "A spolu s ní také poměrně neobvyklé personální oddělení."
+      ],
+      [
+        "h2",
+        "Den, kdy jsem zaměstnala snad všechny AI na světě"
+      ],
+      [
+        "p",
+        "V určitém okamžiku jsem zjistila, že mám rozdělenou práci mezi tolik AI nástrojů a modelů, že už začínám vyhlížet, jestli někdo náhodou nevyvíjí další budoucí zaměstnance."
+      ],
+      [
+        "p",
+        "Command Center se učí pravidelně kontrolovat a opravovat samo sebe."
+      ],
+      [
+        "p",
+        "Codex s Argonem pracují na jeho vývoji, Opus se Sonnetem na redesignu. MiniMax a DeepSeek testují možnosti tvorby s mým studiem. OpenCode a Cursor pomáhají s integrací assetů do hry."
+      ],
+      [
+        "p",
+        "A někde mezi tím vším se snažím zjistit, proč má dům rozměry odpovídající úplně všemu, jen ne postavám, které v něm mají bydlet."
+      ],
+      [
+        "p",
+        "Obyvatelé pak samozřejmě spí venku před domem."
+      ],
+      [
+        "p",
+        "Když se konečně podaří velikost opravit, zjistím, že dům je nějaký divný."
+      ],
+      [
+        "p",
+        "„Já vím, že jsem chtěla město. Ale tady jsem si představovala malé cyberpunkové městečko. Zatím pět paneláků. Jen prosím počítejte s tím, že se postupně rozroste v metropoli. Já ho rozšířím, fakt.“"
+      ],
+      [
+        "p",
+        "A vesnice?"
+      ],
+      [
+        "p",
+        "„Ty jsou zase moc moderní. Tady chci opravdu typickou středověkou vesnici. Přesně takovou, jaká by mohla stát vedle cyberpunkového města.“"
+      ],
+      [
+        "p",
+        "Ano. Středověká vesnice vedle futuristických paneláků."
+      ],
+      [
+        "p",
+        "Nevidím v tom žádný problém."
+      ],
+      [
+        "h2",
+        "Když jednoduché zadání přestane být jednoduché"
+      ],
+      [
+        "p",
+        "Největší pokrok ale nastal ve chvíli, kdy jsem zjistila, že už mě moji agenti začínají znát."
+      ],
+      [
+        "p",
+        "Dříve jsem napsala:"
+      ],
+      [
+        "p",
+        "„Přidej do hry pět paneláků.“"
+      ],
+      [
+        "p",
+        "A oni přidali pět paneláků."
+      ],
+      [
+        "p",
+        "Dnes už ale zkušený agent MORFIAI tuší, že za takovou větou může být mnohem víc."
+      ],
+      [
+        "p",
+        "Protože paneláky potřebují obyvatele."
+      ],
+      [
+        "p",
+        "Obyvatelé potřebují obchody."
+      ],
+      [
+        "p",
+        "Obchody potřebují vybavení a prodavače."
+      ],
+      [
+        "p",
+        "Prodavač potřebuje zákazníky."
+      ],
+      [
+        "p",
+        "A před obchodem musí být pes, protože mu prodavač každý den dává zbytky a jsou z nich kamarádi."
+      ],
+      [
+        "p",
+        "A když už máme psa, přece tam nemůže chybět kočka. Ta bude roztomilá."
+      ],
+      [
+        "p",
+        "Takže z pěti paneláků máme postupně město s infrastrukturou, obchodním systémem, obyvateli, zvířaty a dalšími herními mechanikami."
+      ],
+      [
+        "p",
+        "A agent už pravděpodobně tuší, že zadání „přidej budovy“ není tak úplně nevinné."
+      ],
+      [
+        "h2",
+        "Projekty jsou dokončené. ZATÍM."
+      ],
+      [
+        "p",
+        "V MORFIAI máme také vlastní vývojovou statistiku."
+      ],
+      [
+        "p",
+        "Počítáme, kolikrát byl jednotlivý projekt dokončen."
+      ],
+      [
+        "p",
+        "Protože některé projekty byly dokončené už několikrát."
+      ],
+      [
+        "p",
+        "Jenže pak jsem je začala používat a zjistila, že by se mi ještě hodilo…"
+      ],
+      [
+        "p",
+        "A tak začalo další kolo."
+      ],
+      [
+        "p",
+        "Je potřeba ale uvést jednu důležitou skutečnost:"
+      ],
+      [
+        "p",
+        "Reálně není definitivně dokončený žádný projekt."
+      ],
+      [
+        "p",
+        "Ne proto, že by nefungoval. Ale protože vždycky existuje něco, co se dá zlepšit, rozšířit nebo udělat trochu jinak."
+      ],
+      [
+        "p",
+        "Dokončení podle původního zadání je samozřejmě skutečné dokončení. Jen se občas ukáže, že původní zadání byl vlastně jen nástřel."
+      ],
+      [
+        "p",
+        "A proto má naše počítadlo důležitý dodatek:"
+      ],
+      [
+        "p",
+        "DOKONČENO: 7×. ZATÍM."
+      ],
+      [
+        "p",
+        "Definitivně dokončeno: 0."
+      ],
+      [
+        "h2",
+        "A co bude dál?"
+      ],
+      [
+        "p",
+        "MORFIAI dnes zastřešuje několik samostatných projektů v různých fázích vývoje."
+      ],
+      [
+        "p",
+        "Některé jsou funkční, jiné se dále rozšiřují a další teprve čekají na realizaci."
+      ],
+      [
+        "p",
+        "Nechci vytvářet technologii jen proto, aby dobře vypadala v prezentaci. Zajímá mě, jestli skutečně funguje, jestli někomu pomáhá a jestli dokáže proměnit nápad v něco použitelného."
+      ],
+      [
+        "p",
+        "A ráda bych do tohoto procesu zapojila také další lidi."
+      ],
+      [
+        "p",
+        "Vývojáře, kreativce, testery, nadšence do technologií i ty, kteří mají vlastní nápady a chtějí se podělit o zkušenosti."
+      ],
+      [
+        "p",
+        "Protože člověk nikdy neví, kdo přijde s něčím, co by ho samotného vůbec nenapadlo."
+      ],
+      [
+        "p",
+        "A možná právě proto MORFIAI vzniká."
+      ],
+      [
+        "p",
+        "Ne jako dokonale naplánovaná technologická společnost, ale jako živé portfolio projektů, které se rozvíjejí podle skutečných potřeb, nápadů a zkušeností."
       ],
       [
         "h3",
-        "Z nápadu se stal skutečný projekt"
+        "A co jsem vlastně chtěla na začátku?"
       ],
       [
         "p",
-        "MinoBuddy má být samostatné kreativní prostředí, kde děti s pomocí průvodce Mína objevují kreslení, animace, 3D tvorbu, hudbu a základy vytváření her. Smyslem je učit se novým dovednostem a mít možnost zkoušet vlastní nápady. Platforma zatím není veřejně dostupná."
+        "Dát si nohy nahoru, vypít teplou kávu a zahrát si DOOMa."
       ],
       [
         "p",
-        "MinoBuddy má být místem, kde nemusí být každý nápad dokonalý a každé tvoření nemusí skončit hotovým výsledkem. Někdy je nejcennější právě to, co dítě objeví cestou."
-      ],
-      [
-        "h3",
-        "Proč MinoBuddy ještě není spuštěný?"
+        "Místo toho mám několik projektů, armádu AI agentů, vlastní vývojové studio a kroniku, která se začala psát sama."
       ],
       [
         "p",
-        "Vytvořit funkční platformu pro děti a bezpečně ji zpřístupnit dětem jsou dvě rozdílné věci. Samotný vývoj je téměř dokončený, ale k veřejnému spuštění stále chybí několik zásadních podmínek: odpovídající zabezpečení, odborné posouzení legislativních požadavků a dostatečné výpočetní zázemí."
+        "Káva je pořád studená."
       ],
       [
         "p",
-        "Chci, aby MinoBuddy mohly využívat i děti, jejichž rodiny si nemohou dovolit výkonný počítač, drahé programy nebo placené AI generování. Právě dostupnost je jednou z největších technologických a finančních výzev. Nechci otevřít dětem něco, pro co nedokážu zajistit bezpečné a udržitelné prostředí."
+        "Ale aspoň máme o čem psát."
       ],
       [
         "p",
-        "MinoBuddy je samostatná platforma. Její dětské účty se nepropojují se zákaznickými účty MORFIAI. Tento web projekt pouze představuje; dětské účty zde nezakládáme."
-      ],
-      [
-        "h3",
-        "Proč postupně zpřístupňuji ostatní projekty MORFIAI?"
+        "MORFIAI – Firma, která se napsala sama."
       ],
       [
         "p",
-        "NexVerse Asset Engine, AI Command Center a další nástroje původně vznikaly hlavně proto, aby něco usnadnily mně nebo mým blízkým. Postupně jsem zjistila, že mohou pomoci i dalším lidem. Jejich představováním chci ukázat, co už vzniklo, a navázat kontakt s lidmi, kteří by mohli pomoci uskutečnit i poslední krok MinoBuddy."
-      ],
-      [
-        "p",
-        "Hledám odborníky na bezpečnost, legislativu, vzdělávání a dětské online prostředí i technologické partnery, kteří by pomohli zajistit infrastrukturu. Nehledám někoho, kdo za mě vymyslí další dětský web. Hledám cestu, jak ten téměř hotový dostat bezpečně k dětem."
-      ],
-      [
-        "h3",
-        "Pomozte nám otevřít MinoBuddy"
-      ],
-      [
-        "p",
-        "Celý projekt začal tím, že jedna malá holka chtěla zkusit to, co dělala její maminka. Byla bych ráda, kdyby podobnou možnost dostaly i další děti. Aby mohly přijít, něco je napadlo a ony to prostě zkusily."
-      ],
-      [
-        "p",
-        "Nikdy nevíme, co všechno může vzniknout z obyčejného: „Mami, já chci taky!“ Máte zkušenosti, technologie nebo možnosti, které by pomohly s bezpečným spuštěním MinoBuddy? Budu ráda, když se ozvete."
+        "Pokračování? To záleží na tom, co mě zase napadne."
       ]
     ],
     "contact_heading": "Pomozte nám otevřít <em class=\"text-neon-gradient\">MinoBuddy</em>"

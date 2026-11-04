@@ -95,12 +95,20 @@ function initFigure(fig) {
 
   function size() {
     const r = canvas.getBoundingClientRect(); 
-    if (!r.width || !r.height || r.width > 10000 || r.height > 10000) {
+    // Check if canvas rect is absurdly large
+    const absurd = !r.width || !r.height || r.width > 10000 || r.height > 10000;
+    // Also check if aspect ratio is wildly wrong (should be ~640/260 ≈ 2.46)
+    const aspect = r.width && r.height ? r.width / r.height : 0;
+    const badAspect = aspect < 1.5 || aspect > 4; // way off from 2.46
+    if (absurd || badAspect) {
       // fallback: figure should have aspect-ratio 640/260, use parent width
       const fig = canvas.closest('figure');
       if (fig) {
         const fr = fig.getBoundingClientRect();
-        if (fr.width > 0 && fr.width < 10000 && fr.height > 0 && fr.height < 10000) {
+        const figAspect = fr.width && fr.height ? fr.width / fr.height : 0;
+        const figAbsurd = !fr.width || !fr.height || fr.width > 10000 || fr.height > 10000;
+        const figBadAspect = figAspect < 1.5 || figAspect > 4;
+        if (!figAbsurd && !figBadAspect) {
           const dpr = Math.min(window.devicePixelRatio || 1, 2);
           const w = Math.round(fr.width * dpr); const h = Math.round(fr.height * dpr);
           if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }

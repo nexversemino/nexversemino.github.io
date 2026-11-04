@@ -94,7 +94,7 @@ function initFigure(fig) {
   let t = scene.dur; let raf = 0; let start = 0; let started = false; let finished = true;
 
   function size() {
-    const r = canvas.getBoundingClientRect(); if (!r.width) return false;
+    const r = canvas.getBoundingClientRect(); if (!r.width || !r.height) return false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = Math.round(r.width * dpr); const h = Math.round(r.height * dpr);
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
@@ -323,8 +323,9 @@ const slozite = {
   dur: 7,
   draw(ctx, t) {
     const A = seg(t, 0, 0.45); ctx.globalAlpha = A;
+    // vstup box - use strokeBox instead of roundRect
     box(ctx, 30, 100, 100, 60, 'rgba(255,255,255,.1)', 4);
-    ctx.strokeStyle = C.cyan; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(30, 100, 100, 60, 8); ctx.stroke();
+    strokeBox(ctx, 30, 100, 100, 60, 8, C.cyan, 2);
     txt(ctx, 'VSTUP', 80, 130, 13, C.cyan);
     // zamotaný výstup - tangle křivky
     const tangleX = 200; const tangleY = 140;
@@ -355,13 +356,21 @@ const slozite = {
         ctx.fillStyle = '#e85d75'; ctx.beginPath(); ctx.arc(wx + 20, GROUND - h - 10, 6, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(wx + 14, GROUND - h - 12, 4, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(wx + 26, GROUND - h - 12, 4, 0, Math.PI * 2); ctx.fill();
-        // hvězdička
-        ctx.fillStyle = '#fde047'; ctx.beginPath();
+        // hvězdička - fixed: use proper star drawing without accumulating rotations
+        ctx.fillStyle = '#fde047';
+        const starX = wx + 28; const starY = GROUND - h - 28;
+        ctx.save();
+        ctx.translate(starX, starY);
         for (let j = 0; j < 5; j++) {
-          const ang = (j / 5 - 0.1) * Math.PI; ctx.rotate(Math.PI / 5);
-          ctx.lineTo(0, -6); ctx.lineTo(3, 3); ctx.lineTo(0, 0); ctx.lineTo(-3, 3); ctx.closePath(); ctx.fill();
-          ctx.rotate(-Math.PI / 5);
+          ctx.rotate(Math.PI * 2 / 5);
+          ctx.beginPath();
+          ctx.moveTo(0, -6);
+          ctx.lineTo(2, 2);
+          ctx.lineTo(-2, 2);
+          ctx.closePath();
+          ctx.fill();
         }
+        ctx.restore();
       }
       ctx.restore();
     }

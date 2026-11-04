@@ -94,7 +94,25 @@ function initFigure(fig) {
   let t = scene.dur; let raf = 0; let start = 0; let started = false; let finished = true;
 
   function size() {
-    const r = canvas.getBoundingClientRect(); if (!r.width || !r.height) return false;
+    const r = canvas.getBoundingClientRect(); 
+    if (!r.width || !r.height || r.width > 10000 || r.height > 10000) {
+      // fallback: figure should have aspect-ratio 640/260, use parent width
+      const fig = canvas.closest('figure');
+      if (fig) {
+        const fr = fig.getBoundingClientRect();
+        if (fr.width > 0 && fr.width < 10000 && fr.height > 0 && fr.height < 10000) {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const w = Math.round(fr.width * dpr); const h = Math.round(fr.height * dpr);
+          if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+          return true;
+        }
+      }
+      // last resort: use stage dimensions
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.round(STAGE_W * dpr); const h = Math.round(STAGE_H * dpr);
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+      return true;
+    }
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = Math.round(r.width * dpr); const h = Math.round(r.height * dpr);
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }

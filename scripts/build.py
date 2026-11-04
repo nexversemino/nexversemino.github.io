@@ -35,6 +35,22 @@ def inline(text):
     result.append(escape(text[pos:]))
     return ''.join(result)
 
+# Short captions for the animated story scenes (see assets/article-scenes.js).
+SCENE_LABELS={
+    'firma':'Firma, která se psala sama',
+    'doom':'Nohy nahoru, káva a DOOM',
+    'napad':'Nápady se množí',
+    'dcera':'Dcera má taky nápad',
+    'armada':'Armáda hotových assetů',
+    'slozite':'Složité na výstup, jednoduché na vstup',
+}
+
+def scene_figure(scene):
+    label=escape(SCENE_LABELS.get(scene,scene))
+    return ('<figure class="article-scene" data-scene="%s" tabindex="0" role="button" '
+            'aria-label="Přehrát animaci: %s"><canvas aria-hidden="true"></canvas>'
+            '<figcaption>%s</figcaption></figure>')%(escape(scene,quote=True),label,label)
+
 def render(slug,page):
     title=page['title']+' — MORFIAI' if slug else 'MORFIAI — každý nápad je začátek nového světa'
     head=template('head')
@@ -65,23 +81,28 @@ def render(slug,page):
     split=template('split',eyebrow=page['split'][0],heading=page['split'][1],text=escape(page['split'][2]),workflow=escape('\n'.join(page['workflow'])))
     article=''
     if page.get('article'):
-        head=head.replace('</head>','<link rel="stylesheet" href="assets/article-story.css?v=1"/><script type="module" src="assets/article-story.js?v=1"></script></head>')
+        head=head.replace('</head>','<link rel="stylesheet" href="assets/article-story.css?v=2"/><script type="module" src="assets/article-story.js?v=1"></script><script type="module" src="assets/article-scenes.js?v=1"></script></head>')
         parts=[]
         section=0
-        for i,(tag,text) in enumerate(page['article']):
+        for i,item in enumerate(page['article']):
+            tag,text,*extra=item
+            scene=extra[0] if extra else None
+            scene_attr=' data-scene="%s"'%scene if scene else ''
             delay=(i%4)*70
             reveal='transition-all duration-700 ease-out translate-y-8 opacity-0' if tag in ('h2','h3') else 'transition-all duration-700 ease-out opacity-0'
             style=' style="transition-delay:%dms"'%delay
             if tag=='h2':
                 section+=1
                 heading='<span class="article-num" aria-hidden="true">// %02d</span>'%section+escape(text)
-                parts.append('<h2 id="pribeh-%d" data-chapter="%s" data-orb="bounce" data-orb-color="var(--neon-cyan)" class="%s"%s>%s</h2>'%(section,escape(text,quote=True),reveal,style,heading))
+                parts.append('<h2 id="pribeh-%d" data-chapter="%s" data-orb="bounce" data-orb-color="var(--neon-cyan)" class="%s"%s%s>%s</h2>'%(section,escape(text,quote=True),reveal,style,scene_attr,heading))
             elif tag=='h3':
-                parts.append('<h3 class="%s"%s>%s</h3>'%(reveal,style,escape(text)))
+                parts.append('<h3 class="%s"%s%s>%s</h3>'%(reveal,style,scene_attr,escape(text)))
             else:
                 # The closing signature types itself out through the shared typed-title effect.
                 typed=' data-typed-title="%s"'%escape(text,quote=True) if text.startswith('MORFIAI –') else ''
-                parts.append('<p class="text-lg text-foreground/85 %s"%s%s>%s</p>'%(reveal,typed,style,inline(text)))
+                parts.append('<p class="text-lg text-foreground/85 %s"%s%s%s>%s</p>'%(reveal,typed,style,scene_attr,inline(text)))
+            if scene:
+                parts.append(scene_figure(scene))
         intro=('<p class="article-eyebrow transition-all duration-700 ease-out opacity-0" style="transition-delay:0ms">// příběh morfiai</p>'
                '<h2 class="article-title transition-all duration-700 ease-out translate-y-8 opacity-0" data-orb="drop" data-orb-color="var(--neon-pink)" style="transition-delay:70ms">Každý nápad je začátek nového světa…</h2>'
                '<div class="article-rule transition-all duration-700 ease-out opacity-0" style="transition-delay:140ms" aria-hidden="true"></div>')

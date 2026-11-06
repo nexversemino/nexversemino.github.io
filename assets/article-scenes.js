@@ -966,38 +966,22 @@ function initFigure(fig) {
   let start = 0;
   let started = false;
   let finished = true;
+  let lastW = 0;
+  let lastH = 0;
 
   function size() {
     const r = canvas.getBoundingClientRect();
-    // Check if canvas rect is absurdly large
-    const absurd = !r.width || !r.height || r.width > 10000 || r.height > 10000;
-    // Also check if aspect ratio is wildly wrong (should be ~640/260 ≈ 2.46)
-    const aspect = r.width && r.height ? r.width / r.height : 0;
-    const badAspect = aspect < 1.5 || aspect > 4; // way off from 2.46
-    if (absurd || badAspect) {
-      // fallback: figure should have aspect-ratio 640/260, use parent width
-      const fig = canvas.closest('figure');
-      if (fig) {
-        const fr = fig.getBoundingClientRect();
-        const figAspect = fr.width && fr.height ? fr.width / fr.height : 0;
-        const figAbsurd = !fr.width || !fr.height || fr.width > 10000 || fr.height > 10000;
-        const figBadAspect = figAspect < 1.5 || figAspect > 4;
-        if (!figAbsurd && !figBadAspect) {
-          const dpr = Math.min(window.devicePixelRatio || 1, 2);
-          const w = Math.round(fr.width * dpr); const h = Math.round(fr.height * dpr);
-          if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-          return true;
-        }
-      }
-      // last resort: use stage dimensions
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = Math.round(STAGE_W * dpr); const h = Math.round(STAGE_H * dpr);
-      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-      return true;
-    }
+    if (!r.width || !r.height || r.width > 10000 || r.height > 10000) return false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = Math.round(r.width * dpr); const h = Math.round(r.height * dpr);
-    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    const w = Math.round(r.width * dpr);
+    const h = Math.round(r.height * dpr);
+    // Only resize when size changed significantly (>2px) to avoid rounding flicker
+    if (Math.abs(w - lastW) > 2 || Math.abs(h - lastH) > 2) {
+      canvas.width = w;
+      canvas.height = h;
+      lastW = w;
+      lastH = h;
+    }
     return true;
   }
 

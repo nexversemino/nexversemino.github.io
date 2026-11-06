@@ -1,4 +1,4 @@
-/* Animated story scenes for the "Firma, kter+Ì se napsala sama" article.
+/* Animated story scenes for the "Firma, kter√° se napsala sama" article.
    Each scene is a deterministic canvas mini-animation that plays once when the
    reader scrolls it into view. Clicking (or pressing Enter) replays it. */
 
@@ -682,7 +682,7 @@ const dcera = {
       ctx.lineTo(-bw / 2 + 30, bh / 2 - 2);
       ctx.closePath();
       ctx.fill();
-      txt(ctx, 'J+¸ CHCI TAKY!', 0, 1, 12, '#141a26');
+      txt(ctx, 'J√Å CHCI TAKY!', 0, 1, 12, '#141a26');
       ctx.restore();
     }
 
@@ -776,7 +776,7 @@ const armada = {
       for (let i = 0; i < 5; i++) {
         const st = 4.3 + i * 0.18;
         if (t > st) {
-          txt(ctx, '‘ùÙ', 120 + i * 95, 44, 16, C.lime);
+          txt(ctx, '‚úì', 120 + i * 95, 44, 16, C.lime);
         }
       }
     }
@@ -831,7 +831,7 @@ const slozite = {
     box(ctx, 38, 120, 92, 42, 'rgba(11,15,26,.7)', 5);
     strokeBox(ctx, 38, 120, 92, 42, 5, C.cyan, 2);
     txt(ctx, 'VSTUP', 84, 134, 13, C.cyan);
-    txt(ctx, 'jednoduch+Ø', 84, 152, 9, 'rgba(255,255,255,.55)');
+    txt(ctx, 'jednoduch√Ω', 84, 152, 9, 'rgba(255,255,255,.55)');
 
     // the clean line that enters the mess
     const inP = ease(seg(t, 0.7, 1.5));
@@ -969,7 +969,7 @@ function initFigure(fig) {
 
   function size() {
     const r = canvas.getBoundingClientRect();
-    if (!r.width || !r.height || r.width > 10000 || r.height > 10000) return false;
+    if (!r.width) return false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = Math.round(r.width * dpr);
     const h = Math.round(r.height * dpr);

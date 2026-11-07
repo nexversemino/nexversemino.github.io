@@ -106,6 +106,10 @@ function ik(x1, y1, x2, y2, l1, l2, bend) {
 }
 
 function limb(ctx, x1, y1, x2, y2, l1, l2, bend, w, color) {
+  const distance = Math.hypot(x2 - x1, y2 - y1);
+  const reach = Math.min(1, (l1 + l2 - 0.01) / (distance || 1));
+  x2 = lerp(x1, x2, reach);
+  y2 = lerp(y1, y2, reach);
   const j = ik(x1, y1, x2, y2, l1, l2, bend);
   line(ctx, x1, y1, j[0], j[1], w, color);
   line(ctx, j[0], j[1], x2, y2, w, color);
@@ -164,57 +168,21 @@ function heart(ctx, x, y, s, color) {
   ctx.restore();
 }
 
-function gear(ctx, x, y, r, color, rot) {
+function blonde(ctx, x, y, r, facing, sway = 0) {
   ctx.save();
   ctx.translate(x, y);
-  ctx.rotate(rot);
-  ctx.fillStyle = color;
-  for (let i = 0; i < 8; i++) {
-    ctx.save();
-    ctx.rotate((i * Math.PI) / 4);
-    ctx.fillRect(r - 3, -4, 8, 8);
-    ctx.restore();
-  }
+  ctx.scale(facing, 1);
+  const gold = ctx.createLinearGradient(-r, 0, r, 0);
+  gold.addColorStop(0, '#c58732');
+  gold.addColorStop(.48, '#fff1a5');
+  gold.addColorStop(1, '#edbb5d');
+  ctx.fillStyle = gold;
   ctx.beginPath();
-  ctx.arc(0, 0, r, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.globalCompositeOperation = 'destination-out';
-  ctx.beginPath();
-  ctx.arc(0, 0, r * 0.38, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.restore();
-}
-
-function critter(ctx, x, y, s, color, phase) {
-  const bob = Math.sin(phase * 6) * 2;
-  ctx.save();
-  ctx.translate(x, y + bob);
-  // legs
-  line(ctx, -s * 0.4, 0, -s * 0.4 + Math.sin(phase * 12) * 4, s * 0.5, 3, color);
-  line(ctx, s * 0.4, 0, s * 0.4 - Math.sin(phase * 12) * 4, s * 0.5, 3, color);
-  // body
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.ellipse(0, -s * 0.6, s * 0.7, s * 0.6, 0, 0, Math.PI * 2);
-  ctx.fill();
-  // ears
-  ctx.beginPath();
-  ctx.moveTo(-s * 0.5, -s * 1.05);
-  ctx.lineTo(-s * 0.25, -s * 1.6);
-  ctx.lineTo(-s * 0.05, -s * 1.1);
+  ctx.moveTo(r * .8, -r * .55);
+  ctx.bezierCurveTo(r * .4, -r * 1.55, -r * 1.35, -r * 1.25, -r * 1.25, 0);
+  ctx.bezierCurveTo(-r * 1.2, r, -r * .8, r * 2, -r * 1.55 + sway, r * 2.9);
+  ctx.bezierCurveTo(-r * .1 + sway, r * 2.7, -r * .35, r * 1.5, -r * .25, 0);
   ctx.closePath();
-  ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(s * 0.5, -s * 1.05);
-  ctx.lineTo(s * 0.25, -s * 1.6);
-  ctx.lineTo(s * 0.05, -s * 1.1);
-  ctx.closePath();
-  ctx.fill();
-  // eyes
-  ctx.fillStyle = '#0b0f1a';
-  ctx.beginPath();
-  ctx.arc(-s * 0.25, -s * 0.7, Math.max(1.4, s * 0.12), 0, Math.PI * 2);
-  ctx.arc(s * 0.25, -s * 0.7, Math.max(1.4, s * 0.12), 0, Math.PI * 2);
   ctx.fill();
   ctx.restore();
 }
@@ -278,7 +246,8 @@ function person(ctx, o) {
   if (o.head === 'house') {
     buildingHead(ctx, head[0], head[1] + headR, headR * 2.6, col, C.lime);
   } else {
-    circle(ctx, head[0], head[1], headR, col, true);
+    blonde(ctx, ...head, headR, f, Math.sin(o.legPhase || 0) * 3);
+    circle(ctx, head[0], head[1], headR * .83, col, true);
     // visor / eye on the facing side
     ctx.fillStyle = '#0b0f1a';
     ctx.beginPath();
@@ -312,13 +281,10 @@ function buildingHead(ctx, cx, baseY, s, color, win) {
 
 /* ---------- scene: firma ---------- */
 
-const firmaDesk = { x: 452, w: 118, top: 168 };
-
-function drawDesk(ctx) {
-  const d = firmaDesk;
-  box(ctx, d.x, d.top, d.w, 7, 'rgba(255,255,255,.5)', 2);
-  box(ctx, d.x + 6, d.top + 7, 6, GROUND - d.top - 7, 'rgba(255,255,255,.32)', 2);
-  box(ctx, d.x + d.w - 12, d.top + 7, 6, GROUND - d.top - 7, 'rgba(255,255,255,.32)', 2);
+function desk(ctx, x, w, top) {
+  box(ctx, x, top, w, 6, '#82909c', 2);
+  box(ctx, x + 5, top + 6, 5, GROUND - top - 6, '#536171', 2);
+  box(ctx, x + w - 10, top + 6, 5, GROUND - top - 6, '#536171', 2);
 }
 
 function inkLine(ctx, x, y, w, prog, color) {
@@ -339,210 +305,120 @@ function inkLine(ctx, x, y, w, prog, color) {
 }
 
 const firma = {
-  dur: 7,
+  dur: 10.4,
   draw(ctx, t) {
-    const A = seg(t, 0, 0.4);
-    ctx.globalAlpha = A;
     skyline(ctx);
     ground(ctx);
-    drawDesk(ctx);
+    desk(ctx, 300, 130, 168);
+    const walking = t < 1.6;
+    const x = lerp(-28, 284, ease(seg(t, 0, 1.6)));
+    const second = t >= 4.5;
+    const writing = seg(t, second ? 4.5 : 1.7, second ? 6.5 : 3.65);
+    const drop = ease(seg(t, 3.7, 4.5));
+    const crumple = ease(seg(t, 6.5, 7.3));
+    const throwPaper = ease(seg(t, 7.55, 8.25));
+    const hand = walking ? undefined : t >= 8.25 ? [304 + 24 * seg(t, 8.25, 10), 155 + Math.sin(t * 25) * 2] : [
+      lerp(304 + writing * 22, 298, crumple) + Math.sin(t * 24) * (1 - crumple),
+      lerp(155 + 2 * Math.sin(t * 24), 137, crumple)
+    ];
+    person(ctx, { x, y: GROUND, h: 86, lean: .21, legPhase: walking ? t * 13 : null,
+      armF: hand, armB: crumple > 0 && throwPaper < 1 ? [292, 138] : undefined });
+    if (hand && (crumple === 0 || t >= 8.25)) line(ctx, hand[0], hand[1] - 5, hand[0] + 4, hand[1] + 6, 3, C.orange);
 
-    // paper on the desk
-    const paper = [firmaDesk.x + 8, firmaDesk.top - 11, 46, 11];
-    box(ctx, paper[0], paper[1], paper[2], paper[3], 'rgba(255,255,255,.88)', 2);
-
-    // walking in, then writing
-    const walkEnd = 2.4;
-    const walking = t < walkEnd;
-    const px = walking ? lerp(-34, 440, ease(seg(t, 0, walkEnd))) : 440;
-    const lean = walking ? 0.06 : lerp(0.06, 0.34, seg(t, walkEnd, walkEnd + 0.6));
-    const swing = t * 9;
-
-    // writing hand over the paper
-    const wt = seg(t, 3.0, 5.8);
-    const hx = lerp(462, 496, wt) + Math.sin(wt * 42) * 2.5;
-    const hy = 156 + Math.sin(wt * 42) * 2.5;
-    const handF = walking
-      ? [px + 12 + Math.sin(swing) * 7, 150 + Math.cos(swing) * 5]
-      : t < 3.0
-        ? [lerp(px + 14, hx, seg(t, 2.6, 3.0)), lerp(152, hy, seg(t, 2.6, 3.0))]
-        : [hx, hy];
-
-    const anchors = person(ctx, {
-      x: px, y: GROUND, h: 84, facing: 1, color: C.cyan, head: 'house',
-      lean: lean, legPhase: walking ? swing : null, armF: handF,
-      alpha: A
-    });
-
-    // pencil in the writing hand
-    if (t >= 2.9) {
-      const p = seg(t, 2.9, 3.2);
-      ctx.globalAlpha = A * p;
-      line(ctx, handF[0] + 3, handF[1] - 6, handF[0] + 6, handF[1] + 7, 3, C.orange);
-      line(ctx, handF[0] + 6, handF[1] + 7, handF[0] + 7, handF[1] + 10, 2, '#2b2f3a');
-      ctx.globalAlpha = A;
+    function sheet(x, y, angle, progress) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      box(ctx, -19, -6, 38, 12, C.white, 2);
+      inkLine(ctx, -15, -2, 30, seg(progress, 0, .5), '#586787');
+      inkLine(ctx, -15, 3, 30, seg(progress, .5, 1), '#586787');
+      ctx.restore();
     }
-
-    // "firma" written above the house-head
-    const label = 'firma';
-    const shown = Math.ceil(seg(t, 0.9, 2.1) * label.length);
-    if (shown > 0) {
-      ctx.globalAlpha = A * seg(t, 0.9, 1.3);
-      txt(ctx, label.slice(0, shown), anchors.head[0], anchors.head[1] - 46, 20, C.lime);
-      ctx.globalAlpha = A;
+    if (t > 1.55) sheet(322 + drop * 120, 161 + drop * 44, drop * 3.1, second ? 1 : writing);
+    if (second && crumple < 1) {
+      sheet(lerp(322, 298, crumple), lerp(161, 137, crumple), crumple, writing);
     }
-
-    // ink appears on the paper while he writes
-    inkLine(ctx, paper[0] + 5, paper[1] + 3.5, 36, seg(t, 3.2, 4.1), 'rgba(20,24,34,.85)');
-    inkLine(ctx, paper[0] + 5, paper[1] + 7.5, 36, seg(t, 4.2, 5.2), 'rgba(20,24,34,.85)');
-
-    // check mark pops when the page is done
-    if (t > 5.8) {
-      const s = back(seg(t, 5.8, 6.2));
-      ctx.globalAlpha = A * seg(t, 5.8, 6.0);
-      ctx.strokeStyle = C.lime;
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
+    if (crumple > 0 && throwPaper < 1) {
+      const bx = lerp(298, 340, throwPaper);
+      const by = 137 - Math.sin(throwPaper * Math.PI) * 32;
+      const r = (5 + crumple * 4) * (1 + throwPaper * 13);
+      ctx.save();
+      ctx.globalAlpha = 1 - seg(throwPaper, .8, 1);
+      ctx.translate(bx, by);
+      ctx.rotate(throwPaper * 5);
+      ctx.fillStyle = C.white;
       ctx.beginPath();
-      ctx.moveTo(512, 158);
-      ctx.lineTo(517, 163);
-      ctx.lineTo(526, 152);
-      ctx.stroke();
-      ctx.globalAlpha = A;
-      void s;
+      for (let i = 0; i < 12; i++) {
+        const a = i * Math.PI / 6;
+        const edge = r * (i % 2 ? .78 : 1);
+        ctx.lineTo(Math.cos(a) * edge, Math.sin(a) * edge);
+      }
+      ctx.closePath();
+      ctx.fill();
+      line(ctx, -r * .6, -r * .4, r * .25, r * .6, 2, '#9aacc4');
+      ctx.restore();
     }
-
-    // proud straightening at the end
-    if (t > 6.2) {
-      const p = ease(seg(t, 6.2, 6.6));
-      ctx.globalAlpha = A;
-      heart(ctx, 420, 120 - p * 4, 10 + p * 5, C.pink);
+    if (t >= 8.25) {
+      sheet(320, 161, 0, seg(t, 8.25, 10));
+      const message = 'Snad jsem tě netrefila, sry';
+      txt(ctx, message.slice(0, Math.ceil(message.length * seg(t, 8.35, 10))), 320, 61, 22, C.white);
+      line(ctx, 150, 81, 150 + 340 * seg(t, 8.35, 10), 81, 2, C.cyan);
     }
-    ctx.globalAlpha = 1;
   }
 };
 
-/* ---------- scene: doom ---------- */
+const doomArt = new Image();
+doomArt.src = new URL('./article-doom.jpg', import.meta.url);
 
 const doom = {
-  dur: 6.5,
+  dur: 8,
   draw(ctx, t) {
-    const A = seg(t, 0, 0.4);
-    ctx.globalAlpha = A;
     skyline(ctx);
     ground(ctx);
+    desk(ctx, 235, 326, 168);
+    box(ctx, 193, 168, 46, 7, '#82909c', 3);
+    box(ctx, 210, 175, 7, 37, '#536171', 2);
+    const progress = seg(t, .55, 5.4);
+    box(ctx, 344, 48, 209, 111, '#788797', 6);
+    box(ctx, 350, 54, 197, 99, '#181725', 3);
+    if (doomArt.complete && doomArt.naturalWidth) ctx.drawImage(doomArt, 350, 54, 197, 93);
+    box(ctx, 350, 125, 197, 28, '#12141e', 2);
+    txt(ctx, progress < 1 ? 'NAČÍTÁM… ' + Math.floor(progress * 100) + ' %' : 'PŘIPRAVENO HRÁT', 449, 135, 12, C.white);
+    box(ctx, 361, 145, 175, 4, '#454859', 2);
+    box(ctx, 361, 145, progress * 175, 4, C.orange, 2);
+    box(ctx, 436, 159, 25, 9, '#788797', 2);
 
-    // desk
-    box(ctx, 300, 168, 300, 7, 'rgba(255,255,255,.5)', 2);
-    box(ctx, 306, 175, 6, GROUND - 175, 'rgba(255,255,255,.32)', 2);
-    box(ctx, 588, 175, 6, GROUND - 175, 'rgba(255,255,255,.32)', 2);
+    const lift = ease(seg(t, .35, 1.45));
+    const hip = [218, 165];
+    const shoulder = [lerp(224, 209, lift), 137];
+    const head = [shoulder[0] - 4, 123];
+    const foot = [lerp(240, 273, lift), lerp(207, 162, lift)];
+    limb(ctx, ...hip, foot[0] - 7, foot[1] + 3, 29, 28, -1, 5, '#267f9a');
+    limb(ctx, ...hip, ...foot, 29, 28, -1, 5, C.cyan);
+    line(ctx, ...foot, foot[0] + 8, foot[1] + 3, 7, C.pink);
+    line(ctx, ...hip, ...shoulder, 7, C.cyan);
+    blonde(ctx, ...head, 12, 1);
+    circle(ctx, ...head, 10, C.cyan, true);
+    line(ctx, head[0] + 1, 121, head[0] + 9, 121, 3, '#101728');
 
-    // stool
-    box(ctx, 196, 168, 46, 6, 'rgba(255,255,255,.45)', 2);
-    box(ctx, 216, 174, 6, GROUND - 174, 'rgba(255,255,255,.3)', 2);
-
-    // monitor
-    const on = t > 3.2;
-    box(ctx, 470, 96, 120, 66, 'rgba(255,255,255,.55)', 5);
-    box(ctx, 476, 102, 108, 54, on ? '#26080c' : '#12151d', 3);
-    box(ctx, 522, 162, 16, 6, 'rgba(255,255,255,.5)', 2);
-    if (on) {
-      // flames along the bottom of the screen
-      for (let i = 0; i < 9; i++) {
-        const fx = 481 + i * 12;
-        const fh = 6 + Math.abs(Math.sin(t * 9 + i * 1.7)) * 12;
-        ctx.fillStyle = i % 2 ? C.orange : C.pink;
-        ctx.beginPath();
-        ctx.moveTo(fx, 156);
-        ctx.lineTo(fx + 5, 156 - fh);
-        ctx.lineTo(fx + 10, 156);
-        ctx.closePath();
-        ctx.fill();
-      }
-      // DOOM letters type themselves in
-      const letters = Math.ceil(seg(t, 3.4, 4.3) * 4);
-      txt(ctx, 'DOOM'.slice(0, letters), 530, 118, 20, C.lime);
-      // little imp bouncing
-      if (t > 4.4) {
-        const ix = 530 + Math.sin(t * 3) * 34;
-        const iy = 142 - Math.abs(Math.sin(t * 5)) * 20;
-        critter(ctx, ix, iy, 7, C.orange, t);
-      }
-    } else {
-      txt(ctx, '...', 530, 130, 16, 'rgba(255,255,255,.25)');
+    const sip = ease(seg(t, 2.3, 3.1)) * (1 - ease(seg(t, 4.8, 5.6)));
+    const cup = [lerp(244, head[0] + 15, sip), lerp(161, 126, sip)];
+    limb(ctx, ...shoulder, cup[0] - 3, cup[1] + 4, 21, 20, 1, 5, C.cyan);
+    ctx.save();
+    ctx.translate(...cup);
+    ctx.rotate(-sip * .22);
+    strokeBox(ctx, 4, -4, 7, 8, 3, C.lime);
+    box(ctx, -6, -6, 13, 13, C.lime, 3);
+    for (let i = 0; i < 3; i++) {
+      const rise = (t * 12 + i * 7) % 22;
+      ctx.globalAlpha = 1 - rise / 22;
+      line(ctx, i * 3 - 3, -8 - rise, i * 3 - 1 + Math.sin(t * 4 + i), -13 - rise, 1.3, C.white);
     }
-
-    // reclining figure: feet up on the desk
-    const lift = ease(seg(t, 0.6, 1.6));
-    const footX = lerp(258, 336, lift);
-    const footY = lerp(GROUND, 160, lift);
-    const wig = t > 4.6 ? Math.sin(t * 6) * 5 : 0;
-    const hip = [218, 164];
-    const lean = lerp(0.05, -0.3, lift);
-    const sh = [hip[0] + Math.sin(lean) * 28, hip[1] - Math.cos(lean) * 28];
-    const headR = 11;
-    const head = [sh[0] + Math.sin(lean) * 14, sh[1] - Math.cos(lean) * 14];
-    const w = 5;
-
-    // legs (one over the other)
-    ctx.globalAlpha = A * 0.6;
-    limb(ctx, hip[0], hip[1], footX - 6, footY + 4, 62, 52, -1, w, C.cyan);
-    ctx.globalAlpha = A;
-    limb(ctx, hip[0], hip[1], footX, footY + wig * 0.3, 62, 52, -1, w, C.cyan);
-    // shoes
-    circle(ctx, footX + 6, footY + wig * 0.3, 5, C.pink, true);
-    circle(ctx, footX, footY + 5, 5, C.pink, true);
-
-    // torso + head
-    line(ctx, hip[0], hip[1], sh[0], sh[1], w * 1.15, C.cyan);
-    circle(ctx, head[0], head[1], headR, C.cyan, true);
-    ctx.fillStyle = '#0b0f1a';
-    ctx.beginPath();
-    ctx.arc(head[0] + 5, head[1] - 1, 2.4, 0, Math.PI * 2);
-    ctx.fill();
-    // chill sunglasses
-    line(ctx, head[0] + 1, head[1] - 3, head[0] + 10, head[1] - 3, 2.5, '#0b0f1a');
-
-    // coffee: rests on the desk, lifts to the mouth for a sip
-    const sip1 = seg(t, 1.8, 2.5);
-    const sip2 = seg(t, 3.6, 4.1);
-    const down = seg(t, 2.9, 3.4);
-    let cupX = lerp(360, head[0] + 16, sip1 * (1 - down) + sip2 * (1 - down) * 0);
-    let cupY = lerp(158, head[1] + 4, sip1 * (1 - down));
-    if (t > 3.6) {
-      const p = seg(t, 3.6, 4.1) * (1 - seg(t, 4.6, 5.1));
-      cupX = lerp(360, head[0] + 16, p);
-      cupY = lerp(158, head[1] + 4, p);
-    }
-    const armHand = [cupX - 2, cupY + 4];
-    limb(ctx, sh[0], sh[1], armHand[0], armHand[1], 20, 20, 1, w, C.cyan);
-    // second arm propping him up
-    limb(ctx, sh[0], sh[1], 186, 158, 20, 20, 1, w, C.cyan);
-
-    // cup + steam
-    box(ctx, cupX - 6, cupY - 6, 13, 12, C.lime, 2);
-    box(ctx, cupX + 7, cupY - 4, 4, 6, C.lime, 2);
-    if ((cupY < 140) || t > 5.2) {
-      ctx.strokeStyle = 'rgba(255,255,255,.5)';
-      ctx.lineWidth = 1.5;
-      for (let i = 0; i < 2; i++) {
-        ctx.beginPath();
-        const sx = cupX - 2 + i * 5;
-        ctx.moveTo(sx, cupY - 9);
-        ctx.quadraticCurveTo(sx + 3, cupY - 15, sx, cupY - 21);
-        ctx.stroke();
-      }
-    }
-    ctx.globalAlpha = 1;
+    ctx.restore();
   }
 };
 
 /* ---------- scene: napad ---------- */
-
-const BULBS = [
-  [300, 66], [168, 96], [432, 88], [240, 150], [372, 152],
-  [92, 156], [516, 138], [520, 62], [378, 40], [214, 42], [76, 62]
-];
 
 function bulb(ctx, x, y, r, color, on) {
   if (on > 0.05) glow(ctx, x, y, r * 2.6, color, 0.32 * on);
@@ -568,139 +444,124 @@ function bulb(ctx, x, y, r, color, on) {
   }
 }
 
+const PRODUCTS = [
+  ['Hra', 'game'], ['Webovka', 'web'], ['E-shop', 'shop'], ['Nákupní asistent', 'assistant'],
+  ['Android', 'robot'], ['Telefon', 'phone'], ['Hračky', 'toy'], ['Panáček s kloboukem', 'hat']
+];
+
+function productIcon(ctx, type, color) {
+  if (type === 'game') {
+    box(ctx, -19, -9, 38, 19, color, 8);
+    line(ctx, -13, 0, -5, 0, 2, '#121729');
+    line(ctx, -9, -4, -9, 4, 2, '#121729');
+    circle(ctx, 9, 0, 3, '#121729', true);
+  } else if (type === 'web' || type === 'shop') {
+    strokeBox(ctx, -19, -13, 38, 26, 4, color);
+    box(ctx, -19, -13, 38, 6, color, 2);
+    for (let i = 0; i < 3; i++) box(ctx, -14 + i * 10, -3, 8, 10, color, 2);
+    if (type === 'shop') box(ctx, -22, -8, 44, 6, C.orange, 2);
+  } else if (type === 'phone') {
+    strokeBox(ctx, -9, -15, 18, 30, 4, color);
+    box(ctx, -5, -9, 10, 16, color, 2);
+    circle(ctx, 0, 11, 1.5, color, true);
+  } else if (type === 'toy') {
+    box(ctx, -15, 0, 16, 13, color, 3);
+    box(ctx, 2, -5, 15, 18, C.pink, 3);
+    circle(ctx, -5, -7, 6, C.orange, true);
+  } else {
+    box(ctx, -14, -9, 28, 18, color, 5);
+    circle(ctx, -6, 0, 2, '#121729', true);
+    circle(ctx, 6, 0, 2, '#121729', true);
+    if (type === 'hat') {
+      box(ctx, -9, -18, 18, 10, C.orange, 2);
+      box(ctx, -18, -10, 36, 4, C.orange, 2);
+    } else {
+      line(ctx, 0, -8, 0, -16, 2, color);
+      circle(ctx, 0, -16, 2.5, color, true);
+      if (type === 'assistant') box(ctx, -17, 12, 34, 4, color, 2);
+    }
+  }
+}
+
 const napad = {
-  dur: 6.5,
+  dur: 8,
   draw(ctx, t) {
-    const A = seg(t, 0, 0.4);
-    ctx.globalAlpha = A;
     skyline(ctx);
     ground(ctx);
-
-    // watcher on the left reacts to every new idea
-    const pops = BULBS.map((_, i) => 0.6 + i * 0.5);
-    let jump = 0;
-    pops.forEach((p) => {
-      if (t > p && t < p + 0.45) jump = Math.max(jump, Math.sin(seg(t, p, p + 0.45) * Math.PI) * 7);
-    });
-    person(ctx, {
-      x: 54, y: GROUND - jump, h: 74, facing: 1, color: C.pink,
-      lean: 0.04 + jump * 0.01,
-      armF: [96, 132 - jump], armB: [88, 128 - jump], alpha: A
-    });
-
-    // ideas multiplying
-    BULBS.forEach(([x, y], i) => {
-      const p0 = pops[i];
-      if (t < p0) return;
-      const s = back(seg(t, p0, p0 + 0.5));
-      const pulse = 0.6 + 0.4 * Math.sin(t * 4 + i);
-      const r = 13 * s;
+    const wave = Math.sin(t * 7) * (1 - seg(t, 6.2, 7));
+    person(ctx, { x: 54, y: GROUND, h: 84, color: C.pink,
+      armF: [82, 130 + wave * 7], armB: [63, 157] });
+    PRODUCTS.forEach(([name, type], i) => {
+      const start = .3 + i * .62;
+      if (t <= start) return;
+      const x = 157 + (i % 4) * 131;
+      const y = 64 + Math.floor(i / 4) * 94;
+      const change = seg(t, start + .55, start + 1.06);
       const color = [C.lime, C.cyan, C.orange, C.pink][i % 4];
       ctx.save();
       ctx.translate(x, y);
-      ctx.scale(s, s);
-      ctx.translate(-x, -y);
-      bulb(ctx, x, y, r, color, pulse * s);
+      if (change < 1) {
+        ctx.globalAlpha = seg(t, start, start + .15) * (1 - change);
+        bulb(ctx, 0, 0, 12, color, 1);
+      }
+      if (change > 0) {
+        ctx.globalAlpha = change;
+        ctx.scale(back(change), back(change));
+        box(ctx, -62, -26, 124, 66, '#181d32', 8);
+        strokeBox(ctx, -62, -26, 124, 66, 8, color, 1.2);
+        productIcon(ctx, type, color);
+        txt(ctx, name, 0, 27, name.length > 17 ? 10 : 12, C.white);
+      }
       ctx.restore();
-      if (i === 0) txt(ctx, '!', x, y - 30, 18, C.lime);
     });
-    ctx.globalAlpha = 1;
   }
 };
 
-/* ---------- scene: dcera ---------- */
+function workstation(ctx, x, top, color, t, active) {
+  desk(ctx, x, 106, top);
+  box(ctx, x + 29, top - 49, 65, 37, '#82909c', 4);
+  box(ctx, x + 33, top - 45, 57, 29, '#101728', 2);
+  box(ctx, x + 59, top - 12, 7, 12, '#82909c', 2);
+  box(ctx, x + 10, top - 4, 35, 4, color, 2);
+  for (let i = 0; i < 3; i++) {
+    const width = active ? 10 + ((Math.floor(t * 7) + i * 9) % 36) : 8;
+    box(ctx, x + 39, top - 39 + i * 7, width, 2, color, 1);
+  }
+}
 
 const dcera = {
-  dur: 6.5,
+  dur: 8,
   draw(ctx, t) {
-    const A = seg(t, 0, 0.4);
-    ctx.globalAlpha = A;
     skyline(ctx);
     ground(ctx);
+    workstation(ctx, 166, 172, C.pink, t, true);
+    person(ctx, { x: 144, y: GROUND, h: 90, color: C.pink, lean: .16,
+      armF: [178, 165 + Math.sin(t * 16) * 2], armB: [173, 164 - Math.sin(t * 16) * 2] });
 
-    // mom's workstation
-    box(ctx, 60, 172, 92, 7, 'rgba(255,255,255,.5)', 2);
-    box(ctx, 66, 179, 6, GROUND - 179, 'rgba(255,255,255,.32)', 2);
-    box(ctx, 140, 179, 6, GROUND - 179, 'rgba(255,255,255,.32)', 2);
-    box(ctx, 74, 166, 62, 6, 'rgba(255,255,255,.55)', 2);
-    box(ctx, 78, 138, 54, 28, 'rgba(255,255,255,.55)', 3);
-    box(ctx, 82, 142, 46, 20, '#101728', 2);
-    if (t > 0.5) {
-      const caret = Math.floor(t * 3) % 2 === 0;
-      box(ctx, 86, 148, 22, 3, C.cyan, 1);
-      if (caret) box(ctx, 110, 146, 3, 7, C.cyan, 1);
+    const arrive = ease(seg(t, .45, 2.1));
+    const fetch = ease(seg(t, 3.1, 4.2));
+    const slide = ease(seg(t, 4.2, 5.9));
+    const deskX = lerp(652, 367, slide);
+    const daughterX = t < 4.2 ? lerp(lerp(670, 319, arrive), 616, fetch) : deskX - 36;
+    const moving = (arrive > 0 && arrive < 1) || (fetch > 0 && fetch < 1) || (slide > 0 && slide < 1);
+    const typing = t >= 5.9;
+    workstation(ctx, deskX, 177, C.lime, t, typing);
+    person(ctx, { x: daughterX, y: GROUND, h: 73, color: C.lime,
+      facing: t < 3.1 ? -1 : 1, lean: t < 3.1 ? -.14 : .25,
+      legPhase: moving ? t * 14 : null,
+      armF: t >= 4.2 ? [daughterX + (typing ? 45 : 36), 174 + (typing ? Math.sin(t * 18) * 2 : 0)] : undefined });
+    if (t > 2 && t < 3.2) {
+      box(ctx, 256, 73, 126, 34, C.white, 8);
+      line(ctx, 314, 105, 318, 114, 5, C.white);
+      txt(ctx, 'Já chci taky!', 319, 91, 14, '#141a26');
     }
-
-    // toys on the right so the room feels lived in
-    box(ctx, 400, GROUND - 14, 14, 14, C.violet, 2);
-    box(ctx, 416, GROUND - 10, 10, 10, C.orange, 2);
-    circle(ctx, 452, GROUND - 7, 7, C.pink, true);
-
-    // mom typing
-    const type = Math.sin(t * 9) * 3;
-    const pull = ease(seg(t, 3.0, 4.0)) * (1 - seg(t, 5.0, 5.4));
-    const momLean = 0.05 - pull * 0.09 * (1 + Math.sin(t * 7) * 0.5);
-    const momX = t > 5.2 ? lerp(40, 85, ease(seg(t, 5.2, 5.9))) : 40;
-    const mom = person(ctx, {
-      x: momX, y: GROUND, h: 88, facing: 1, color: C.pink,
-      lean: momLean,
-      legPhase: t > 5.2 && t < 5.9 ? t * 10 : null,
-      armF: [lerp(momX + 34, 96, pull) + (pull ? 0 : type * 0.4), lerp(166, 160, pull) + (pull ? Math.sin(t * 8) * 3 : 0)],
-      armB: [momX + 44, 168 - type * 0.5],
-      alpha: A
-    });
-
-    // daughter runs in from the right, then tugs mom's arm
-    const run = seg(t, 1.3, 3.0);
-    const dx = lerp(560, 118, ease(run));
-    const running = t > 1.3 && t < 3.0;
-    const dSh = [dx - Math.sin(0.05) * 18, (GROUND - 54 * 0.44) - Math.cos(0.05) * 18];
-    const tugP = ease(seg(t, 3.0, 3.6)) * (1 - seg(t, 4.9, 5.3));
-    person(ctx, {
-      x: dx, y: GROUND, h: 54, facing: -1, color: C.lime,
-      lean: tugP ? -0.08 - Math.sin(t * 8) * 0.05 : 0.05,
-      legPhase: running ? t * 11 : null,
-      armF: tugP ? [mom.handF[0] + 6, mom.handF[1] + 2] : [dx - 22, GROUND - 54 * 0.5],
-      armB: [dx + 16, GROUND - 54 * 0.5],
-      alpha: A
-    });
-    void dSh;
-
-    // speech bubble
-    if (t > 4.1) {
-      const s = back(seg(t, 4.1, 4.5));
-      ctx.save();
-      ctx.translate(178, 104);
-      ctx.scale(s, s);
-      const bw = 108;
-      const bh = 30;
-      box(ctx, -bw / 2, -bh / 2, bw, bh, C.white, 8);
-      ctx.fillStyle = C.white;
-      ctx.beginPath();
-      ctx.moveTo(-bw / 2 + 14, bh / 2 - 2);
-      ctx.lineTo(-bw / 2 + 6, bh / 2 + 12);
-      ctx.lineTo(-bw / 2 + 30, bh / 2 - 2);
-      ctx.closePath();
-      ctx.fill();
-      txt(ctx, 'JÁ CHCI TAKY!', 0, 1, 12, '#141a26');
-      ctx.restore();
-    }
-
-    // mom reaches out to pat her head, heart pops
-    if (t > 5.9) {
-      const s = back(seg(t, 5.9, 6.3));
-      ctx.globalAlpha = A * seg(t, 5.9, 6.1);
-      heart(ctx, 150, 118 - s * 4, 11 * s, C.pink);
-      ctx.globalAlpha = A;
-    }
-    void mom;
-    ctx.globalAlpha = 1;
+    if (typing) heart(ctx, 307, 112, 15 * back(seg(t, 5.9, 6.4)), C.pink);
   }
 };
 
 /* ---------- scene: armada ---------- */
 
-function robot(ctx, x, phase, salute, alpha) {
+function robot(ctx, x, phase, salute, alpha, color) {
   const w = 44;
   const h = 54;
   const top = GROUND - h;
@@ -708,79 +569,67 @@ function robot(ctx, x, phase, salute, alpha) {
   ctx.globalAlpha = alpha;
   // legs
   const lp = phase;
-  limb(ctx, x, top + h * 0.6, x - 10 + Math.sin(lp) * 8, GROUND, 12, 12, -1, 5, C.violet);
-  limb(ctx, x, top + h * 0.6, x + 10 - Math.sin(lp) * 8, GROUND, 12, 12, -1, 5, C.violet);
+  limb(ctx, x, top + h * 0.6, x - 10 + Math.sin(lp) * 8, GROUND, 12, 12, -1, 5, color);
+  limb(ctx, x, top + h * 0.6, x + 10 - Math.sin(lp) * 8, GROUND, 12, 12, -1, 5, color);
   // body
-  box(ctx, x - w / 2, top + 8, w, h * 0.55, C.violet, 6);
+  box(ctx, x - w / 2, top + 8, w, h * 0.55, color, 6);
   box(ctx, x - w / 2 + 6, top + 14, w - 12, 8, 'rgba(11,15,26,.6)', 2);
   // head
-  box(ctx, x - 13, top - 6, 26, 18, C.violet, 4);
+  box(ctx, x - 13, top - 6, 26, 18, color, 4);
   box(ctx, x - 8, top, 16, 5, C.cyan, 2);
   // antenna
   line(ctx, x, top - 6, x, top - 16, 2, 'rgba(255,255,255,.6)');
   circle(ctx, x, top - 18, 3.5, C.pink, true);
   // arms
   if (salute > 0.5) {
-    limb(ctx, x + w / 2 - 4, top + 14, x + 6, top - 4, 14, 14, 1, 5, C.violet);
-    limb(ctx, x - w / 2 + 4, top + 14, x - 14, top + 34, 14, 14, -1, 5, C.violet);
+    limb(ctx, x + w / 2 - 4, top + 14, x + 6, top - 4, 14, 14, 1, 5, color);
+    limb(ctx, x - w / 2 + 4, top + 14, x - 14, top + 34, 14, 14, -1, 5, color);
   } else {
-    limb(ctx, x + w / 2 - 4, top + 14, x + 20, top + 40, 14, 14, 1, 5, C.violet);
-    limb(ctx, x - w / 2 + 4, top + 14, x - 20, top + 40, 14, 14, -1, 5, C.violet);
+    limb(ctx, x + w / 2 - 4, top + 14, x + 20, top + 40, 14, 14, 1, 5, color);
+    limb(ctx, x - w / 2 + 4, top + 14, x - 20, top + 40, 14, 14, -1, 5, color);
   }
   ctx.restore();
 }
 
+const AGENTS = ['Qwen', 'Gemma', 'Pi', 'Codex', 'Claude', 'Hermes', 'DeepSeek', 'Argon', 'Gemini', 'Nemotron'];
+
 const armada = {
-  dur: 6.5,
+  dur: 7.2,
   draw(ctx, t) {
-    const A = seg(t, 0, 0.4);
-    ctx.globalAlpha = A;
     skyline(ctx);
     ground(ctx);
-
-    // five robots marching into formation
-    for (let i = 0; i < 5; i++) {
-      const target = 120 + i * 95;
-      const start = -70;
-      const t0 = 0.2 + i * 0.3;
-      const p = ease(seg(t, t0, t0 + 1.5));
-      const x = lerp(start, target, p);
-      const walking = p > 0 && p < 1;
-      const saluteT = 4.3 + i * 0.18;
-      const salute = t > saluteT ? 1 : 0;
-      const blink = t > 5.4 ? 0.7 + 0.3 * Math.sin(t * 8 + i) : 1;
-      robot(ctx, x, walking ? t * 8 + i : 0, salute, A * blink);
-      void saluteT;
-    }
-
-    // general inspecting from the right
-    const gx = lerp(612, 566, ease(seg(t, 2.6, 3.9)));
-    const gWalk = t > 2.6 && t < 3.9;
-    const pointing = t > 3.9;
-    person(ctx, {
-      x: gx, y: GROUND, h: 84, facing: -1, color: C.orange,
-      lean: pointing ? -0.06 : 0.03,
-      legPhase: gWalk ? t * 10 : null,
-      armF: pointing ? [gx - 40, GROUND - 66] : [gx - 18, GROUND - 40],
-      armB: [gx + 16, GROUND - 38],
-      alpha: A
+    AGENTS.forEach((name, i) => {
+      const rank = Math.floor(i / 5);
+      const p = ease(seg(t, .25 + i * .21, 1.6 + i * .21));
+      const x = lerp(-42, 58 + (i % 5) * 99, p);
+      const color = [C.violet, C.cyan, C.lime, C.pink, C.orange][i % 5];
+      const salute = seg(t, 4.4 + i * .12, 4.7 + i * .12);
+      ctx.save();
+      ctx.translate(0, rank ? 0 : -91);
+      robot(ctx, x, p > 0 && p < 1 ? t * 14 + i : 0, salute, p, color);
+      ctx.globalAlpha = p;
+      txt(ctx, name, x, 124, 14, C.white);
+      ctx.restore();
     });
-    // cap
-    const gsh = [gx - Math.sin(-0.06) * 0, GROUND - 84 * 0.78];
-    box(ctx, gx - 13, GROUND - 84 * 0.78 - 26, 26, 7, C.orange, 3);
-    box(ctx, gx - (gx > 580 ? 13 : 13) - 8, GROUND - 84 * 0.78 - 21, 14, 4, C.orange, 2);
-    void gsh;
 
-    // salute order ticks above the robots
-    if (t > 4.3 && t < 5.6) {
-      for (let i = 0; i < 5; i++) {
-        const st = 4.3 + i * 0.18;
-        if (t > st) {
-          txt(ctx, '✓', 120 + i * 95, 44, 16, C.lime);
-        }
-      }
-    }
-    ctx.globalAlpha = 1;
+    const x = lerp(667, 575, ease(seg(t, 2.6, 4)));
+    const pose = ease(seg(t, 4, 4.5));
+    const general = person(ctx, { x, y: GROUND - 4, h: 94, facing: -1, color: '#cc5268',
+      lean: -.06, legPhase: t > 2.6 && t < 4 ? t * 12 : null,
+      armF: [x - lerp(19, 43, pose), lerp(164, 141, pose)] });
+    const [sx, sy] = general.sh;
+    const [hx, hy] = general.hip;
+    box(ctx, sx - 12, sy - 2, 23, hy - sy + 8, '#85354e', 4);
+    line(ctx, sx - 12, sy, sx - 4, sy, 4, '#ffda8d');
+    line(ctx, sx + 4, sy, sx + 11, sy, 4, '#ffda8d');
+    line(ctx, sx - 8, sy + 3, hx + 6, hy - 3, 3, '#ffda8d');
+    box(ctx, hx - 11, hy - 3, 23, 5, '#211627', 1);
+    general.feet.forEach(([fx, fy]) => {
+      line(ctx, fx + 3, fy - 3, fx - 8, fy + 2, 4, C.pink);
+      line(ctx, fx + 3, fy - 2, fx + 3, fy + 3, 2, C.pink);
+    });
+    box(ctx, general.head[0] - 13, general.head[1] - 15, 25, 8, '#85354e', 3);
+    box(ctx, general.head[0] - 17, general.head[1] - 9, 29, 3, '#ffda8d', 1);
   }
 };
 
@@ -938,7 +787,36 @@ const slozite = {
       ctx.restore();
     }
 
-    // observer watching it all make (no) sense
+    // A miniature neighborhood comes to life around the buildings.
+    const reveal = ease(seg(t, 4.4, 5.7));
+    ctx.save();
+    ctx.globalAlpha = reveal;
+    for (let i = 0; i < 7; i++) {
+      const x = 396 + i * 35;
+      const y = 29 + (i * 17) % 37;
+      const twinkle = 3 + 2 * (1 + Math.sin(t * 6 + i));
+      line(ctx, x - twinkle, y, x + twinkle, y, 1.5, '#ffda8d');
+      line(ctx, x, y - twinkle, x, y + twinkle, 1.5, '#ffda8d');
+    }
+    for (const x of [441, 558]) {
+      const drift = x + (t - 4.4) * 5;
+      box(ctx, drift - 17, 81, 43, 10, '#afc5ec', 5);
+      circle(ctx, drift - 3, 81, 9, '#afc5ec', true);
+      circle(ctx, drift + 9, 79, 11, '#afc5ec', true);
+    }
+    ctx.restore();
+    const walk = ease(seg(t, 5.05, 6.35));
+    if (walk > 0) {
+      person(ctx, { x: lerp(449, 492, walk), y: GROUND, h: 37, color: C.orange, alpha: reveal,
+        legPhase: walk < 1 ? t * 12 : null });
+      person(ctx, { x: lerp(581, 548, walk), y: GROUND, h: 32, color: C.pink, facing: -1,
+        alpha: reveal, legPhase: walk < 1 ? t * 12 : null });
+      line(ctx, 526, 185, 526, GROUND, 4, '#ad7754');
+      circle(ctx, 526, 183, 11, '#84d67a', true);
+      circle(ctx, 533, 177, 8, '#b9ef93', true);
+    }
+
+    // observer watching the neighborhood take shape
     person(ctx, {
       x: 176, y: GROUND, h: 74, facing: 1, color: C.cyan,
       lean: -0.04, armF: [188, GROUND - 62], armB: [166, GROUND - 40], alpha: A
@@ -1064,6 +942,7 @@ function initFigure(fig) {
     started = true;
   }
 
+  if (scene === doom) doomArt.addEventListener('load', () => paint(t));
   window.addEventListener('resize', () => paint(t));
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => paint(t));

@@ -244,7 +244,7 @@ function person(ctx, o) {
 
   // head
   if (o.head === 'house') {
-    buildingHead(ctx, head[0], head[1] + headR, headR * 2.6, col, C.lime);
+    buildingHead(ctx, head[0], head[1] + headR, headR * 2.6, col, C.lime, o.front);
   } else {
     blonde(ctx, ...head, headR, f, Math.sin(o.legPhase || 0) * 3);
     circle(ctx, head[0], head[1], headR * .83, col, true);
@@ -259,15 +259,15 @@ function person(ctx, o) {
 }
 
 /* Building used as a head: the "firma" has a house for a brain. */
-function buildingHead(ctx, cx, baseY, s, color, win) {
-  const w = s * 0.72;
+function buildingHead(ctx, cx, baseY, s, color, win, front = 0) {
+  const w = s * lerp(.72, .96, front);
   const x = cx - w / 2;
   const y = baseY - s;
   box(ctx, x, y, w, s, color, 2);
   ctx.fillStyle = color;
   ctx.beginPath();
   ctx.moveTo(x - 4, y + 1);
-  ctx.lineTo(cx, y - s * 0.32);
+  ctx.lineTo(cx + s * .18 * (1 - front), y - s * 0.32);
   ctx.lineTo(x + w + 4, y + 1);
   ctx.closePath();
   ctx.fill();
@@ -276,6 +276,16 @@ function buildingHead(ctx, cx, baseY, s, color, win) {
     for (let c = 0; c < 2; c++) {
       ctx.fillRect(x + w * 0.18 + c * w * 0.42, y + s * 0.34 + r * s * 0.3, w * 0.2, s * 0.16);
     }
+  }
+  if (front > 0) {
+    ctx.save();
+    ctx.globalAlpha *= front;
+    // Centered pupils in both upstairs windows face the reader.
+    for (const offset of [.28, .70]) {
+      circle(ctx, x + w * offset, y + s * .42, s * .045, '#121729', true);
+    }
+    line(ctx, cx - 2, y + s * .63, cx + 2, y + s * .63, 1.5, '#121729');
+    ctx.restore();
   }
 }
 
@@ -321,8 +331,10 @@ const firma = {
       lerp(304 + writing * 22, 298, crumple) + Math.sin(t * 24) * (1 - crumple),
       lerp(155 + 2 * Math.sin(t * 24), 137, crumple)
     ];
-    person(ctx, { x, y: GROUND, h: 86, lean: .21, legPhase: walking ? t * 13 : null,
+    const front = ease(seg(t, 8.1, 8.52));
+    const writer = person(ctx, { x, y: GROUND, h: 86, lean: .21 * (1 - front), stance: 8 + 4 * front, front, head: 'house', legPhase: walking ? t * 13 : null,
       armF: hand, armB: crumple > 0 && throwPaper < 1 ? [292, 138] : undefined });
+    txt(ctx, 'firma', writer.head[0], writer.head[1] - 40, 16, C.lime);
     if (hand && (crumple === 0 || t >= 8.25)) line(ctx, hand[0], hand[1] - 5, hand[0] + 4, hand[1] + 6, 3, C.orange);
 
     function sheet(x, y, angle, progress) {
@@ -375,9 +387,16 @@ const doom = {
   draw(ctx, t) {
     skyline(ctx);
     ground(ctx);
-    desk(ctx, 235, 326, 168);
-    box(ctx, 193, 168, 46, 7, '#82909c', 3);
-    box(ctx, 210, 175, 7, 37, '#536171', 2);
+    desk(ctx, 259, 302, 168);
+    // Upholstered chair with a back, a visible seat and two floor supports.
+    box(ctx, 180, 126, 18, 49, '#4c5b77', 7);
+    box(ctx, 183, 128, 12, 39, '#768ab0', 5);
+    box(ctx, 186, 168, 49, 9, '#768ab0', 4);
+    line(ctx, 194, 176, 190, GROUND, 5, '#536171');
+    line(ctx, 226, 176, 231, GROUND, 5, '#536171');
+    // Small side shelf keeps the mug within reach of the chair.
+    box(ctx, 237, 168, 22, 5, '#82909c', 2);
+    line(ctx, 244, 174, 244, GROUND, 4, '#536171');
     const progress = seg(t, .55, 5.4);
     box(ctx, 344, 48, 209, 111, '#788797', 6);
     box(ctx, 350, 54, 197, 99, '#181725', 3);
@@ -389,12 +408,13 @@ const doom = {
     box(ctx, 436, 159, 25, 9, '#788797', 2);
 
     const lift = ease(seg(t, .35, 1.45));
-    const hip = [218, 165];
-    const shoulder = [lerp(224, 209, lift), 137];
+    const hip = [211, 165];
+    const shoulder = [lerp(213, 201, lift), 137];
     const head = [shoulder[0] - 4, 123];
-    const foot = [lerp(240, 273, lift), lerp(207, 162, lift)];
-    limb(ctx, ...hip, foot[0] - 7, foot[1] + 3, 29, 28, -1, 5, '#267f9a');
+    const foot = [lerp(235, 264, lift), lerp(207, 163, lift)];
+    limb(ctx, ...hip, foot[0] - 4, foot[1] + 2, 29, 28, -1, 5, '#267f9a');
     limb(ctx, ...hip, ...foot, 29, 28, -1, 5, C.cyan);
+    line(ctx, foot[0] - 4, foot[1] + 2, foot[0] + 4, foot[1] + 3, 6, '#ae309a');
     line(ctx, ...foot, foot[0] + 8, foot[1] + 3, 7, C.pink);
     line(ctx, ...hip, ...shoulder, 7, C.cyan);
     blonde(ctx, ...head, 12, 1);
@@ -402,8 +422,8 @@ const doom = {
     line(ctx, head[0] + 1, 121, head[0] + 9, 121, 3, '#101728');
 
     const sip = ease(seg(t, 2.3, 3.1)) * (1 - ease(seg(t, 4.8, 5.6)));
-    const cup = [lerp(244, head[0] + 15, sip), lerp(161, 126, sip)];
-    limb(ctx, ...shoulder, cup[0] - 3, cup[1] + 4, 21, 20, 1, 5, C.cyan);
+    const cup = [lerp(239, head[0] + 15, sip), lerp(161, 126, sip)];
+    limb(ctx, ...shoulder, cup[0] - 3, cup[1] + 4, 23, 23, 1, 5, C.cyan);
     ctx.save();
     ctx.translate(...cup);
     ctx.rotate(-sip * .22);

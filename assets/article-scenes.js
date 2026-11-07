@@ -542,14 +542,15 @@ const dcera = {
     const fetch = ease(seg(t, 3.1, 4.2));
     const slide = ease(seg(t, 4.2, 5.9));
     const deskX = lerp(652, 367, slide);
-    const daughterX = t < 4.2 ? lerp(lerp(670, 319, arrive), 616, fetch) : deskX - 36;
+    const settle = ease(seg(t, 5.9, 6.35));
+    const daughterX = t < 4.2 ? lerp(lerp(670, 319, arrive), 616, fetch) : deskX - 36 + 13 * settle;
     const moving = (arrive > 0 && arrive < 1) || (fetch > 0 && fetch < 1) || (slide > 0 && slide < 1);
     const typing = t >= 5.9;
     workstation(ctx, deskX, 177, C.lime, t, typing);
     person(ctx, { x: daughterX, y: GROUND, h: 73, color: C.lime,
       facing: t < 3.1 ? -1 : 1, lean: t < 3.1 ? -.14 : .25,
       legPhase: moving ? t * 14 : null,
-      armF: t >= 4.2 ? [daughterX + (typing ? 45 : 36), 174 + (typing ? Math.sin(t * 18) * 2 : 0)] : undefined });
+      armF: t >= 4.2 ? [typing ? deskX + 12 : deskX, 174 + (typing ? Math.sin(t * 18) * 2 : 0)] : undefined });
     if (t > 2 && t < 3.2) {
       box(ctx, 256, 73, 126, 34, C.white, 8);
       line(ctx, 314, 105, 318, 114, 5, C.white);
@@ -605,7 +606,7 @@ const armada = {
       const color = [C.violet, C.cyan, C.lime, C.pink, C.orange][i % 5];
       const salute = seg(t, 4.4 + i * .12, 4.7 + i * .12);
       ctx.save();
-      ctx.translate(0, rank ? 0 : -91);
+      ctx.translate(0, rank ? 0 : -104);
       robot(ctx, x, p > 0 && p < 1 ? t * 14 + i : 0, salute, p, color);
       ctx.globalAlpha = p;
       txt(ctx, name, x, 124, 14, C.white);

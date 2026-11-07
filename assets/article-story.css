@@ -44,3 +44,33 @@
 .article-scene:hover{border-color:color-mix(in srgb,var(--neon-cyan) 45%,transparent)}
 .article-scene:focus-visible{border-color:var(--neon-cyan);box-shadow:0 0 0 3px color-mix(in srgb,var(--neon-cyan) 25%,transparent)}
 @media(prefers-reduced-motion:reduce){.article-scene{opacity:1;transform:none;transition:none}}
+
+/* The article pointer uses the three accents of the MORFIAI mark. */
+.article-prism-cursor {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 22px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 120;
+  display: none;
+  color: #00f5ff;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.article-pointer-active:not(.morfiai-arena-pointer):not(.morfiai-game-cursor) .article-prism-cursor {
+    display: block;
+    animation: article-prism-colors 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  html.article-pointer-active:not(.morfiai-arena-pointer):not(.morfiai-game-cursor) #pribeh,
+  html.article-pointer-active:not(.morfiai-arena-pointer):not(.morfiai-game-cursor) #pribeh * {
+    cursor: none !important;
+  }
+  html.article-pointer-active #morfiai-cursor-ring,
+  html.article-pointer-active #morfiai-cursor-ball { visibility: hidden; }
+}
+@keyframes article-prism-colors {
+  0%, 100% { color: #00f5ff; }
+  33% { color: #e32bff; }
+  67% { color: #ffc629; }
+}

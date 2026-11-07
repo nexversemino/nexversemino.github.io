@@ -65,3 +65,35 @@ if(section){
  addEventListener('load',schedule,{once:true});
  update();
 }
+
+const articlePointerArea = document.querySelector('#pribeh');
+if (articlePointerArea) {
+  const pointer = document.createElement('div');
+  pointer.className = 'article-prism-cursor';
+  pointer.setAttribute('aria-hidden', 'true');
+  pointer.innerHTML = '<svg viewBox="0 0 22 28"><path d="M2 2 19 15l-8 1-4 8Z" fill="#111420" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m2 2 9 14" stroke="currentColor" stroke-width="1.4"/></svg>';
+  document.body.append(pointer);
+
+  const mode = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  let position = null;
+  function syncArticlePointer() {
+    const target = position && document.elementFromPoint(...position);
+    const active = mode.matches && target && articlePointerArea.contains(target);
+    document.documentElement.classList.toggle('article-pointer-active', Boolean(active));
+    if (active) pointer.style.transform = 'translate(' + (position[0] - 2) + 'px,' + (position[1] - 2) + 'px)';
+  }
+  function clearArticlePointer() {
+    position = null;
+    syncArticlePointer();
+  }
+  addEventListener('pointermove', event => {
+    if (event.pointerType === 'touch') { clearArticlePointer(); return; }
+    position = [event.clientX, event.clientY];
+    syncArticlePointer();
+  }, { passive: true });
+  addEventListener('scroll', syncArticlePointer, { passive: true });
+  addEventListener('resize', syncArticlePointer);
+  addEventListener('blur', clearArticlePointer);
+  document.addEventListener('pointerleave', clearArticlePointer);
+  mode.addEventListener('change', syncArticlePointer);
+}

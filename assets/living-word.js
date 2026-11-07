@@ -5,6 +5,8 @@ function mountArena(){
  const word=document.querySelector('#engine h2 em'),engine=document.querySelector('#engine'),contact=document.querySelector('#kontakt');
  if(!word||!engine||!contact||word.dataset.morfiaiArena)return;word.dataset.morfiaiArena='true';word.removeAttribute('data-orb');
  document.querySelectorAll('.morfiai-living-word,.morfiai-guide-target').forEach(el=>{if(el.tagName==='CANVAS')el.remove();else el.classList.remove('morfiai-guide-target')});
+ const article=document.querySelector('#pribeh');
+ const arenaEnd=article ? engine : contact;
  const canvas=document.createElement('canvas');canvas.className='morfiai-living-word morfiai-arena';canvas.setAttribute('aria-hidden','true');document.body.append(canvas);const ctx=canvas.getContext('2d');
  const ui=document.createElement('div');ui.className='morfiai-battle-ui';ui.hidden=true;
  const status=document.createElement('span'),pause=document.createElement('button'),restart=document.createElement('button');pause.textContent='Pauza';restart.textContent='Znovu';pause.type=restart.type='button';ui.append(status,pause,restart);document.body.append(ui);
@@ -13,12 +15,12 @@ function mountArena(){
  const player={x:0,y:0,active:false,cool:0,hp:100,respawn:0,color:'#6bff60',phase:0,clientX:innerWidth/2,clientY:innerHeight/2,id:-1,champion:false,invulnerable:0};
  const random=(a,b)=>a+Math.random()*(b-a),clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),ease=t=>{t=clamp(t,0,1);return t*t*(3-2*t)},lerp=(a,b,t)=>a+(b-a)*t;
  const box=el=>{const b=el.getBoundingClientRect();return {x:b.left+scrollX,y:b.top+scrollY,w:b.width,h:b.height}};
- function bounds(){const a=box(engine),b=box(contact);return {left:25,right:innerWidth-25,top:a.y+55,bottom:b.y+b.h-35}}
- function shown(){const a=engine.getBoundingClientRect(),b=contact.getBoundingClientRect();return a.top<innerHeight&&b.bottom>90}
+ function bounds(){const a=box(engine),b=box(arenaEnd);return {left:25,right:innerWidth-25,top:a.y+55,bottom:b.y+b.h-35}}
+ function shown(){const a=engine.getBoundingClientRect(),b=arenaEnd.getBoundingClientRect();return a.top<innerHeight&&b.bottom>90}
  function resize(){const ratio=Math.min(devicePixelRatio||1,1.5);canvas.width=innerWidth*ratio;canvas.height=innerHeight*ratio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(ratio,0,0,ratio,0,0)}
  resize();addEventListener('resize',resize);
  function refreshCovers(){
-  covers=[];for(const heading of document.querySelectorAll('#engine h2,#kontakt h2')){const walker=document.createTreeWalker(heading,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){for(let i=0;i<node.textContent.length;i++){if(!node.textContent[i].trim())continue;const range=document.createRange();range.setStart(node,i);range.setEnd(node,i+1);const b=range.getBoundingClientRect();if(b.width>6&&b.height>24)covers.push({x:b.left+scrollX+2,y:b.top+scrollY+5,w:Math.max(5,b.width-4),h:Math.max(20,b.height-10),letter:node.textContent[i]})}}}
+  covers=[];for(const heading of document.querySelectorAll(article ? '#engine h2' : '#engine h2,#kontakt h2')){const walker=document.createTreeWalker(heading,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){for(let i=0;i<node.textContent.length;i++){if(!node.textContent[i].trim())continue;const range=document.createRange();range.setStart(node,i);range.setEnd(node,i+1);const b=range.getBoundingClientRect();if(b.width>6&&b.height>24)covers.push({x:b.left+scrollX+2,y:b.top+scrollY+5,w:Math.max(5,b.width-4),h:Math.max(20,b.height-10),letter:node.textContent[i]})}}}
  }
  function newRound(winner){
   const area=bounds();championColor=winner||null;playerChampion=winner===player.color;player.champion=playerChampion;
@@ -41,22 +43,41 @@ function mountArena(){
  function cloud(){const targets=[];for(const f of fighters){const s=silhouette(f,0);for(let i=0;i<14;i++){const a=i/14*Math.PI*2;targets.push({x:s.head.x+5*Math.cos(a),y:s.head.y+5*Math.sin(a),color:f.color})}for(const seg of s.segments)for(let i=0;i<8;i++)targets.push({x:lerp(seg[0].x,seg[1].x,i/7),y:lerp(seg[0].y,seg[1].y,i/7),color:f.color})}return targets}
  function gameMode(){return started&&elapsed>3.8&&!reduced.matches}
  function interactive(target){return target instanceof Element&&!!target.closest('a,button,input,select,textarea,[contenteditable="true"],.morfiai-battle-ui')}
- function eligible(event){return gameMode()&&!paused&&event.pointerType!=='touch'&&!interactive(event.target)}
- function hidePlayer(){player.active=false;document.documentElement.classList.remove('morfiai-arena-pointer')}
- function move(event){if(event.pointerType==='touch')return;player.active=gameMode();document.documentElement.classList.toggle('morfiai-arena-pointer',player.active);document.documentElement.classList.toggle('morfiai-game-on',gameMode());player.clientX=event.clientX;player.clientY=event.clientY;player.x=event.clientX+scrollX;player.y=event.clientY+scrollY+18}
+ function inArena(target){return !article||(target instanceof Element&&engine.contains(target))}
+ function eligible(event){return gameMode()&&!paused&&event.pointerType!=='touch'&&inArena(event.target)&&!interactive(event.target)}
+ function updatePlayerMode(){
+  const target=document.elementFromPoint(player.clientX,player.clientY);
+  const active=player.active&&gameMode()&&!paused&&inArena(target)&&!interactive(target);
+  player.active=active;
+  document.documentElement.classList.toggle('morfiai-arena-pointer',active);
+  document.documentElement.classList.toggle('morfiai-game-on',active);
+ }
+ function hidePlayer(){player.active=false;document.documentElement.classList.remove('morfiai-arena-pointer','morfiai-game-on')}
+ function move(event){
+  if(event.pointerType==='touch'){hidePlayer();return}
+  player.clientX=event.clientX;player.clientY=event.clientY;
+  player.x=event.clientX+scrollX;player.y=event.clientY+scrollY+18;
+  player.active=eligible(event);updatePlayerMode();
+ }
  function shoot(from,target,id,color){if(bullets.length>70)return;const side=target.x<from.x?-1:1,origin={x:from.x+side*12,y:from.y-17};const distance=Math.hypot(target.x-origin.x,target.y-15-origin.y),lead=Math.min(.45,distance/360);const dx=target.x+(target.vx||0)*lead-origin.x,dy=target.y-15+(target.vy||0)*lead-origin.y,d=Math.hypot(dx,dy)||1;bullets.push({...origin,vx:dx/d*360,vy:dy/d*360,id,color,life:3.5})}
  function click(event){
-  if(gameMode()&&!interactive(event.target)&&event.pointerType!=='touch')event.preventDefault();
-  if(!eligible(event)||player.cool>0||player.hp<=0)return;player.clientX=event.clientX;player.clientY=event.clientY;player.x=event.clientX+scrollX;player.y=event.clientY+scrollY+18;player.active=true;
+  if(!eligible(event))return;
+  event.preventDefault();
+  if(player.cool>0||player.hp<=0)return;player.clientX=event.clientX;player.clientY=event.clientY;player.x=event.clientX+scrollX;player.y=event.clientY+scrollY+18;player.active=true;
   const enemy=fighters.filter(f=>f.hp>0).sort((a,b)=>Math.hypot(a.x-player.x,a.y-player.y)-Math.hypot(b.x-player.x,b.y-player.y))[0];if(enemy){shoot(player,enemy,-1,player.color);shots++;player.cool=.2;canvas.dataset.playerShots=String(shots)}
  }
  addEventListener('pointermove',move,{passive:true});addEventListener('pointerdown',click,{passive:false});addEventListener('blur',hidePlayer);document.addEventListener('pointerleave',hidePlayer);
- addEventListener('scroll',()=>{if(player.active){player.x=player.clientX+scrollX;player.y=player.clientY+scrollY+18}},{passive:true});
- document.addEventListener('selectstart',event=>{if(gameMode()&&!interactive(event.target))event.preventDefault()});
+ addEventListener('scroll',()=>{if(player.active){player.x=player.clientX+scrollX;player.y=player.clientY+scrollY+18;updatePlayerMode()}},{passive:true});
+ document.addEventListener('selectstart',event=>{if(player.active&&inArena(event.target)&&!interactive(event.target))event.preventDefault()});
  pause.addEventListener('click',()=>{paused=!paused;pause.textContent=paused?'Pokračovat':'Pauza'});
  restart.addEventListener('click',()=>{elapsed=0;round=1;wins=hits=shots=0;started=true;sampleWord();newRound();paused=false;pause.textContent='Pauza';word.style.opacity=''});
- function frame(now){if(!canvas.isConnected){ui.remove();hidePlayer();return}requestAnimationFrame(frame);const dt=last?Math.min((now-last)/1000,.04):0;last=now;ctx.clearRect(0,0,innerWidth,innerHeight);const visible=shown();ui.hidden=!started||reduced.matches;document.documentElement.classList.toggle('morfiai-game-on',gameMode());
-  if(document.hidden||reduced.matches){hidePlayer();word.style.opacity='';document.documentElement.classList.remove('morfiai-game-on');return}if(!visible&&started){if(player.active)stick(player,elapsed,true);return}
+ function frame(now){if(!canvas.isConnected){ui.remove();hidePlayer();return}requestAnimationFrame(frame);const dt=last?Math.min((now-last)/1000,.04):0;last=now;ctx.clearRect(0,0,innerWidth,innerHeight);const visible=shown();ui.hidden=!started||!visible||reduced.matches;
+  if(article){
+   const rect=engine.getBoundingClientRect();
+   canvas.style.clipPath='inset('+Math.max(0,rect.top)+'px 0 '+Math.max(0,innerHeight-rect.bottom)+'px)';
+  }
+  if(player.active)updatePlayerMode();
+  if(document.hidden||reduced.matches){hidePlayer();word.style.opacity='';document.documentElement.classList.remove('morfiai-game-on');return}if(!visible&&started){hidePlayer();return}
   if(!started){const rect=word.getBoundingClientRect();if(rect.top>innerHeight*.85||rect.bottom<90)return;started=true;sampleWord();newRound()}
   if(paused){fighters.filter(f=>f.hp>0).forEach(f=>stick(f,elapsed));if(player.active)stick(player,elapsed,true);return}
   elapsed+=dt;spawnAge+=dt;canvas.dataset.phase=spawnAge<1.2?'word':spawnAge<3.8?'assembling':'battle';canvas.dataset.round=String(round);

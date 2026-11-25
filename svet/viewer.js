@@ -13,6 +13,12 @@ const USE_WS = isLocal && !params.get('api');
 const WS_URL = `ws://${location.host || '127.0.0.1:8400'}/ws`;
 const TERRAIN = USE_WS ? 'data' : `${API}/terrain`;
 const LOW_END = matchMedia('(max-width: 720px)').matches || (navigator.hardwareConcurrency || 4) <= 4;
+// ?embed=1 = vložený náhled (stránka morfiai.eu/laya): bez panelu, kamera krouží, kolečko posouvá stránku.
+const EMBED = params.get('embed') === '1';
+if (EMBED) {
+  document.body.classList.add('embed');
+  document.querySelector('.brand a')?.setAttribute('target', '_top');
+}
 
 // ---------- scéna ----------
 const canvas = document.getElementById('scene');
@@ -32,6 +38,7 @@ controls.enableDamping = true;
 controls.maxPolarAngle = Math.PI * 0.49;
 controls.minDistance = 4;
 controls.maxDistance = 2500;
+if (EMBED) { controls.enableZoom = false; controls.autoRotate = true; controls.autoRotateSpeed = 0.5; }
 
 const hemi = new THREE.HemisphereLight(0xdfefff, 0x3a3020, 1.1);
 const sun = new THREE.DirectionalLight(0xfff1d6, 1.6);
@@ -346,6 +353,8 @@ function setStatus(text, online) { $('status').className = 'status ' + (online ?
 function renderStatus(disconnected = false) {
   setStatus(state.online ? 'Laya je vzhůru · živě' : disconnected ? 'Nedostupné' : 'Laya spí', state.online);
   $('sleeping').hidden = state.online;
+  const video = document.querySelector('.sleeping-video');   // smyčka ze hry jen když Laya spí
+  if (video) { if (state.online) video.pause(); else video.play().catch(() => {}); }
   $('viewers').textContent = state.online ? `${state.viewers} ${state.viewers === 1 ? 'divák' : state.viewers < 5 ? 'diváci' : 'diváků'}` : '';
 }
 // Názvy taktik stejně jako v python/directives.py (LABELS) + pár dalších, které hra posílá.

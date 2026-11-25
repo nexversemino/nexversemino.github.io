@@ -1,0 +1,14 @@
+/* Živý svět Laya na /laya/: smyčka ze hry s odkazem na /svet/, ve stejném stylu jako snímky na /engine/. */
+.laya-live{--c:var(--neon-cyan)}
+.laya-live-intro{margin-top:1.75rem;max-width:46rem;font-size:1.125rem;line-height:1.75;color:color-mix(in srgb,var(--foreground) 85%,transparent)}
+.laya-live-frame{position:relative;display:block;margin-top:3rem;aspect-ratio:16/9;border:1px solid var(--border);background:#070b0d center/cover no-repeat;box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 25%,transparent),0 20px 60px -20px color-mix(in srgb,var(--c) 45%,transparent);transition:box-shadow .3s ease;overflow:hidden}
+.laya-live-frame:hover,.laya-live-frame:focus-visible{box-shadow:0 0 0 1px var(--c),0 24px 70px -18px color-mix(in srgb,var(--c) 60%,transparent)}
+.laya-live-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.laya-live-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,8,10,.75),transparent 45%);pointer-events:none}
+.laya-live-badge{position:absolute;top:1rem;left:1rem;z-index:1;padding:.35rem .75rem;border-radius:999px;background:rgba(5,8,10,.7);border:1px solid var(--border);font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;letter-spacing:.04em;color:var(--muted-foreground)}
+.laya-live-badge.is-live{color:var(--neon-lime);border-color:color-mix(in srgb,var(--neon-lime) 50%,transparent)}
+.laya-live-caption{position:absolute;left:1.25rem;bottom:1rem;z-index:1;font-family:var(--font-mono,ui-monospace,monospace);font-size:.8125rem;letter-spacing:.12em;text-transform:uppercase;color:var(--neon-cyan)}
+.laya-live-actions{margin-top:2.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem 2rem}
+.laya-live-actions a{display:inline-block}
+.laya-live-note{margin:0;max-width:34rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.8125rem;line-height:1.6;color:var(--muted-foreground)}
+@media(prefers-reduced-motion:reduce){.laya-live-frame video{display:none}.laya-live-frame{background-image:url(/svet/media/nahled.jpg)}}

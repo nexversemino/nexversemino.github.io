@@ -9,7 +9,7 @@
 <meta property="og:description" content="Živý svět, ve kterém rozhoduje AI Laya. Sleduj ho v přímém přenosu.">
 <meta property="og:url" content="https://morfiai.eu/svet/">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="style.css?v=5541c97d41">
+<link rel="stylesheet" href="style.css?v=8c3062e248">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
@@ -56,13 +56,14 @@
 <button id="panel-toggle" class="panel-toggle" aria-label="Skrýt nebo zobrazit panel">☰</button>
 
 <div id="sleeping" class="sleeping" hidden>
-  <div>
+  <video class="sleeping-video" src="media/nahled.mp4" poster="media/nahled.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="sleeping-card">
     <div class="moon">☾</div>
     <h1>Laya právě spí</h1>
-    <p>Svět běží, jen když je zapnutý počítač, na kterém žije. Stránka se připojí sama, jakmile se probudí.</p>
+    <p>Svět běží, jen když je zapnutý počítač, na kterém žije. Zatím se podívej, jak vypadá. Stránka se připojí sama, jakmile se Laya probudí.</p>
   </div>
 </div>
 
-<script type="module" src="viewer.js?v=d6c9296d6a"></script>
+<script type="module" src="viewer.js?v=aacdbc6320"></script>
 </body>
 </html>

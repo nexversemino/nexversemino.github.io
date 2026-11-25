@@ -439,14 +439,28 @@
         "Herní prostředí pro experimenty s Layou. Učení a chování postav se průběžně testuje a upravuje."
       ],
       [
-        "Budoucí veřejná ukázka",
-        "Tady bude prostor pro ověřenou ukázku hry. Zatím ji zde nelze spustit ani stáhnout."
+        "Živý svět",
+        "Sleduj Layu v přímém přenosu, když běží její počítač. Když spí, ukáže se ukázka ze hry.",
+        "/svet/"
       ]
     ],
+    "live": {
+      "eyebrow": "Živý svět",
+      "heading": "Laya právě <em class=\"text-neon-gradient\">rozhoduje</em>",
+      "text": "Korálkový lov v přímém přenosu: hrdina, had, obyvatelé i auta se pohybují podle toho, co se Laya právě rozhodla. Svět běží, jen když je zapnutý počítač, na kterém Laya žije.",
+      "video": "/svet/media/nahled.mp4",
+      "poster": "/svet/media/nahled.jpg",
+      "status_url": "https://live.morfiai.eu/state/state.json",
+      "badge": "Ukázka ze hry",
+      "caption": "Sledovat živý svět →",
+      "link": "/svet/",
+      "button": "Otevřít živý svět",
+      "note": "Video je záznam ze skutečné hry. Na stránce živého světa si vybereš, koho sledovat, a uvidíš, co Laya vnímá a proč se rozhodla."
+    },
     "split": [
       "Průběžný vývoj",
       "Pozorovat. Zkusit. <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">Pochopit.</em>",
-      "Laya je experiment, nikoli univerzální herní inteligence. Veřejnou ukázku doplníme až ve chvíli, kdy bude připravená pro návštěvníky."
+      "Laya je experiment, nikoli univerzální herní inteligence. Živý svět je skutečný běh hry, ne natočené video. Postavy od diváků jsou zatím budoucí krok."
     ],
     "workflow": [
       "situace → rozhodnutí → akce",

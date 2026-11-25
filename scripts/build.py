@@ -92,6 +92,27 @@ def presentation(p):
     out.append('</section>')
     return ''.join(out)
 
+def live_preview(l):
+    """Live world preview (used by /laya/): a muted loop from the real game that links to /svet/.
+    No iframe: pages stay plain documents. assets/laya-live.js only swaps the status badge text
+    (live now / sleeping) from the public state file; without JS the badge keeps its neutral text."""
+    def rv(inner,delay=0):
+        return '<div class="%s" style="transition-delay:%dms">%s</div>'%(REVEAL,delay,inner)
+    link=escape(l['link'],quote=True)
+    video,poster=escape(l['video'],quote=True),escape(l['poster'],quote=True)
+    return ('<section id="zivy-svet" class="laya-live relative z-10 mx-auto max-w-7xl px-6 py-28">'
+            +rv('<p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan">// %s</p>'
+                '<h2 class="mt-4 max-w-3xl font-display text-5xl font-light leading-[1.2] md:text-6xl"><span data-orb="bounce" data-orb-color="var(--neon-cyan)">%s</span></h2>'
+                '<p class="laya-live-intro">%s</p>'%(escape(l['eyebrow']),l['heading'],escape(l['text'])))
+            +rv('<a class="laya-live-frame" href="%s" aria-label="%s">'
+                '<video src="%s" poster="%s" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>'
+                '<span class="laya-live-badge" data-live-status="%s">%s</span>'
+                '<span class="laya-live-caption">%s</span></a>'
+                %(link,escape(l['button'],quote=True),video,poster,escape(l['status_url'],quote=True),escape(l['badge']),escape(l['caption'])),120)
+            +rv('<div class="laya-live-actions"><a href="%s" class="block bg-neon-gradient px-10 py-5 font-mono text-sm font-bold uppercase tracking-widest text-primary-foreground">%s</a>'
+                '<p class="laya-live-note">%s</p></div>'%(link,escape(l['button']),escape(l['note'])),180)
+            +'</section>')
+
 def render(slug,page):
     title=page['title']+' — MORFIAI' if slug else 'MORFIAI — každý nápad je začátek nového světa'
     head=template('head')
@@ -120,6 +141,10 @@ def render(slug,page):
     hero=hero.replace('MESH: dragon_v3.fbx','UKÁZKA: neonový drak').replace('polys 48 210 · rig ✓ · anim 24','animovaná ukázka · 3D náhled')
     features=template('features',eyebrow=page['eyebrow'],heading=page['heading'],cards=cards(page['cards']))
     split=template('split',eyebrow=page['split'][0],heading=page['split'][1],text=escape(page['split'][2]),workflow=escape('\n'.join(page['workflow'])))
+    live=''
+    if page.get('live'):
+        head=head.replace('</head>','<link rel="stylesheet" href="assets/laya-live.css?v=1"/><script type="module" src="assets/laya-live.js?v=1"></script></head>')
+        live=live_preview(page['live'])
     pres=''
     if page.get('presentation'):
         head=head.replace('</head>','<link rel="stylesheet" href="assets/engine-presentation.css?v=1"/></head>')
@@ -153,7 +178,7 @@ def render(slug,page):
                '<div class="article-rule transition-all duration-700 ease-out opacity-0" style="transition-delay:140ms" aria-hidden="true"></div>')
         article='<section id="pribeh" class="site-article relative z-10 mx-auto max-w-3xl px-6 py-28">'+intro+''.join(parts)+'</section>'
     contact=template('contact',heading=page.get('contact_heading','Máte nápad? <em class="text-neon-gradient">Ozvěte se.</em>'),text=escape(page.get('contact_text','Zajímá vás některý z projektů nebo spolupráce? Napište nám.')))
-    out=head+'<body><div class="min-h-screen bg-background"><div id="site-interactions"></div>'+template('header')+hero+'<div class="h-px bg-neon-gradient"></div>'+features+pres+split+article+contact+template('foot')
+    out=head+'<body><div class="min-h-screen bg-background"><div id="site-interactions"></div>'+template('header')+hero+'<div class="h-px bg-neon-gradient"></div>'+features+live+pres+split+article+contact+template('foot')
     # Content must remain available if JS is disabled. Reveal animation is progressive.
     out=out.replace('</head>','<noscript><style>.opacity-0{opacity:1!important}.translate-y-8{transform:none!important}</style></noscript></head>')
     path=ROOT/slug/'index.html' if slug else ROOT/'index.html'

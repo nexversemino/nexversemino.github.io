@@ -1,4 +1,4 @@
-// Korálkový lov · živý svět – prohlížeč pro diváky.
+// Laya World · živý svět – prohlížeč pro diváky.
 // Veřejně: stránka na morfiai.eu/svet stahuje stav světa z live.morfiai.eu (Hostinger), kam ho posílá herní PC.
 // Místně: připojí se přes WebSocket přímo k python/live_relay.py. Stránka jen zobrazuje, nic neovládá.
 import * as THREE from 'three';

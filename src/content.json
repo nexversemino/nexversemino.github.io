@@ -26,7 +26,7 @@
       ],
       [
         "Laya",
-        "Experimentální autonomní herní AI. Její rozhodování a učení zkoušíme ve hře Korálkový lov.",
+        "Experimentální autonomní herní AI. Její rozhodování a učení zkoušíme ve hře Laya World.",
         "/laya/"
       ],
       [
@@ -421,8 +421,8 @@
     "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
   },
   "laya": {
-    "title": "Laya a Korálkový lov",
-    "description": "Experimentální autonomní herní AI. Ve hře Korálkový lov zkoušíme rozhodování, učení a reakce postav.",
+    "title": "Laya World",
+    "description": "Experimentální autonomní herní AI. V živém světě Laya World zkoušíme rozhodování, učení a reakce postav.",
     "lines": [
       "Co když hra",
       "myslí sama?"
@@ -435,7 +435,7 @@
         "Projekt zkoumá, jak postavy volí další postup podle situace ve hře. Výsledek sledujeme v reálném běhu."
       ],
       [
-        "Korálkový lov",
+        "Laya World",
         "Herní prostředí pro experimenty s Layou. Učení a chování postav se průběžně testuje a upravuje."
       ],
       [
@@ -447,7 +447,7 @@
     "live": {
       "eyebrow": "Živý svět",
       "heading": "Laya právě <em class=\"text-neon-gradient\">rozhoduje</em>",
-      "text": "Korálkový lov v přímém přenosu: hrdina, had, obyvatelé i auta se pohybují podle toho, co se Laya právě rozhodla. Svět běží, jen když je zapnutý počítač, na kterém Laya žije.",
+      "text": "Laya World v přímém přenosu: hrdina, had, obyvatelé i auta se pohybují podle toho, co se Laya právě rozhodla. Svět běží, jen když je zapnutý počítač, na kterém Laya žije.",
       "video": "/svet/media/nahled.mp4",
       "poster": "/svet/media/nahled.jpg",
       "status_url": "https://live.morfiai.eu/state/state.json",
@@ -505,7 +505,7 @@
       ],
       [
         "Učení ve hře",
-        "Laya a Korálkový lov: experimenty s rozhodováním a chováním postav.",
+        "Laya World: experimenty s rozhodováním a chováním postav.",
         "/laya/"
       ]
     ],

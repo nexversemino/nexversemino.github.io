@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korálkový lov · živý svět Laya</title>
+<meta name="description" content="Živý svět, ve kterém rozhoduje AI Laya. Sleduj ho v přímém přenosu.">
+<meta property="og:title" content="Korálkový lov · živý svět Laya">
+<meta property="og:description" content="Živý svět, ve kterém rozhoduje AI Laya. Sleduj ho v přímém přenosu.">
+<meta property="og:url" content="https://morfiai.eu/svet/">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css?v=5541c97d41">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<header class="bar">
+  <div class="brand"><a href="https://morfiai.eu/">MORFIAI</a> · Korálkový lov <span>· živý svět</span></div>
+  <div id="status" class="status offline"><i></i><b>Připojuji…</b></div>
+  <div id="viewers" class="viewers"></div>
+</header>
+
+<aside class="panel" id="panel">
+  <section>
+    <h2>Sleduješ</h2>
+    <div id="follow-name" class="follow-name">—</div>
+    <div id="follow-detail" class="muted"></div>
+    <div class="follow-buttons" id="follow-buttons">
+      <button data-follow="hero">Hrdina</button>
+      <button data-follow="snake">Had</button>
+      <button data-follow="villain">Záporák</button>
+      <button data-follow="free">Volná kamera</button>
+    </div>
+  </section>
+  <section>
+    <h2>Co se rozhodla Laya</h2>
+    <dl id="laya" class="laya"></dl>
+    <div id="provider" class="muted"></div>
+  </section>
+  <section>
+    <h2>Svět</h2>
+    <div id="world" class="muted"></div>
+  </section>
+  <section>
+    <h2>Obyvatelé <span id="people-count" class="muted"></span></h2>
+    <input id="people-filter" type="search" placeholder="Hledat jméno…" autocomplete="off">
+    <ul id="people" class="people"></ul>
+  </section>
+</aside>
+<button id="panel-toggle" class="panel-toggle" aria-label="Skrýt nebo zobrazit panel">☰</button>
+
+<div id="sleeping" class="sleeping" hidden>
+  <div>
+    <div class="moon">☾</div>
+    <h1>Laya právě spí</h1>
+    <p>Svět běží, jen když je zapnutý počítač, na kterém žije. Stránka se připojí sama, jakmile se probudí.</p>
+  </div>
+</div>
+
+<script type="module" src="viewer.js?v=d6c9296d6a"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* MORFIAI – prezentace NexVerse Asset Engine na /engine/.
+   Nový soubor; původní design CSS zůstává beze změny. Používá jen existující proměnné a fonty. */
+
+.engine-pres{--c:var(--neon-cyan)}
+.engine-c-cyan{--c:var(--neon-cyan)}
+.engine-c-pink{--c:var(--neon-pink)}
+.engine-c-lime{--c:var(--neon-lime)}
+.engine-c-orange{--c:var(--neon-orange)}
+.engine-c-violet{--c:var(--neon-violet)}
+
+.engine-pres-intro{margin-top:1.75rem;max-width:46rem;font-size:1.125rem;line-height:1.75;color:color-mix(in srgb,var(--foreground) 85%,transparent)}
+
+/* ——— Postup ——— */
+.engine-pipeline{margin-top:4rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;list-style:none;padding:0;counter-reset:none}
+.engine-step{position:relative;display:flex;flex-direction:column;gap:.35rem;padding:1.5rem 1.25rem 1.5rem 0;border-top:2px solid var(--c)}
+.engine-step::after{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
+.engine-step-num{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.2em;color:var(--c)}
+.engine-step strong{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.75rem;line-height:1.1;color:var(--foreground)}
+.engine-step span:last-child{font-family:'JetBrains Mono',monospace;font-size:.75rem;line-height:1.5;color:var(--muted-foreground)}
+
+/* ——— Čísla ——— */
+.engine-stats{margin-top:4rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--border)}
+@media(min-width:640px){.engine-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1200px){.engine-stats{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.engine-stat{display:flex;flex-direction:column;gap:.5rem;padding:1.75rem 1.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);margin:0 -1px -1px 0}
+.engine-stat-value{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,3.5rem);line-height:1;color:var(--c);text-shadow:0 0 24px color-mix(in srgb,var(--c) 45%,transparent)}
+.engine-stat-label{font-family:'JetBrains Mono',monospace;font-size:.75rem;line-height:1.5;color:var(--muted-foreground)}
+
+/* ——— Obsah ——— */
+.engine-toc{margin-top:5rem}
+.engine-toc ol{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;padding:0}
+.engine-toc a{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem .9rem;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--foreground);text-decoration:none;transition:border-color .2s ease,color .2s ease,box-shadow .2s ease}
+.engine-toc a span{color:var(--neon-pink)}
+.engine-toc a:hover,.engine-toc a:focus-visible{outline:none;border-color:var(--neon-cyan);color:var(--neon-cyan);box-shadow:0 0 14px color-mix(in srgb,var(--neon-cyan) 30%,transparent)}
+
+/* ——— Kapitoly ——— */
+.engine-mod{scroll-margin-top:6rem;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border)}
+.engine-mod > div{display:grid;gap:3rem;align-items:start}
+@media(min-width:1024px){
+  .engine-mod.has-shot > div{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .engine-mod.has-shot:nth-of-type(even) .engine-shot{order:-1}
+  .engine-mod:not(.has-shot) .engine-points{columns:2;column-gap:3rem}
+}
+.engine-mod-title{margin-top:1.25rem;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.25rem,4.5vw,3rem);line-height:1.1}
+.engine-mod-lead{margin-top:1rem;max-width:40rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;line-height:1.4;color:var(--foreground)}
+.engine-points{margin-top:1.75rem;list-style:none;padding:0}
+.engine-points li{position:relative;break-inside:avoid;padding:0 0 1rem 1.6rem;font-size:1.0625rem;line-height:1.65;color:color-mix(in srgb,var(--foreground) 85%,transparent)}
+.engine-points li::before{content:"";position:absolute;left:0;top:.62em;width:.6rem;height:2px;background:var(--c);box-shadow:0 0 8px var(--c)}
+.engine-note{margin-top:.5rem;display:flex;gap:.8rem;align-items:baseline;max-width:44rem;padding:.9rem 1.1rem;border-left:2px solid var(--neon-orange);background:color-mix(in srgb,var(--neon-orange) 7%,transparent);font-size:.95rem;line-height:1.6;color:var(--muted-foreground)}
+.engine-note span{flex:none;font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--neon-orange)}
+
+/* ——— Screenshoty ——— */
+.engine-shot{margin:0;border:1px solid var(--border);background:var(--card);box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 25%,transparent),0 20px 60px -20px color-mix(in srgb,var(--c) 45%,transparent);transition:box-shadow .3s ease}
+.engine-shot:hover{box-shadow:0 0 0 1px var(--c),0 24px 70px -18px color-mix(in srgb,var(--c) 60%,transparent)}
+.engine-shot img{display:block;width:100%;height:auto}
+.engine-shot figcaption{padding:.8rem 1rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--muted-foreground)}
+
+/* ——— Soukromí ——— */
+.engine-private{margin-top:6rem;padding:2.5rem;border:1px solid color-mix(in srgb,var(--neon-lime) 45%,var(--border));background:color-mix(in srgb,var(--neon-lime) 4%,transparent);--c:var(--neon-lime)}
+@media(min-width:1024px){.engine-private .engine-points{columns:2;column-gap:3rem}}
+
+@media(prefers-reduced-motion:reduce){.engine-shot,.engine-toc a{transition:none}}

@@ -51,6 +51,47 @@ def scene_figure(scene):
             'aria-label="Přehrát animaci: %s"><canvas aria-hidden="true"></canvas>'
             '<figcaption>%s</figcaption></figure>')%(escape(scene,quote=True),label,label)
 
+REVEAL='transition-all duration-700 ease-out translate-y-8 opacity-0'
+COLORS=['cyan','pink','lime','orange','violet']
+
+def presentation(p):
+    """Detailed product presentation (used by /engine/). Text from content.json is escaped;
+    only the heading keeps the same inline <em> markup the other headings use."""
+    def rv(inner,delay=0,extra=''):
+        return '<div class="%s%s" style="transition-delay:%dms">%s</div>'%(REVEAL,extra,delay,inner)
+    out=['<section id="prezentace" class="engine-pres relative z-10 mx-auto max-w-7xl px-6 py-28">']
+    out.append(rv('<p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan">// %s</p>'
+                  '<h2 class="mt-4 max-w-3xl font-display text-5xl font-light leading-[1.2] md:text-6xl"><span data-orb="bounce" data-orb-color="var(--neon-cyan)">%s</span></h2>'
+                  '<p class="engine-pres-intro">%s</p>'%(escape(p['eyebrow']),p['heading'],escape(p['intro']))))
+    steps=''.join('<li class="engine-step engine-c-%s"><span class="engine-step-num">%s</span><strong>%s</strong><span>%s</span></li>'
+                  %(COLORS[i%len(COLORS)],escape(n),escape(t),escape(s)) for i,(n,t,s) in enumerate(p['pipeline']))
+    out.append(rv('<ol class="engine-pipeline" aria-label="Postup od předlohy po export">'+steps+'</ol>',120))
+    stats=''.join('<div class="engine-stat engine-c-%s"><span class="engine-stat-value">%s</span><span class="engine-stat-label">%s</span></div>'
+                  %(COLORS[i%len(COLORS)],escape(v),escape(l)) for i,(v,l) in enumerate(p['stats']))
+    out.append(rv('<div class="engine-stats">'+stats+'</div>',180))
+    toc=''.join('<li><a href="/engine/#modul-%d"><span>%02d</span>%s</a></li>'%(i+1,i+1,escape(m['title'])) for i,m in enumerate(p['modules']))
+    out.append(rv('<nav class="engine-toc" aria-label="Kapitoly prezentace"><p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-pink">// obsah</p><ol>'+toc+'</ol></nav>'))
+    for i,m in enumerate(p['modules']):
+        color=COLORS[i%len(COLORS)]
+        points=''.join('<li>'+escape(x)+'</li>' for x in m['points'])
+        note='<p class="engine-note"><span>poctivě</span>'+escape(m['note'])+'</p>' if m.get('note') else ''
+        text=('<span class="font-mono text-sm text-neon-%s">[%02d]</span>'
+              '<h3 class="engine-mod-title text-neon-%s"><span data-typed-title="%s">%s</span></h3>'
+              '<p class="engine-mod-lead">%s</p><ul class="engine-points">%s</ul>%s'
+              %(color,i+1,color,escape(m['title'],quote=True),escape(m['title']),escape(m['lead']),points,note))
+        media=''
+        if m.get('image'):
+            src,alt,caption,w,h=m['image']
+            media=('<figure class="engine-shot"><img src="%s" alt="%s" loading="lazy" decoding="async" width="%d" height="%d"/>'
+                   '<figcaption>%s</figcaption></figure>'%(escape(src,quote=True),escape(alt,quote=True),w,h,escape(caption)))
+        cls='engine-mod engine-c-%s%s'%(color,' has-shot' if media else '')
+        out.append('<article id="modul-%d" class="%s">%s</article>'%(i+1,cls,rv('<div class="engine-mod-text">'+text+'</div>'+media)))
+    private=''.join('<li>'+escape(x)+'</li>' for x in p['private'])
+    out.append(rv('<div class="engine-private"><p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-lime">// soukromí a bezpečnost</p>'
+                  '<h3 class="engine-mod-title">Vaše data zůstávají u vás</h3><ul class="engine-points">'+private+'</ul></div>'))
+    out.append('</section>')
+    return ''.join(out)
+
 def render(slug,page):
     title=page['title']+' — MORFIAI' if slug else 'MORFIAI — každý nápad je začátek nového světa'
     head=template('head')
@@ -79,6 +120,10 @@ def render(slug,page):
     hero=hero.replace('MESH: dragon_v3.fbx','UKÁZKA: neonový drak').replace('polys 48 210 · rig ✓ · anim 24','animovaná ukázka · 3D náhled')
     features=template('features',eyebrow=page['eyebrow'],heading=page['heading'],cards=cards(page['cards']))
     split=template('split',eyebrow=page['split'][0],heading=page['split'][1],text=escape(page['split'][2]),workflow=escape('\n'.join(page['workflow'])))
+    pres=''
+    if page.get('presentation'):
+        head=head.replace('</head>','<link rel="stylesheet" href="assets/engine-presentation.css?v=1"/></head>')
+        pres=presentation(page['presentation'])
     article=''
     if page.get('article'):
         head=head.replace('</head>','<link rel="stylesheet" href="assets/article-story.css?v=2"/><script type="module" src="assets/article-story.js?v=1"></script><script type="module" src="assets/article-scenes.js?v=1"></script></head>')
@@ -108,7 +153,7 @@ def render(slug,page):
                '<div class="article-rule transition-all duration-700 ease-out opacity-0" style="transition-delay:140ms" aria-hidden="true"></div>')
         article='<section id="pribeh" class="site-article relative z-10 mx-auto max-w-3xl px-6 py-28">'+intro+''.join(parts)+'</section>'
     contact=template('contact',heading=page.get('contact_heading','Máte nápad? <em class="text-neon-gradient">Ozvěte se.</em>'),text=escape(page.get('contact_text','Zajímá vás některý z projektů nebo spolupráce? Napište nám.')))
-    out=head+'<body><div class="min-h-screen bg-background"><div id="site-interactions"></div>'+template('header')+hero+'<div class="h-px bg-neon-gradient"></div>'+features+split+article+contact+template('foot')
+    out=head+'<body><div class="min-h-screen bg-background"><div id="site-interactions"></div>'+template('header')+hero+'<div class="h-px bg-neon-gradient"></div>'+features+pres+split+article+contact+template('foot')
     # Content must remain available if JS is disabled. Reveal animation is progressive.
     out=out.replace('</head>','<noscript><style>.opacity-0{opacity:1!important}.translate-y-8{transform:none!important}</style></noscript></head>')
     path=ROOT/slug/'index.html' if slug else ROOT/'index.html'

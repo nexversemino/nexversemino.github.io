@@ -60,7 +60,7 @@
   },
   "engine": {
     "title": "NexVerse Asset Engine",
-    "description": "Od textur a 2D/3D modelů přes kostry až po animace. Tvoř originální obsah pro svou hru v jedné desktopové aplikaci a dej svým nápadům život.",
+    "description": "Desktopová aplikace, která provede herní asset od nápadu až do enginu: knihovna, generování 2D/3D, kostra, animace, mimika, stavba světa a export pro Godot, Unity a Unreal.",
     "lines": [
       "Tvoř světy.",
       "Dej jim život."
@@ -69,52 +69,53 @@
     "heading": "Celá produkční linka v <em class=\"text-neon-gradient\">jednom nástroji</em>",
     "cards": [
       [
+        "Soukromá knihovna",
+        "Import obrázků, GLB, FBX, OBJ, BLEND, zvuků i celých ZIP balíčků. Duplicity podle SHA-256, štítky, licence a náhledy."
+      ],
+      [
         "Generování 2D/3D",
-        "Nástroje pro AI tvorbu obrázků a 3D modelů z předlohy. Výsledek závisí na modelu, vstupu a dostupném hardwaru."
+        "Obrázky přes SDXL a Qwen Image Edit, 3D z předlohy přes TripoSR, TRELLIS.2, Pixal3D nebo Meshy. Detailní režim až ~80 tis. trojúhelníků."
       ],
       [
-        "Textury",
-        "Tvorba a ��prava textur pro assety. Rozlišení a kvalitu výstupu je potřeba ověřit u konkrétního modelu."
+        "Textury a kontrola",
+        "PBR textury 2K/4K z generátorů, kontrola UV, textur a texturovaných částí. Technická kontrola postavy v T-póze."
       ],
       [
-        "Automatický rigging",
-        "Příprava kostry a vah modelu. Automatický výsledek je nutné zkontrolovat, zejména u neobvyklé anatomie."
+        "Kostra a váhy",
+        "Automatický i ruční rig: šablony pro humanoidy, čtyřnožce i okřídlené tvory, tažení kloubů ve 3D a malování vah štětcem."
       ],
       [
-        "Retargeting animací",
-        "Přenos pohybu na jinou kostru. Shoda kloubů a kontrola deformací jsou součástí přípravy výsledku."
+        "Animace a retargeting",
+        "Knihovna 512 pohybů, přenos animace na vlastní kostru, ProPoser pro pózy a vícestopá časová osa."
       ],
       [
-        "Timeline a pózy",
-        "Nástroje pro práci s animacemi, jejich časováním a pózami. Doladění pohybu patří k tvorbě použitelného assetu."
+        "Mimika a vybavení",
+        "Výrazy, mrkání a úsměv přes morph targety, chybějící klíče lze dopočítat. Meč, štít nebo přilba na kost ruky či hlavy."
       ],
       [
-        "Assetová knihovna",
-        "Správa modelů, textur a animací v místní knihovně. Výběr a příprava assetů pro další práci."
+        "World Lab a stavby",
+        "Terén, voda, biomy, počasí a čtyři roční období. Domy z modulů po patrech s kontrolou, jestli stavba dává smysl."
       ],
       [
-        "Lokální orchestrátor",
-        "Propojení místních AI nástrojů a pracovních kroků. Dostupnost závisí na instalovaných modelech a workerech."
+        "Orchestrátor a NEX",
+        "Napíšete, co potřebujete, a místní model (Ollama, Strata) nebo vybraný cloud připraví plán. Nic placeného nespustí bez potvrzení."
       ],
       [
         "Export do hry",
-        "Výstupy pro Godot, Unity a Unreal Engine. Import a animace je potřeba ověřit v cílovém projektu."
-      ],
-      [
-        "Vlastní hardware",
-        "Zpracování běží lokálně na počítači zákazníka. Některé postupy vyžadují odpovídající GPU, paměť a konfiguraci."
+        "Godot (GLB beze změny), Unity a Unreal (FBX přes Blender s texturami), Blender .blend. ZIP s původem, licencí a návodem."
       ]
     ],
     "split": [
-      "Animace a příprava assetu",
-      "Pohyb, který <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">žije</em>",
-      "Asset Engine není herní engine. Pomáhá připravovat obsah pro hru: model, textury, kostru a animace. Jednotlivé nástroje se průběžně ověřují a dolaďují; stránka neslibuje bezchybný automatický výsledek."
+      "Poctivě",
+      "Nástroj, ne <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">kouzlo</em>",
+      "Asset Engine není herní engine. Pomáhá připravovat obsah pro hru: model, textury, kostru a animace. Jednotlivé nástroje se průběžně ověřují a dolaďují; stránka neslibuje bezchybný automatický výsledek. Kvalita auto-rigu není zaručená pro každou postavu a import do cílového enginu se vždy ověřuje zvlášť."
     ],
     "workflow": [
-      "předloha → 2D / 3D",
-      "model → textury",
+      "předloha → 2D / 3D model",
+      "model → textury → kontrola UV",
       "kostra → váhy → kontrola",
       "animace → retargeting → úpravy",
+      "výrazy → vybavení",
       "export → ověření v cílovém enginu"
     ],
     "stats": [
@@ -126,7 +127,210 @@
       "Godot · Unity · Unreal"
     ],
     "cta": "Prozkoumat nástroje",
-    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám."
+    "contact_text": "Zajímá vás některý z projektů nebo spolupráce? Napište nám.",
+    "presentation": {
+      "eyebrow": "Prezentace",
+      "heading": "Od nápadu <em class=\"text-neon-gradient\">po export</em>",
+      "intro": "NexVerse Asset Engine je desktopová aplikace pro Windows. Spojuje nástroje, které by jinak byly rozházené po mnoha programech: knihovnu assetů, AI generátory, rigování, animace, mimiku, stavbu světa a export. Běží na vašem počítači a vaše data zůstávají u vás.",
+      "pipeline": [
+        [
+          "01",
+          "Předloha",
+          "obrázek, náčrt nebo zadání"
+        ],
+        [
+          "02",
+          "3D model",
+          "TRELLIS.2 · Pixal3D · Meshy"
+        ],
+        [
+          "03",
+          "Kostra",
+          "auto-rig nebo ruční klouby"
+        ],
+        [
+          "04",
+          "Pohyb",
+          "512 klipů a vlastní pózy"
+        ],
+        [
+          "05",
+          "Výraz",
+          "mrkání, úsměv, vybavení"
+        ],
+        [
+          "06",
+          "Export",
+          "Godot · Unity · Unreal · Blender"
+        ]
+      ],
+      "stats": [
+        [
+          "512",
+          "pohybů ve společné knihovně"
+        ],
+        [
+          "80k",
+          "trojúhelníků v podrobném 3D režimu"
+        ],
+        [
+          "4K",
+          "PBR textury z Meshy"
+        ],
+        [
+          "8",
+          "poskytovatelů AI s klíči chráněnými ve Windows"
+        ],
+        [
+          "4",
+          "cíle exportu: Godot, Unity, Unreal, Blender"
+        ],
+        [
+          "256 MB",
+          "na importovaný soubor"
+        ]
+      ],
+      "modules": [
+        {
+          "title": "Soukromá knihovna",
+          "lead": "Všechno, co vytvoříte nebo stáhnete, má jedno místo. Na vašem disku, ne v cizím cloudu.",
+          "points": [
+            "Import tlačítkem nebo přetažením kamkoli do okna: obrázky, GLB, FBX, OBJ, BLEND a zvuky.",
+            "ZIP balíčky se rozbalí s kontrolou cest. Poškozený archiv aplikace zkusí opravit a složit model, materiály i animace dohromady.",
+            "Duplicity se poznají podle SHA-256, originály se nikdy nepřepisují.",
+            "Štítky, kategorie, poznámky, původ a licence. U každého assetu zvlášť povolíte použití jako reference nebo pro trénink. Ve výchozím stavu je obojí vypnuté.",
+            "Externí knihovna na jiném disku se připojí bez kopírování a modely se roztřídí podle obsahu."
+          ],
+          "image": [
+            "assets/engine/knihovna.webp",
+            "Soukromá knihovna NexVerse s přehledem assetů a kategoriemi",
+            "Knihovna: tisíce assetů, kategorie a rychlé hledání",
+            1400,
+            900
+          ]
+        },
+        {
+          "title": "Generování 2D a 3D",
+          "lead": "Z obrázku nebo zadání vznikne model, který jde rovnou dál do kostry a animace.",
+          "points": [
+            "Obrázky přes SDXL v místní frontě ComfyUI. Zadání může být česky, přeloží se lokálně.",
+            "Úprava vlastní předlohy přes Qwen Image Edit se srovnáním původního obrázku a varianty.",
+            "3D z předlohy: TripoSR pro rychlý náhled, TRELLIS.2 a Pixal3D pro podrobný režim (až ~80 tisíc trojúhelníků a PBR textury 2K).",
+            "Meshy v cloudu s PBR texturami 2K/4K: text, obrázek nebo postava z knihovny, auto-rig a animace z katalogu Meshy.",
+            "Galerie 3D drží všechny vytvořené modely na jednom místě a z každého jde pokračovat na kostru, animaci a export."
+          ],
+          "note": "Výsledek z jediné předlohy je pracovní rekonstrukce. Zadní strana a drobné detaily potřebují kontrolu."
+        },
+        {
+          "title": "Kostra a váhy",
+          "lead": "Rigování, které zvládne člověka, vlka, draka i tvora, který ještě nemá jméno.",
+          "points": [
+            "Šablony koster: humanoid, čtyřnožec, okřídlené tvory, ocasy, ruce a tlapy s pěti prsty.",
+            "Klouby se táhnou přímo ve 3D. Vycentrování do sítě, zrcadlení stran a Ctrl+Z.",
+            "Malování vah štětcem po modelu a oddělení smíchaných vah blízkých končetin.",
+            "Automatické metody: Rigify v Blenderu, UniRig s geodetickými vahami a vlastní Auto-Rig v2. Tvorové s křídly dostanou i letový cyklus.",
+            "Dílna kostry: rozsahy otáčení kloubů, AI návrh kostry z geometrie, export hierarchie do GLB."
+          ],
+          "note": "Studio samo upozorňuje, že kvalita auto-rigu není zaručená pro každou postavu, a výsledek automaticky neoznačí jako hotový do hry."
+        },
+        {
+          "title": "Animace",
+          "lead": "Rozpohybujte postavu za pár minut. Z knihovny, z jiného souboru nebo vlastní rukou.",
+          "points": [
+            "Společná knihovna 512 pohybů s kategoriemi a hledáním.",
+            "Přenos pohybu z libovolného animačního souboru na vlastní kostru, s ručním přiřazením kostí.",
+            "ProPoser 3D a 2D: rychlé pózy, otáčení kloubů a nahrávání pohybů.",
+            "Vícestopá časová osa: synchronizace, řazení, rychlost, smyčka a uložení jako nová animace.",
+            "Chůze bez vznášení: pánev se vyrovná podle podrážek. 3D pohyb jde přenést i na 2D postavu."
+          ]
+        },
+        {
+          "title": "Obličej, výrazy a vybavení",
+          "lead": "Postava, která mrká, usmívá se a drží v ruce svůj meč.",
+          "points": [
+            "Čtení morph targetů, ruční hodnoty a předvolby: úsměv, otevřená ústa, mrknutí.",
+            "Chybějící mimické klíče jde dopočítat po označení obličeje, i pro tvory s více hlavami nebo očima.",
+            "Živá kamera (MediaPipe): kalibrace, záznam a přenos výrazu na postavu.",
+            "Vybavení: meč, sekera, štít nebo přilba na pojmenovanou kost, s úchyty pro polohu a velikost v živém náhledu.",
+            "Výsledek se ukládá jako nová kopie GLB a původní animace zůstávají zachované."
+          ]
+        },
+        {
+          "title": "World Lab",
+          "lead": "Svět pro hru nebo animaci, bez ručního ladění fyziky a počasí.",
+          "points": [
+            "Terén ze šumu s hřebeny, vodou a hranicí lesa. Biomy: pláň, poušť, sníh, les, bažina, hory a pobřeží.",
+            "Osm předvoleb počasí a čtyři roční období, která se plynule prolínají. Počasí se odvozuje z data a semínka scény.",
+            "Fyzika připravená v metrech: gravitace, výška postavy, sklon, tření a kolizní vrstvy.",
+            "Ruční stavba ve 3D: vkládání klikem, posun, otočení a měřítko (W/E/R), rozsévání stromů, skal i celých měst.",
+            "Export scény pro Godot včetně prostředí, fyziky a objektů."
+          ],
+          "image": [
+            "assets/engine/world-lab.webp",
+            "World Lab s náhledem terénu, nastavením ročního období, počasí a terénu",
+            "World Lab: terén, období a počasí v jednom panelu",
+            1600,
+            1050
+          ]
+        },
+        {
+          "title": "Stavby z modulů",
+          "lead": "Dům se skládá z dílů po patrech jako stavebnice a aplikace hlídá, aby dával smysl.",
+          "points": [
+            "Mřížka po patrech, moduly z vlastní knihovny a vkládání kliknutím.",
+            "Kontrola stavby: dveře mimo zeď, patro bez podlahy, neuzavřený dům.",
+            "Export pro Godot, volitelně rovnou do složky hry.",
+            "Dělení slepeného modelu na moduly: velký dům se rozřízne po podlažích na díly, které jde znovu skládat.",
+            "Díly a 3D tisk: oddělení částí, záplata řezu, export STL/3MF."
+          ],
+          "image": [
+            "assets/engine/stavby.webp",
+            "Editor staveb s mřížkou přízemí a seznamem modulů",
+            "Stavby: mřížka po patrech a kontrola stavby",
+            1600,
+            1000
+          ]
+        },
+        {
+          "title": "Zvuk a dialogy",
+          "lead": "Postava, která mluví, a svět, který zní.",
+          "points": [
+            "Hudba: návrh skladby přes místní model a zvuk z ACE-Step na vlastním počítači (WAV 44,1 kHz).",
+            "Scénáře a dialogy: postavy, scény a repliky, návrh scény přes místní AI.",
+            "Dabing do WAV (Piper, Pocket, volitelně ElevenLabs) a hlasové efekty přes FFmpeg.",
+            "Export dialogů do JSON pro hru."
+          ]
+        },
+        {
+          "title": "Orchestrátor a AI pomocníci",
+          "lead": "Řeknete studiu, co potřebujete. Ono připraví plán, ukáže cenu a počká na vaše ano.",
+          "points": [
+            "Řídicí model běží lokálně (Ollama qwen3:8b nebo Strata · Qwen3.6 35B na GPU + RAM), nebo ho vyberete v cloudu.",
+            "Osm poskytovatelů: Google Gemini, OpenAI, Anthropic, OpenRouter, DeepSeek, Mistral, Groq a xAI. Klíče chrání Windows DPAPI a do rozhraní se nikdy nevrací.",
+            "Plán a průběh přežijí zavření okna. Orchestrátor nikdy nespouští shell příkazy ani instalace.",
+            "Asistent NEX v samostatném okně umí sám spustit nástroje, třeba rozpohybovat draka nebo rozdělit dům na moduly.",
+            "AI myšlení do hry: místní model vybere reakci postavy a přehraje k ní pohyb i mimiku."
+          ]
+        },
+        {
+          "title": "Export do enginu",
+          "lead": "Hotový asset odchází v balíčku, který cílový engine přijme.",
+          "points": [
+            "Godot: původní GLB beze změny, scény z World Labu a stavby z Building Labu.",
+            "Unity a Unreal: převod do FBX přes místní Blender s vloženými texturami a kontrolním importem.",
+            "Blender: nativní .blend, ověřený zpětným načtením.",
+            "ZIP balíček obsahuje model, původ, licenci a návod."
+          ],
+          "note": "Import v cílovém enginu je potřeba ověřit v konkrétním projektu."
+        }
+      ],
+      "private": [
+        "Aplikace a služby běží jen na vašem počítači (loopback 127.0.0.1).",
+        "Cloud se použije jen pro úlohu, kterou výslovně potvrdíte. Knihovna se nikam hromadně nenahrává.",
+        "Placené požadavky se automaticky neopakují.",
+        "Zálohu knihovny jde obnovit do nové složky, aniž by se přepsala ta současná."
+      ]
+    }
   },
   "command-center": {
     "title": "NexVerse AI Command Center",

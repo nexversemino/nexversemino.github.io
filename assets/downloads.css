@@ -1,0 +1,21 @@
+/* 3D tisky ke stažení (/3d-tisky/): stejný jazyk jako moduly a snímky na /engine/. */
+.dl{--c:var(--neon-cyan)}
+.dl-c-cyan{--c:var(--neon-cyan)}.dl-c-pink{--c:var(--neon-pink)}.dl-c-lime{--c:var(--neon-lime)}.dl-c-orange{--c:var(--neon-orange)}.dl-c-violet{--c:var(--neon-violet,var(--neon-pink))}
+.dl-intro{margin-top:1.75rem;max-width:46rem;font-size:1.125rem;line-height:1.75;color:color-mix(in srgb,var(--foreground) 85%,transparent)}
+.dl-item{margin-top:5rem;scroll-margin-top:6rem}
+.dl-item>div{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:1024px){.dl-item>div{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.dl-item:nth-of-type(even) .dl-shot{order:2}}
+.dl-shot{margin:0;border:1px solid var(--border);background:var(--card);box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 25%,transparent),0 20px 60px -20px color-mix(in srgb,var(--c) 45%,transparent);transition:box-shadow .3s ease}
+.dl-shot:hover{box-shadow:0 0 0 1px var(--c),0 24px 70px -18px color-mix(in srgb,var(--c) 60%,transparent)}
+.dl-shot img{display:block;width:100%;height:auto}
+.dl-title{margin:.5rem 0 0;font-family:var(--font-display,serif);font-size:2.25rem;font-weight:300;line-height:1.2;color:var(--c)}
+.dl-lead{margin-top:1rem;font-size:1.0625rem;line-height:1.7;color:color-mix(in srgb,var(--foreground) 85%,transparent)}
+.dl-specs{margin:1.25rem 0 0;padding:0;list-style:none;display:grid;gap:.4rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.8125rem;line-height:1.55;color:var(--muted-foreground)}
+.dl-specs li{padding-left:1.1rem;position:relative}
+.dl-specs li::before{content:"›";position:absolute;left:0;color:var(--c)}
+.dl-note{margin-top:1.25rem;font-size:.875rem;line-height:1.6;color:var(--muted-foreground)}
+.dl-note span{display:inline-block;margin-right:.5rem;padding:.05rem .45rem;border:1px solid var(--c);color:var(--c);font-family:var(--font-mono,ui-monospace,monospace);font-size:.6875rem;text-transform:uppercase;letter-spacing:.12em}
+.dl-button{display:inline-flex;align-items:baseline;gap:.75rem;margin-top:1.75rem;padding:1rem 1.75rem;border:1px solid var(--c);color:var(--c);font-family:var(--font-mono,ui-monospace,monospace);font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;text-decoration:none;transition:background .2s ease,color .2s ease}
+.dl-button span{font-weight:400;letter-spacing:.04em;text-transform:none;opacity:.8}
+.dl-button:hover,.dl-button:focus-visible{background:var(--c);color:var(--primary-foreground,#05080a)}
+.dl-license{margin-top:5rem;max-width:46rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.8125rem;line-height:1.7;color:var(--muted-foreground)}

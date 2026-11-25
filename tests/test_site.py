@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit
 import unittest, subprocess, hashlib, json, re
 ROOT=Path(__file__).resolve().parents[1]
-PAGES=['','engine','command-center','milo','laya','blog']
+PAGES=['','engine','command-center','milo','laya','blog','3d-tisky']
 class Doc(HTMLParser):
     def __init__(self,text):super().__init__();self.tags=[];self.feed(text)
     def handle_starttag(self,tag,attrs):self.tags.append((tag,dict(attrs)))

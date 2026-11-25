@@ -113,6 +113,31 @@ def live_preview(l):
                 '<p class="laya-live-note">%s</p></div>'%(link,escape(l['button']),escape(l['note'])),180)
             +'</section>')
 
+def downloads(d):
+    """Downloadable 3D print sets (used by /3d-tisky/). Text is escaped; files are plain links
+    to release assets – no forms, accounts or checkout."""
+    def rv(inner,delay=0):
+        return '<div class="%s" style="transition-delay:%dms">%s</div>'%(REVEAL,delay,inner)
+    out=['<section id="ke-stazeni" class="dl relative z-10 mx-auto max-w-7xl px-6 py-28">']
+    out.append(rv('<p class="font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan">// %s</p>'
+                  '<h2 class="mt-4 max-w-3xl font-display text-5xl font-light leading-[1.2] md:text-6xl"><span data-orb="bounce" data-orb-color="var(--neon-cyan)">%s</span></h2>'
+                  '<p class="dl-intro">%s</p>'%(escape(d['eyebrow']),d['heading'],escape(d['intro']))))
+    for i,item in enumerate(d['items']):
+        color=COLORS[i%len(COLORS)]
+        specs=''.join('<li>'+escape(s)+'</li>' for s in item['specs'])
+        note='<p class="dl-note"><span>poctivě</span>'+escape(item['note'])+'</p>' if item.get('note') else ''
+        out.append(('<article id="%s" class="dl-item dl-c-%s">'%(escape(item['id'],quote=True),color))
+                   +rv('<figure class="dl-shot"><img src="%s" alt="%s" loading="lazy" decoding="async" width="960" height="720"/></figure>'
+                       '<div class="dl-text"><span class="font-mono text-sm text-neon-%s">[%02d]</span>'
+                       '<h3 class="dl-title">%s</h3><p class="dl-lead">%s</p><ul class="dl-specs">%s</ul>%s'
+                       '<a class="dl-button" href="%s" download>%s <span>%s</span></a></div>'
+                       %(escape(item['image'],quote=True),escape(item['alt'],quote=True),color,i+1,escape(item['title']),
+                         escape(item['text']),specs,note,escape(item['file'],quote=True),escape(item['button']),escape(item['size'])))
+                   +'</article>')
+    out.append(rv('<p class="dl-license">%s</p>'%escape(d['license'])))
+    out.append('</section>')
+    return ''.join(out)
+
 def render(slug,page):
     title=page['title']+' — MORFIAI' if slug else 'MORFIAI — každý nápad je začátek nového světa'
     head=template('head')
@@ -145,6 +170,10 @@ def render(slug,page):
     if page.get('live'):
         head=head.replace('</head>','<link rel="stylesheet" href="assets/laya-live.css?v=1"/><script type="module" src="assets/laya-live.js?v=1"></script></head>')
         live=live_preview(page['live'])
+    dl=''
+    if page.get('downloads'):
+        head=head.replace('</head>','<link rel="stylesheet" href="assets/downloads.css?v=1"/></head>')
+        dl=downloads(page['downloads'])
     pres=''
     if page.get('presentation'):
         head=head.replace('</head>','<link rel="stylesheet" href="assets/engine-presentation.css?v=1"/></head>')
@@ -178,7 +207,7 @@ def render(slug,page):
                '<div class="article-rule transition-all duration-700 ease-out opacity-0" style="transition-delay:140ms" aria-hidden="true"></div>')
         article='<section id="pribeh" class="site-article relative z-10 mx-auto max-w-3xl px-6 py-28">'+intro+''.join(parts)+'</section>'
     contact=template('contact',heading=page.get('contact_heading','Máte nápad? <em class="text-neon-gradient">Ozvěte se.</em>'),text=escape(page.get('contact_text','Zajímá vás některý z projektů nebo spolupráce? Napište nám.')))
-    out=head+'<body><div class="min-h-screen bg-background"><div id="site-interactions"></div>'+template('header')+hero+'<div class="h-px bg-neon-gradient"></div>'+features+live+pres+split+article+contact+template('foot')
+    out=head+'<body><div class="min-h-screen bg-background"><div id="site-interactions"></div>'+template('header')+hero+'<div class="h-px bg-neon-gradient"></div>'+features+dl+live+pres+split+article+contact+template('foot')
     # Content must remain available if JS is disabled. Reveal animation is progressive.
     out=out.replace('</head>','<noscript><style>.opacity-0{opacity:1!important}.translate-y-8{transform:none!important}</style></noscript></head>')
     path=ROOT/slug/'index.html' if slug else ROOT/'index.html'

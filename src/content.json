@@ -994,5 +994,111 @@
       ]
     ],
     "contact_heading": "Pomozte nám otevřít <em class=\"text-neon-gradient\">MinoBuddy</em>"
+  },
+  "3d-tisky": {
+    "title": "3D tisky ke stažení",
+    "description": "Modely z dílny MORFIAI připravené pro 3D tisk. Zdarma ke stažení pro osobní, nekomerční použití.",
+    "lines": [
+      "Vytiskni si",
+      "kus našeho světa."
+    ],
+    "eyebrow": "3D tisky · ke stažení",
+    "heading": "Modely, které <em class=\"text-neon-gradient\">si vytiskneš doma</em>",
+    "cards": [
+      [
+        "Dráček nádherný",
+        "Barevný projekt 3MF z Bambu Studia: dráček s rozepjatými křídly, připravený rovnou k tisku.",
+        "/3d-tisky/#dracek"
+      ],
+      [
+        "Hobití čtecí koutek",
+        "Dvanáct miniaturních kousků nábytku – knihovna, krb s místem pro LED, truhly, křesla – a k tomu ušák s taburetem.",
+        "/3d-tisky/#hobiti-cteci-koutek"
+      ],
+      [
+        "Modulární šuplíky",
+        "Šuplíky s vnitřním prostorem 200 × 200 × 100 mm, které se stohují bez lepidla a šroubů.",
+        "/3d-tisky/#modularni-supliky"
+      ]
+    ],
+    "downloads": {
+      "eyebrow": "Ke stažení",
+      "heading": "Vyber si <em class=\"text-neon-gradient\">model</em>",
+      "intro": "Každý balíček obsahuje soubory pro slicer a vlastní návod s rozměry a doporučeným nastavením. Stáhneš ho jedním kliknutím, bez registrace.",
+      "items": [
+        {
+          "id": "dracek",
+          "title": "Dráček nádherný",
+          "image": "3d-tisky/img/dracek.jpg",
+          "alt": "Náhled dráčka s rozepjatými křídly na tiskové podložce",
+          "text": "Detailní dráček s rozepjatými křídly a šupinatým tělem. Projekt je uložený z Bambu Studia včetně barevného nastavení, takže ho otevřeš a můžeš tisknout.",
+          "specs": [
+            "formát: 3MF (Bambu Studio)",
+            "jeden soubor, 22 MB"
+          ],
+          "note": "Otevři v Bambu Studiu nebo Orca Sliceru. Jiné slicery nemusejí převzít barvy a nastavení.",
+          "file": "https://github.com/nexversemino/nexversemino.github.io/releases/download/3d-tisky-1/morfiai-dracek-nadherny-barevny.3mf",
+          "button": "Stáhnout 3MF",
+          "size": "22 MB"
+        },
+        {
+          "id": "hobiti-cteci-koutek",
+          "title": "Hobití čtecí koutek",
+          "image": "3d-tisky/img/hobiti-cteci-koutek.jpg",
+          "alt": "Barevný náhled miniaturního nábytku: knihovna, stůl, křesla, krb a truhly",
+          "text": "Miniaturní nábytek do pohádkového koutku: prkenná knihovna, stůl se třemi zásuvkami, zelený ušák, kožené křeslo, prošívaný taburet, kamenný krb, lampa s lucernou a tři truhly. Kresba dřeva je vymodelovaná přímo v STL.",
+          "specs": [
+            "12 dílů STL v milimetrech, tisk v měřítku 100 %",
+            "knihovna 37 × 15 × 51 mm, ušák 24 × 21 × 33 mm",
+            "krb s kapsou na drobný LED modul (asi 9 × 8 × 2 mm)",
+            "PLA, tryska 0,4 mm, vrstva 0,12 mm, 3 stěny, 12–18 % výplně",
+            "navíc: ušák s taburetem podle fotografie (2 STL)"
+          ],
+          "note": "Ušák s taburetem zatím neprošel zkušebním tiskem. Před tiskem zkontroluj podpěry pod deskou stolu, područkami a v otvoru krbu.",
+          "file": "https://github.com/nexversemino/nexversemino.github.io/releases/download/3d-tisky-1/morfiai-hobiti-cteci-koutek.zip",
+          "button": "Stáhnout ZIP",
+          "size": "60 MB"
+        },
+        {
+          "id": "modularni-supliky",
+          "title": "Modulární stohovatelné šuplíky",
+          "image": "3d-tisky/img/modularni-supliky.jpg",
+          "alt": "Sestava pěti stohovaných modulů se dvěma vysunutými šuplíky",
+          "text": "Šuplíky, které na sebe skládáš jako kostky. Moduly drží patky v drážkách a tisknuté klíny, takže nepotřebuješ lepidlo ani šrouby. Na výběr je hranatá úchytka, nebo oválná na rybinové liště.",
+          "specs": [
+            "vnitřní prostor zásuvky 200 × 200 × 100 mm",
+            "modul 216 × 216 mm, pět pater asi 614 mm",
+            "jedno patro z CAD asi 484 g PLA",
+            "projekty 3MF pro Anycubic Kobra X + jednotlivé STL",
+            "parametrický model.py pro Blender – rozměry si upravíš"
+          ],
+          "note": "Geometrie je ověřená v CAD, fyzicky zatím nevytištěná. Začni jedním modulem a vysoký stoh vždy zajisti ke stěně.",
+          "file": "https://github.com/nexversemino/nexversemino.github.io/releases/download/3d-tisky-1/morfiai-modularni-stohovatelne-supliky.zip",
+          "button": "Stáhnout ZIP",
+          "size": "0,3 MB"
+        }
+      ],
+      "license": "Licence: CC BY-NC 4.0. Modely si můžeš zdarma tisknout, upravovat a sdílet, když uvedeš MORFIAI jako autora a nebudeš je ani výtisky prodávat."
+    },
+    "split": [
+      "Než spustíš tisk",
+      "Zkontroluj <em data-orb=\"drop\" data-orb-color=\"var(--neon-lime)\" class=\"text-neon-gradient\">náhled vrstev.</em>",
+      "Rozměry a doporučené nastavení najdeš v návodu u každého balíčku. Tiskárny a materiály se liší, proto si před tiskem ve sliceru zkontroluj měřítko, podpěry a první vrstvu."
+    ],
+    "workflow": [
+      "stáhnout → otevřít ve sliceru",
+      "zkontrolovat měřítko a podpěry",
+      "tisk → sestavení"
+    ],
+    "stats": [
+      "3",
+      "sady modelů",
+      "STL",
+      "i 3MF",
+      "0 Kč",
+      "osobní použití"
+    ],
+    "cta": "Vybrat model",
+    "contact_text": "Máš hotový výtisk nebo nápad na další model? Napiš nám."
   }
 }
